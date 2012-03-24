@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd version="4.2.5" timestamp="2011-12-22T20:45:19.513">
+<file name="E:\project\workspace_myeclipse_10\maven_test\src\main\java\com\zw\App.java">
+<violation beginline="11" endline="11" begincolumn="9" endcolumn="26" rule="SystemPrintln" ruleset="Java Logging Rules" package="com.zw" class="App" method="main" externalInfoUrl="http://pmd.sourceforge.net/rules/logging-java.html#SystemPrintln" priority="3">
+System.out.print is used
+</violation>
+</file>
+</pmd>

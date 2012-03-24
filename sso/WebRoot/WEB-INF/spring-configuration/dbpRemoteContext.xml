@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd">
+    <description>
+        remote interface
+    </description>
+    <bean id="dbpRemoteDao" class="com.tydic.sso.dao.DbpRemoteDaoImpl">
+        <constructor-arg index="0" ref="dataSource"/>
+        <property name="staffByIdSql">
+            <value>
+                SELECT E.CERT_NBR CERNUMB,
+                E.CRT_DATE CRTDATE,
+                E.DEPTTYPE DEPTYPE,
+                E.EMPEE_EMAIL_ADDR EMAIL,
+                E.IP_ADDRESS IPADDR,
+                E.LATN_ID LATNID,
+                E.MAC MACADDR,
+                E.EMPEE_MOB_NO MOBILE,
+                E.ORD_NUM ORDERNUMB,
+                E.EMPEE_ACCT ACCT,
+                E.EMPEE_ADDR_DESC ADDR,
+                E.EMPEE_CODE STAFFCODE,
+                E.EMPEE_ID STAFFID,
+                E.EMPEE_LEVEL STAFFLEVEL,
+                E.EMPEE_NAME STAFFNAME,
+                E.STAFF_TYPE STAFFTYPE,
+                E.EMPEE_TEL_NO TELENO,
+                E.CRM_EMPEE_ACCT CRMACCT,
+                O.INTER_ORG_ID AREAID,
+                R.INTER_ORG_STRUC_ID AREALEVEL
+                FROM TB_PTY_EMPEE E,
+                TB_SYS_EMPEE_ORG EO,
+                TB_PTY_INTER_ORG O,
+                TB_PTY_INTER_ORG_REL R
+                WHERE E.EMPEE_ID = EO.EMPEE_ID
+                AND EO.IN_ORG_ID = O.INTER_ORG_ID
+                AND O.INTER_ORG_ID = R.INTER_ORG_ID  AND EO.MAIN_POST =1
+                AND E.STATE='G01'
+                AND E.EMPEE_ID = ?
+            </value>
+        </property>
+        <property name="staffByAcctSql">
+            <value>
+                SELECT E.CERT_NBR CERNUMB,
+                E.CRT_DATE CRTDATE,
+                E.DEPTTYPE DEPTYPE,
+                E.EMPEE_EMAIL_ADDR EMAIL,
+                E.IP_ADDRESS IPADDR,
+                E.LATN_ID LATNID,
+                E.MAC MACADDR,
+                E.EMPEE_MOB_NO MOBILE,
+                E.ORD_NUM ORDERNUMB,
+                E.EMPEE_ACCT ACCT,
+                E.EMPEE_ADDR_DESC ADDR,
+                E.EMPEE_CODE STAFFCODE,
+                E.EMPEE_ID STAFFID,
+                E.EMPEE_LEVEL STAFFLEVEL,
+                E.EMPEE_NAME STAFFNAME,
+                E.STAFF_TYPE STAFFTYPE,
+                E.EMPEE_TEL_NO TELENO,
+                E.CRM_EMPEE_ACCT CRMACCT,
+                O.INTER_ORG_ID AREAID,
+                R.INTER_ORG_STRUC_ID AREALEVEL
+                FROM TB_PTY_EMPEE E,
+                TB_SYS_EMPEE_ORG EO,
+                TB_PTY_INTER_ORG O,
+                TB_PTY_INTER_ORG_REL R
+                WHERE E.EMPEE_ID = EO.EMPEE_ID
+                AND EO.IN_ORG_ID = O.INTER_ORG_ID
+                AND O.INTER_ORG_ID = R.INTER_ORG_ID  AND EO.MAIN_POST =1
+                AND E.STATE='G01'
+                AND E.EMPEE_ACCT = ?
+            </value>
+        </property>
+        <property name="checkAppSql">
+            <value>
+                SELECT APP_ID,APP_NAME FROM TB_SYS_APPLICATION WHERE APP_ID = ?
+            </value>
+        </property>
+        <property name="privilegeByIdSql">
+            <value>
+                <![CDATA[
+					SELECT distinct P.SUPER_CODE PARENTCODE,
+					       P.POSITION POSTION,
+					       P.PRIVILEGE_CODE CODE,
+					       P.DESCRIPTION DES,
+					       P.PRIVILEGE_ID PRIVILEGEID,
+					       P.PRIVILEGE_NAME NAME,
+					       P.MENU_TYPE TYPE,
+					       P.STATE STATE,
+					       CASE
+					         WHEN P.MENU_TYPE = 2 THEN
+					          NULL
+					         ELSE
+					          DECODE(P.REPORT_ID,
+					                 NULL,
+					                 P.URL,
+					                 (SELECT CASE
+					                           WHEN R.REPORT_TYPE = 5 AND R.IS_ACTIVE_REPORT = 1 THEN
+					                            R.DYNAMIC_URL
+					                           ELSE
+					                            R.REPORT_URL
+					                         END URL
+					                    FROM DBP_REPORT R
+					                   WHERE R.REPORT_ID = P.REPORT_ID))
+					       END URL,
+					       P.LAYER LAYER,
+					       P.MENU_OTHERNAME ALIAS,
+					       P.EXTEND1 EXT
+		              FROM TB_SYS_PRIVILEGE P, TB_SYS_ROLE_PRIVILEGE RP, TB_SYS_EMPEE_ROLE ER, 
+		              TB_SYS_ROLE RO, TB_PTY_EMPEE EE
+		             WHERE P.PRIVILEGE_ID = RP.PRIVILEGE_ID
+		               AND ER.ROLE_ID = RP.ROLE_ID
+		               AND ER.ROLE_ID = RO.ROLE_ID
+                   	   AND RO.STATE = '1'
+	                   AND ER.EMPEE_ID = EE.EMPEE_ID
+	                   AND EE.STATE = 'G01'                   	   
+		               AND P.MENU_TYPE <> 4
+					   AND P.STATE = '1'
+		               AND ER.EMPEE_ID = ?
+		               AND P.APP_ID = ?  
+					   ORDER BY P.POSITION
+						  ]]>
+            </value>
+        </property>
+        <property name="privilegeByAcctSql">
+            <value>
+                <![CDATA[
+					SELECT distinct P.SUPER_CODE PARENTCODE,
+					       P.POSITION POSTION,
+					       P.PRIVILEGE_CODE CODE,
+					       P.DESCRIPTION DES,
+					       P.PRIVILEGE_ID PRIVILEGEID,
+					       P.PRIVILEGE_NAME NAME,
+					       P.MENU_TYPE TYPE,
+					       P.STATE STATE,
+					       CASE
+					         WHEN P.MENU_TYPE = 2 THEN
+					          NULL
+					         ELSE
+					          DECODE(P.REPORT_ID,
+					                 NULL,
+					                 P.URL,
+					                 (SELECT CASE
+					                           WHEN R.REPORT_TYPE = 5 AND R.IS_ACTIVE_REPORT = 1 THEN
+					                            R.DYNAMIC_URL
+					                           ELSE
+					                            R.REPORT_URL
+					                         END URL
+					                    FROM DBP_REPORT R
+					                   WHERE R.REPORT_ID = P.REPORT_ID))
+					       END URL,
+					       P.LAYER LAYER,
+					       P.MENU_OTHERNAME ALIAS,
+					       P.EXTEND1 EXT
+					  FROM TB_SYS_PRIVILEGE      P,
+					       TB_SYS_ROLE_PRIVILEGE RP,
+					       TB_SYS_EMPEE_ROLE     ER,
+					       TB_PTY_EMPEE          E,
+					       TB_SYS_ROLE RO
+					 WHERE P.PRIVILEGE_ID = RP.PRIVILEGE_ID
+					   AND E.EMPEE_ID = ER.EMPEE_ID
+					   AND ER.ROLE_ID = RP.ROLE_ID
+					   AND ER.ROLE_ID = RO.ROLE_ID
+                   	   AND RO.STATE= '1'
+					   AND P.MENU_TYPE <> 4
+					   AND E.STATE = 'G01'
+					   AND P.STATE = '1'
+					   AND E.EMPEE_ACCT = ?
+					   AND P.APP_ID = ?
+					   ORDER BY P.POSITION
+				]]>
+            </value>
+        </property>
+        <property name="orgByIdSql">
+            <value>
+                SELECT O.INTER_ORG_CODE ORGCODE,
+                O.INTER_ORG_DESC DES,
+                O.INTER_ORG_ID ORGID,
+                R.INDEX_CODE ORGINDEX,
+                R.LATN_ID LATNID,
+                O.INTER_ORG_NAME ORGNAME,
+                O.ORG_NUM ORDERNUMB,
+                R.UP_INTER_ORG_ID PARENTID,
+                O.SHORT_ORG_NAME SHORTNAME,
+                O.STATE STATE,
+                R.INTER_ORG_STRUC_ID STRUTID,
+                O.ORG_TYPE TYPE
+                FROM TB_PTY_INTER_ORG O, TB_PTY_INTER_ORG_REL R
+                WHERE O.INTER_ORG_ID = R.INTER_ORG_ID
+                AND O.EFF_STATE = 'G01'
+                AND O.INTER_ORG_ID = ?
+            </value>
+        </property>
+        <property name="orgByCodeSql">
+            <value>
+                SELECT O.INTER_ORG_CODE ORGCODE,
+                O.INTER_ORG_DESC DES,
+                O.INTER_ORG_ID ORGID,
+                R.INDEX_CODE ORGINDEX,
+                R.LATN_ID LATNID,
+                O.INTER_ORG_NAME ORGNAME,
+                O.ORG_NUM ORDERNUMB,
+                R.UP_INTER_ORG_ID PARENTID,
+                O.SHORT_ORG_NAME SHORTNAME,
+                O.STATE STATE,
+                R.INTER_ORG_STRUC_ID STRUTID,
+                O.ORG_TYPE TYPE
+                FROM TB_PTY_INTER_ORG O, TB_PTY_INTER_ORG_REL R
+                WHERE O.INTER_ORG_ID = R.INTER_ORG_ID
+                AND O.EFF_STATE = 'G01'
+                AND O.INTER_ORG_CODE = ?
+            </value>
+        </property>
+        <property name="buttonSql">
+            <value>
+                SELECT DISTINCT P.SUPER_CODE PARENTCODE,
+                P.PRIVILEGE_CODE CODE,
+                P.DESCRIPTION DES,
+                P.PRIVILEGE_NAME NAME
+                FROM TB_SYS_PRIVILEGE P,
+                TB_SYS_ROLE_PRIVILEGE RP,
+                TB_SYS_EMPEE_ROLE ER,
+                TB_PTY_EMPEE E,
+                TB_SYS_ROLE RO
+                WHERE P.PRIVILEGE_ID = RP.PRIVILEGE_ID
+                AND E.EMPEE_ID = ER.EMPEE_ID
+                AND ER.ROLE_ID = RP.ROLE_ID
+                AND ER.ROLE_ID = RO.ROLE_ID
+                AND P.STATE='1'
+                AND RO.STATE = '1'
+                AND P.MENU_TYPE = 4
+                AND E.STATE = 'G01'
+                AND E.EMPEE_ACCT = ?
+                AND P.APP_ID = ?
+            </value>
+        </property>
+        <property name="rolesSql">
+            <value>
+                SELECT R.ROLE_ID ROLEID,
+                R.ROLE_NAME ROLENAME
+                FROM TB_PTY_EMPEE E, TB_SYS_ROLE R, TB_SYS_EMPEE_ROLE ER
+                WHERE E.EMPEE_ID = ER.EMPEE_ID
+                AND ER.ROLE_ID = R.ROLE_ID
+                AND E.STATE = 'G01'
+                AND R.STATE = '1'
+                AND E.EMPEE_ID= ?
+            </value>
+        </property>
+        <property name="staffOrgSql">
+            <value>
+                SELECT O.INTER_ORG_CODE ORGCODE,
+                O.INTER_ORG_DESC DES,
+                O.INTER_ORG_ID ORGID,
+                R.INDEX_CODE ORGINDEX,
+                R.LATN_ID LATNID,
+                O.INTER_ORG_NAME ORGNAME,
+                O.ORG_NUM ORDERNUMB,
+                R.UP_INTER_ORG_ID PARENTID,
+                O.SHORT_ORG_NAME SHORTNAME,
+                O.STATE STATE,
+                R.INTER_ORG_STRUC_ID STRUTID,
+                O.ORG_TYPE TYPE
+                FROM TB_PTY_INTER_ORG O,
+                TB_PTY_INTER_ORG_REL R,
+                TB_PTY_EMPEE E,
+                TB_SYS_EMPEE_ORG EO
+                WHERE O.INTER_ORG_ID = R.INTER_ORG_ID
+                AND E.EMPEE_ID = EO.EMPEE_ID
+                AND EO.IN_ORG_ID = O.INTER_ORG_ID
+                AND E.STATE = 'G01'
+                AND O.EFF_STATE = 'G01'
+                AND E.EMPEE_ID = ?
+            </value>
+        </property>
+        <property name="staffDataPSql">
+            <value>
+                SELECT DISTINCT O.INTER_ORG_ID CODE
+                FROM TB_PTY_INTER_ORG O,
+                TB_PTY_INTER_ORG_REL R,
+                TB_PTY_EMPEE E,
+                TB_SYS_EMPEE_SEGMENT S,
+                TB_SYS_APPLICATION A
+                WHERE O.INTER_ORG_ID = R.INTER_ORG_ID
+                AND E.EMPEE_ID = S.EMPEE_ID
+                AND S.ORG_ID = O.INTER_ORG_ID
+                AND A.SYS_CODE = S.SYS_CODE
+                AND O.EFF_STATE = 'G01'
+                AND A.STATE='1'
+                AND E.EMPEE_ID = ?
+                AND A.APP_ID = ?
+            </value>
+        </property>
+        <property name="staffDataPrivilegeSql">
+            <value>
+                SELECT O.INTER_ORG_CODE ORGCODE,
+                O.INTER_ORG_DESC DES,
+                O.INTER_ORG_ID ORGID,
+                R.INDEX_CODE ORGINDEX,
+                R.LATN_ID LATNID,
+                O.INTER_ORG_NAME ORGNAME,
+                O.ORG_NUM ORDERNUMB,
+                R.UP_INTER_ORG_ID PARENTID,
+                O.SHORT_ORG_NAME SHORTNAME,
+                O.STATE STATE,
+                R.INTER_ORG_STRUC_ID STRUTID,
+                O.ORG_TYPE TYPE,
+                S.CONTAIN_CHILDS CONTAINCHILDS
+                FROM TB_PTY_INTER_ORG O,
+                TB_PTY_INTER_ORG_REL R,
+                TB_PTY_EMPEE E,
+                TB_SYS_EMPEE_SEGMENT S,
+                TB_SYS_APPLICATION A
+                WHERE O.INTER_ORG_ID = R.INTER_ORG_ID
+                AND E.EMPEE_ID = S.EMPEE_ID
+                AND S.ORG_ID = O.INTER_ORG_ID
+                AND A.SYS_CODE = S.SYS_CODE
+                AND O.EFF_STATE = 'G01'
+                AND A.STATE='1'
+                AND E.EMPEE_ACCT = ?
+                AND A.APP_ID = ?
+            </value>
+        </property>
+
+        <property name="logSql">
+            <value>
+                INSERT INTO DBP_SYS_LOG
+                (LOG_ID,
+                STAFF_NAME,
+                CREATE_DATE,
+                LOG_STATE,
+                LOG_INFO,
+                IP,
+                ZONE_ID,
+                STAFF_ID,
+                OPR_OBJ_ID,
+                OPR_TYPE,
+                SYS_LATN_ID,
+                SYS_ID)
+                VALUES
+                (SEQ_DBP_SYS_LOG.NEXTVAL,?,SYSDATE,?,?,?,?,?,?,?,?,?)
+            </value>
+        </property>
+        <property name="remoteLogSql">
+            <value>
+                INSERT INTO DBP_REMOTE_LOG
+                (LOG_ID,
+                APP_ID,
+                OPERATOR,
+                ACCESSDATE,
+                OBJECTTYPE,
+                OBJECTKEY,
+                OPRESULT,
+                EXCEPTION,
+                IP)
+                VALUES
+                (SEQ_DBP_REMOTE_LOG.NEXTVAL, ?, ?, SYSDATE, ?, ?, ?, ?,?)
+            </value>
+        </property>
+    </bean>
+
+    <bean id="logThread" class="com.tydic.sso.service.DbpSysLogThread" init-method="start" lazy-init="false">
+        <constructor-arg index="0" value="5"/>
+        <constructor-arg index="1" value="1000"/>
+        <property name="dbpDao" ref="dbpRemoteDao"/>
+    </bean>
+
+    <bean id="remoteLogThread" class="com.tydic.sso.service.DbpRemoteLogThread" init-method="start" lazy-init="false">
+        <constructor-arg index="0" value="5"/>
+        <constructor-arg index="1" value="1000"/>
+        <property name="dbpDao" ref="dbpRemoteDao"/>
+    </bean>
+</beans>

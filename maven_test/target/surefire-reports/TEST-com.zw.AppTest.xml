@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite failures="0" time="0.016" errors="0" skipped="0" tests="1" name="com.zw.AppTest">
+  <properties>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="sun.boot.library.path" value="D:\Java\jdk1.6.0_20\jre\bin"/>
+    <property name="java.vm.version" value="16.3-b01"/>
+    <property name="java.vm.vendor" value="Sun Microsystems Inc."/>
+    <property name="java.vendor.url" value="http://java.sun.com/"/>
+    <property name="path.separator" value=";"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) Client VM"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="user.country" value="CN"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.os.patch.level" value="Service Pack 3"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="E:\project\workspace_myeclipse_10\maven_test"/>
+    <property name="java.runtime.version" value="1.6.0_20-b02"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+    <property name="basedir" value="E:\project\workspace_myeclipse_10\maven_test"/>
+    <property name="java.endorsed.dirs" value="D:\Java\jdk1.6.0_20\jre\lib\endorsed"/>
+    <property name="os.arch" value="x86"/>
+    <property name="surefire.real.class.path" value="E:\project\workspace_myeclipse_10\maven_test\target\surefire\surefirebooter4314009563663291695.jar"/>
+    <property name="java.io.tmpdir" value="C:\DOCUME~1\User\LOCALS~1\Temp\"/>
+    <property name="line.separator" value="
+"/>
+    <property name="java.vm.specification.vendor" value="Sun Microsystems Inc."/>
+    <property name="user.variant" value=""/>
+    <property name="os.name" value="Windows XP"/>
+    <property name="sun.jnu.encoding" value="GBK"/>
+    <property name="java.library.path" value="D:\Java\jdk1.6.0_20\jre\bin;.;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\Program Files\Intel\Wireless\Bin\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\ThinkPad Wireless LAN Adapter Software;C:\Program Files\Common Files\Thunder Network\KanKan\Codecs;D:\TortoiseSVN\bin;D:\apache-ant-1.8.1\bin;D:\Java\jdk1.6.0_20\bin;D:\apache-maven-3.0.3\bin"/>
+    <property name="surefire.test.class.path" value="E:\project\workspace_myeclipse_10\maven_test\target\test-classes;E:\project\workspace_myeclipse_10\maven_test\target\generated-classes\cobertura;D:\apache-maven-3.0.3\repo\junit\junit\3.8.1\junit-3.8.1.jar;D:\apache-maven-3.0.3\repo\net\sourceforge\cobertura\cobertura\1.9.4.1\cobertura-1.9.4.1.jar;D:\apache-maven-3.0.3\repo\org\apache\ant\ant\1.7.0\ant-1.7.0.jar;D:\apache-maven-3.0.3\repo\org\apache\ant\ant-launcher\1.7.0\ant-launcher-1.7.0.jar;"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.class.version" value="50.0"/>
+    <property name="sun.management.compiler" value="HotSpot Client Compiler"/>
+    <property name="os.version" value="5.1"/>
+    <property name="user.home" value="C:\Documents and Settings\User"/>
+    <property name="user.timezone" value=""/>
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+    <property name="java.specification.version" value="1.6"/>
+    <property name="file.encoding" value="GBK"/>
+    <property name="user.name" value="User"/>
+    <property name="java.class.path" value="E:\project\workspace_myeclipse_10\maven_test\target\test-classes;E:\project\workspace_myeclipse_10\maven_test\target\generated-classes\cobertura;D:\apache-maven-3.0.3\repo\junit\junit\3.8.1\junit-3.8.1.jar;D:\apache-maven-3.0.3\repo\net\sourceforge\cobertura\cobertura\1.9.4.1\cobertura-1.9.4.1.jar;D:\apache-maven-3.0.3\repo\org\apache\ant\ant\1.7.0\ant-1.7.0.jar;D:\apache-maven-3.0.3\repo\org\apache\ant\ant-launcher\1.7.0\ant-launcher-1.7.0.jar;"/>
+    <property name="java.vm.specification.version" value="1.0"/>
+    <property name="sun.arch.data.model" value="32"/>
+    <property name="java.home" value="D:\Java\jdk1.6.0_20\jre"/>
+    <property name="java.specification.vendor" value="Sun Microsystems Inc."/>
+    <property name="user.language" value="zh"/>
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="java.version" value="1.6.0_20"/>
+    <property name="java.ext.dirs" value="D:\Java\jdk1.6.0_20\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext"/>
+    <property name="sun.boot.class.path" value="D:\Java\jdk1.6.0_20\jre\lib\resources.jar;D:\Java\jdk1.6.0_20\jre\lib\rt.jar;D:\Java\jdk1.6.0_20\jre\lib\sunrsasign.jar;D:\Java\jdk1.6.0_20\jre\lib\jsse.jar;D:\Java\jdk1.6.0_20\jre\lib\jce.jar;D:\Java\jdk1.6.0_20\jre\lib\charsets.jar;D:\Java\jdk1.6.0_20\jre\classes"/>
+    <property name="java.vendor" value="Sun Microsystems Inc."/>
+    <property name="localRepository" value="D:\apache-maven-3.0.3\repo"/>
+    <property name="file.separator" value="\"/>
+    <property name="java.vendor.url.bug" value="http://java.sun.com/cgi-bin/bugreport.cgi"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="sun.desktop" value="windows"/>
+    <property name="sun.cpu.isalist" value="pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86"/>
+  </properties>
+  <testcase time="0.016" classname="com.zw.AppTest" name="testApp"/>
+</testsuite>

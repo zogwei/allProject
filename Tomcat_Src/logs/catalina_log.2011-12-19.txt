@@ -1,0 +1,21 @@
+2011-12-19 16:16:14 HttpConnector Opening server socket on all host IP addresses
+2011-12-19 16:16:14 HttpConnector[8080] Starting background thread
+2011-12-19 16:16:14 HttpProcessor[8080][0] Starting background thread
+2011-12-19 16:16:14 HttpProcessor[8080][1] Starting background thread
+2011-12-19 16:16:14 HttpProcessor[8080][2] Starting background thread
+2011-12-19 16:16:14 HttpProcessor[8080][3] Starting background thread
+2011-12-19 16:16:14 HttpProcessor[8080][4] Starting background thread
+2011-12-19 16:16:37 HttpConnector Opening server socket on all host IP addresses
+2011-12-19 16:16:37 HttpConnector[8080] Starting background thread
+2011-12-19 16:16:37 HttpProcessor[8080][0] Starting background thread
+2011-12-19 16:16:37 HttpProcessor[8080][1] Starting background thread
+2011-12-19 16:16:37 HttpProcessor[8080][2] Starting background thread
+2011-12-19 16:16:37 HttpProcessor[8080][3] Starting background thread
+2011-12-19 16:16:37 HttpProcessor[8080][4] Starting background thread
+2011-12-19 16:17:39 HttpConnector Opening server socket on all host IP addresses
+2011-12-19 16:17:39 HttpConnector[8080] Starting background thread
+2011-12-19 16:17:39 HttpProcessor[8080][0] Starting background thread
+2011-12-19 16:17:39 HttpProcessor[8080][1] Starting background thread
+2011-12-19 16:17:39 HttpProcessor[8080][2] Starting background thread
+2011-12-19 16:17:39 HttpProcessor[8080][3] Starting background thread
+2011-12-19 16:17:39 HttpProcessor[8080][4] Starting background thread
