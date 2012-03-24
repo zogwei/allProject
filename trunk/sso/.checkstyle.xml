@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module PUBLIC "-//Puppy Crawl//DTD Check Configuration 1.3//EN" "http://www.puppycrawl.com/dtds/configuration_1_3.dtd">
+
+<!--
+	This configuration file was written by the eclipse-cs plugin configuration editor
+-->
+<!--
+	Checkstyle-Configuration: monitoring
+	Description: none
+-->
+<module name="Checker">
+	<property name="severity" value="warning" />
+	<module name="TreeWalker">
+		<property name="tabWidth" value="4" />
+		<module name="FileContentsHolder" />
+		<module name="AvoidStarImport" /><!--检查是否有使用*进行import-->
+		<module name="IllegalImport">
+			<!--是否import了违法的包，默认拒绝import所以sun.*包-->
+			<property name="severity" value="error" />
+		</module>
+		<module name="RedundantImport">
+			<!--检查是否有重复的import-->
+			<property name="severity" value="error" />
+		</module>
+		<module name="UnusedImports">
+			<!--检查import而未有使用过的import-->
+			<property name="severity" value="error" />
+		</module>
+		<module name="ConstantName" />
+		<module name="LocalFinalVariableName" /><!--检查局部的final类型变量名，包括catch的参数-->
+		<module name="LocalVariableName" /><!--检查局部的非final类型变量名，包括catch的参数-->
+		<module name="MemberName" /><!--检查非静态变量-->
+		<module name="MethodName" />
+		<module name="ParameterName" />
+		<module name="StaticVariableName" />
+		<module name="TypeName">
+			<!--检查类名和接口名
+				<property name = "format" value = "^[A-Z][a-zA-Z0-9]*$"/>
+				<property name = "tokens" value = "CLASS_DEF,INTERFACE_DEF"/>
+			-->
+		</module>
+		<module name="PackageName"><!--检查包命名-->
+			<property name="format"
+				value="^[a-z0-9]+(\.[a-zA-Z_][a-zA-Z0-9_]*)*$" />
+		</module>
+		<module name="ImportOrder">
+			<!--检查是否有使用*进行import-->
+			<property name="severity" value="ignore" />
+			<property name="separated" value="true" />
+		</module>
+		<module name="JavadocMethod">
+			<!-- 检查方法和构造函数的javadoc。默认不检查未使用的异常抛出。 -->
+			<property name="scope" value="public" />
+		</module>
+		<module name="JavadocStyle">
+			<!-- 检查javadoc的格式。比如：javadoc的第一行是否以句号结束，javadoc除了tags外是否有description，检查javadoc中的html格式 -->
+			<property name="scope" value="public" />
+			<property name="checkHtml" value="false" />
+		</module>
+		<module name="JavadocType">
+			<!-- 检查类和接口的javadoc。默认不检查author 和version tags -->
+			<property name="scope" value="public" />
+		</module>
+		<module name="AnonInnerLength" />
+		<module name="MethodLength">
+			<!-- 使用"max"属性可以设置最多的行数，默认150，"countEmpty"是否对空白或"//"注释行记数，默认是"true"，
+				"tokens"可以指定 检查的是一般方法还是构造方法，默认都检查，可用的值是"METHOD_DEF, CTOR_DEF"。 
+				<property name="tokens" value="METHOD_DEF" />  tokens 指不检查构造函数
+				<property name="max" value="30" />
+			-->
+		</module>
+		<module name="ParameterNumber">
+			<!-- 
+				"max"属性可以设置最多的参数个数，默认7，"tokens"属性指定检查的是一般方法还是构造方法，默认都检查。
+				可用的值是"METHOD_DEF, CTOR_DEF"。
+				<property name="max" value="5"/>
+				<property name="tokens" value="METHOD_DEF"/>		
+			-->
+		</module>
+
+		<module name="EmptyForInitializerPad" />
+		<module name="EmptyForIteratorPad" />
+		<module name="OperatorWrap" />
+		<module name="MethodParamPad" /><!-- 本检查约定方法名与左边圆括号之间不许出现空格 -->
+		<module name="ParenPad" /><!-- 不允许左圆括号右边有空格，也不允许与右圆括号左边有空格。 -->
+		<module name="TypecastParenPad">
+			<property name="tokens" value="RPAREN,TYPECAST" />
+			<!-- 在类型转换时，不允许左圆括号右边有空格，也不允许与右圆括号左边有空格 -->
+		</module>
+		<module name="ModifierOrder" /><!-- 每个关键字都有正确的出现顺序。比如 public static final XXX 是对一个常量的声明。如果使用 static public final 就是错误的 -->
+		<module name="RedundantModifier" /><!-- 多余的关键字检查 -->
+		<module name="AvoidNestedBlocks" /><!-- 多余的括号 -->
+		<module name="EmptyBlock" /><!-- 不能出现空白区域 -->
+		<module name="LeftCurly">
+			<property name="option" value="nl" />
+		</module>
+		<module name="NeedBraces" /><!-- 所有区域都要使用大括号。 -->
+		<module name="RightCurly" />
+		<module name="CovariantEquals" /><!-- 检查一个类覆写(override)了euqals()方法 -->
+		<module name="DefaultComesLast">
+			<!-- 
+				确保switch语句的default一定在最后出现。虽然java语法允许default可以放在switch中的任何位置，
+				但是把它放在各个case的最下面是可读性最强的。
+				
+				p.s. 如果不写default , 就会产生逻辑错误，却没有提示。非常不建议使用switch，请使用if…else 代替
+			-->
+		</module>
+		<module name="DeclarationOrder">
+			<!-- 
+				根据 Sun编码规范， class 或 interface 中的顺序如下：
+				1. class 声明。首先是 public, 然后是protected , 然后是 package level （不包括access modifier ）最后是private . (多个class放在一个java文件中的情况）
+				2. 变量声明。 首先是 public, 然后是protected然后是 package level （不包括access modifier ）最后是private . (多个class放在一个java文件中的情况）
+				3. 构造函数
+				4. 方法					
+			-->
+		</module>
+		<module name="DoubleCheckedLocking" />
+		<module name="EmptyStatement" /><!-- 不许出现空语句 -->
+		<module name="EqualsHashCode" /><!-- 每个类都实现了equals()和hashCode() -->
+		<module name="FallThrough" /><!-- 检查每个switch只执行一个分支。也就是说，检查某个case中是否有 break, return ,throw 或 continue语句。 -->
+		<module name="IllegalInstantiation" /><!-- 通过检查来确保程序员使用了工厂方法(factory method)，而不是构造函数。 比如，规定不能通过new 来构造一个java.lang.Boolean  -->
+		<module name="IllegalThrows">
+			<!-- 确保某些类型（class, interface 等）不被throw. 
+				比如说，声明抛出 java.lang.Error, java.lang.RuntimeException 就是不可以的 -->
+			<property name="severity" value="error" />
+		</module>
+		<module name="IllegalTokenText" />
+		<module name="IllegalType">
+			<property name="tokens"
+				value="METHOD_DEF,PARAMETER_DEF,VARIABLE_DEF" />
+		</module>
+		<module name="InnerAssignment">
+			<!-- 不许内部赋值 -->
+			<property name="severity" value="error" />
+		</module>
+		<module name="JUnitTestCase">
+			<!--
+				确保setUp(), tearDown() 方法被正确的命名，没有参数，void返回类型，而且是public
+				或者protected的 。 确保suite() 被正确的命名，没有参数，返回
+				junit,framework.Test, 而且是 public static型。 
+			-->
+		</module>
+		<module name="MissingSwitchDefault" /><!-- switch最好别用。因为用了必须要有default分支才能逻辑正确。否则的话，编译不报错。但是运行起来会报错（把所有的case依次执行一遍）。 -->
+		<module name="ModifiedControlVariable">
+			<!-- 循环控制变量不能被修改 -->
+			<property name="severity" value="error" />
+		</module>
+		<module name="MultipleVariableDeclarations">
+			<!-- 同一行不能有多个声明 -->
+			<property name="severity" value="error" />
+		</module>
+		<module name="NestedIfDepth">
+			<!-- if最多嵌套3层 -->
+			<property name="max" value="5" />
+		</module>
+		<module name="NestedTryDepth">
+			<!-- try最多被嵌套2层 -->
+			<property name="max" value="2" />
+		</module>
+		<module name="PackageDeclaration">
+			<!-- 确保一个类有package声明。如果一个 class 没有package声明，那么它就无法被引用 -->
+			<property name="severity" value="error" />
+		</module>
+		<module name="ParameterAssignment">
+			<!-- 不许对方法的参数赋值 -->
+			<property name="severity" value="error" />
+		</module>
+		<module name="RedundantThrows">
+			<!-- 多余的throw -->
+			<property name="severity" value="error" />
+		</module>
+		<module name="SimplifyBooleanExpression" /><!-- 不许使用未被简化的条件表达式 -->
+		<module name="SimplifyBooleanReturn" /><!-- 不许使用未被简化的布尔返回值 -->
+		<module name="StringLiteralEquality">
+			<!-- String的比较不能用!= 和 == -->
+			<property name="severity" value="error" />
+		</module>
+		<module name="SuperClone" /><!-- clone方法必须调用了super.clone() -->
+		<module name="SuperFinalize" /><!-- finalize 必须调用了super.finalize() -->
+		<module name="UnnecessaryParentheses" /><!-- 检查不必要的圆括号”(,)” -->
+		<module name="BooleanExpressionComplexity">
+			<!-- 布尔表达式的复杂度，不超过3 -->
+			<property name="max" value="7" />
+		</module>
+		<module name="ClassDataAbstractionCoupling">
+			<!-- 类数据的抽象耦合，不超过7 -->
+			<property name="max" value="7" />
+		</module>
+		<module name="ClassFanOutComplexity">
+			<!-- 类的分散复杂度，不超过20 -->
+			<property name="max" value="20" />
+		</module>
+		<module name="CyclomaticComplexity" /><!-- 函数的分支复杂度，不超过10 -->
+		<module name="JavaNCSS" />
+		<module name="FinalClass" /><!-- 确保只有private 构造函数的class声明成final -->
+		<module name="HideUtilityClassConstructor">
+			<!-- 
+				隐藏工具类的构造方法
+				确保只有static方法的工具类没有public的构造方法。
+				原理：它的构造函数只应该是private 或 protected（如果它有子类的话）的。 常见的错误是，忘记了隐藏默认的构造函数（它是public的）。
+				如果想把一个构造函数定义成protected，你也许会考虑下面的构造函数的方法：例子．一个工具类。
+				// not final to allow subclassing
+				public class StringUtils 
+				{
+				protected StringUtils() {
+				// prevents calls from subclass
+				throw new UnsupportedOperationException(); 
+				}
+				public static int count(char c, String s) {
+				// ...
+				}
+				}						
+			-->
+		</module>
+		<module name="InterfaceIsType">
+			<!-- 
+				只在定义type的时候使用interface
+				根据Bloch 的说法，一个interface用来描述一个type, 所以，在interface中不定义方法却只定义常量的做法是不合适的。
+				本检查也可以配置成不允许marker interface，比如 java.io.Serializable这样的不包括方法和常量的类。
+			-->
+		</module>
+		<module name="MutableException" />
+		<module name="ThrowsCount">
+			<!-- 
+				异常是methods interface的一部分。一个方法如果声明抛出太多不同的异常，会导致异常处理(catch)混乱， 本检查强制规定一个方法的throws的次数。
+				配置每个方法最多抛出两个异常
+			-->
+			<property name="max" value="2" />
+		</module>
+		<module name="VisibilityModifier">
+			<!-- 检查类成员的可见性。只有static final 成员是public的，其他的类成员都是private的，
+				除非在本检查的protectedAllowed和packagedAllowed属性中进行了设置 -->
+			<property name="packageAllowed" value="true" />
+		</module>
+		<module name="ArrayTypeStyle" /><!-- 检查数组类型的定义。有两种风格：java风格的： String[] args 或者 C/C++ 风格的：String args[]  -->
+		<module name="Indentation">
+			<property name="severity" value="ignore" />
+		</module>
+		<module name="UpperEll" /><!-- 检查并确保所有的常量中的L都是大写的。也就是在常量中没有使用”l”而是用的”L”，比如long型常量，都要以”L”结尾。这与Sun编码规范 。小写的字母l 跟数字1 太象了 -->
+		<module name="ArrayTrailingComma" /><!-- 检查数组的最后一个元素后面是有逗号的 -->
+		<module name="FinalLocalVariable" /><!-- 如果某个变量一直都没变，那么它就应该是final型的 -->
+		<module name="HiddenField">
+			<property name="ignoreConstructorParameter" value="true" />
+			<property name="ignoreSetter" value="true" />
+			<property name="ignoreAbstractMethods" value="true" />
+		</module>
+		<module name="NPathComplexity" /><!-- NPath复杂度，不超过200 -->
+		<module name="ExplicitInitialization" /><!-- 确保某个class 在被使用时都已经被初始化成默认值(对象是null , 数字和字符是0 , boolean 变量是false.)了 -->
+		<module name="AnnotationUseStyle" />
+		<module name="MissingDeprecated" />
+		<module name="MissingOverride">
+			<property name="javaFiveCompatibility" value="true" />
+		</module>
+		<module name="ClassTypeParameterName" />
+		<module name="MethodTypeParameterName" />
+		<module name="OuterTypeNumber" />
+		<module name="GenericWhitespace">
+			<property name="severity" value="ignore" />
+		</module>
+		<module name="EqualsAvoidNull" />
+		<module name="ExecutableStatementCount">
+			<property name="max" value="50" />
+			<property name="tokens"
+				value="INSTANCE_INIT,STATIC_INIT,METHOD_DEF,CTOR_DEF" />
+		</module>
+		<module name="LineLength"><!-- 代码行长度方面的检查 -->
+			<property name="severity" value="ignore" />
+			<property name="max" value="10" /><!-- 规定一行的长度不朝过80个字母 -->
+			<property name="tabWidth" value="4" />
+		</module>
+	</module>
+	<module name="NewlineAtEndOfFile" />
+	<module name="Translation" /><!-- 检查翻译文件 	-->
+	<module name="SeverityMatchFilter" />
+	<module name="SuppressionFilter" />
+	<module name="SuppressionCommentFilter" />
+	<module name="FileLength"><!-- 文件长度方面的检查 -->
+		<property name="max" value="1500" /><!-- 文件长度不超过1500行 -->
+	</module>
+	<module name="StrictDuplicateCode">
+		<property name="severity" value="ignore" />
+		<!-- 重复代码的检查，超过8行就认为重复，UTF-8格式
+			本检查一定要放在"TreeWalker"节点前，否则在
+			Checkclipse中会无法使用。
+		-->
+	</module>
+</module>

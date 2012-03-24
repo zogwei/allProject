@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	| deployerConfigContext.xml centralizes into one file some of the declarative configuration that
+	| all CAS deployers will need to modify.
+	|
+	| This file declares some of the Spring-managed JavaBeans that make up a CAS deployment.  
+	| The beans declared in this file are instantiated at context initialization time by the Spring 
+	| ContextLoaderListener declared in web.xml.  It finds this file because this
+	| file is among those declared in the context parameter "contextConfigLocation".
+	|
+	| By far the most common change you will need to make in this file is to change the last bean
+	| declaration to replace the default SimpleTestUsernamePasswordAuthenticationHandler with
+	| one implementing your approach for authenticating usernames and passwords.
+	+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	<!--
+		| This bean declares our AuthenticationManager.  The CentralAuthenticationService service bean
+		| declared in applicationContext.xml picks up this AuthenticationManager by reference to its id, 
+		| "authenticationManager".  Most deployers will be able to use the default AuthenticationManager
+		| implementation and so do not need to change the class of this bean.  We include the whole
+		| AuthenticationManager here in the userConfigContext.xml so that you can see the things you will
+		| need to change in context.
+		+-->
+	<bean id="authenticationManager"
+		class="org.jasig.cas.authentication.AuthenticationManagerImpl">
+		<!--
+			| This is the List of CredentialToPrincipalResolvers that identify what Principal is trying to authenticate.
+			| The AuthenticationManagerImpl considers them in order, finding a CredentialToPrincipalResolver which 
+			| supports the presented credentials.
+			|
+			| AuthenticationManagerImpl uses these resolvers for two purposes.  First, it uses them to identify the Principal
+			| attempting to authenticate to CAS /login .  In the default configuration, it is the DefaultCredentialsToPrincipalResolver
+			| that fills this role.  If you are using some other kind of credentials than UsernamePasswordCredentials, you will need to replace
+			| DefaultCredentialsToPrincipalResolver with a CredentialsToPrincipalResolver that supports the credentials you are
+			| using.
+			|
+			| Second, AuthenticationManagerImpl uses these resolvers to identify a service requesting a proxy granting ticket. 
+			| In the default configuration, it is the HttpBasedServiceCredentialsToPrincipalResolver that serves this purpose. 
+			| You will need to change this list if you are identifying services by something more or other than their callback URL.
+			+-->
+		<property name="credentialsToPrincipalResolvers">
+			<list>
+				<!--
+					| UsernamePasswordCredentialsToPrincipalResolver supports the UsernamePasswordCredentials that we use for /login 
+					| by default and produces SimplePrincipal instances conveying the username from the credentials.
+					| 
+					| If you've changed your LoginFormAction to use credentials other than UsernamePasswordCredentials then you will also
+					| need to change this bean declaration (or add additional declarations) to declare a CredentialsToPrincipalResolver that supports the
+					| Credentials you are using.
+					+-->
+				<bean
+					class="org.jasig.cas.authentication.principal.UsernamePasswordCredentialsToPrincipalResolver" >
+                        <property name="attributeRepository" ref="attributeRepository" />
+                    </bean>
+				<!--
+					| HttpBasedServiceCredentialsToPrincipalResolver supports HttpBasedCredentials.  It supports the CAS 2.0 approach of
+					| authenticating services by SSL callback, extracting the callback URL from the Credentials and representing it as a
+					| SimpleService identified by that callback URL.
+					|
+					| If you are representing services by something more or other than an HTTPS URL whereat they are able to
+					| receive a proxy callback, you will need to change this bean declaration (or add additional declarations).
+					+-->
+				<bean
+					class="org.jasig.cas.authentication.principal.HttpBasedServiceCredentialsToPrincipalResolver" />
+			</list>
+		</property>
+
+		<!--
+			| Whereas CredentialsToPrincipalResolvers identify who it is some Credentials might authenticate, 
+			| AuthenticationHandlers actually authenticate credentials.  Here we declare the AuthenticationHandlers that
+			| authenticate the Principals that the CredentialsToPrincipalResolvers identified.  CAS will try these handlers in turn
+			| until it finds one that both supports the Credentials presented and succeeds in authenticating.
+			+-->
+		<property name="authenticationHandlers">
+			<list>
+				<!--
+					| This is the authentication handler that authenticates services by means of callback via SSL, thereby validating
+					| a server side SSL certificate.
+					+-->
+				<bean class="org.jasig.cas.authentication.handler.support.HttpBasedServiceCredentialsAuthenticationHandler"
+					p:httpClient-ref="httpClient" />
+				<!--
+					| This is the authentication handler declaration that every CAS deployer will need to change before deploying CAS 
+					| into production.  The default SimpleTestUsernamePasswordAuthenticationHandler authenticates UsernamePasswordCredentials
+					| where the username equals the password.  You will need to replace this with an AuthenticationHandler that implements your
+					| local authentication strategy.  You might accomplish this by coding a new such handler and declaring
+					| edu.someschool.its.cas.MySpecialHandler here, or you might use one of the handlers provided in the adaptors modules.
+					+-->
+				<!--<bean
+					class="org.jasig.cas.authentication.handler.support.SimpleTestUsernamePasswordAuthenticationHandler" />-->
+					<bean id="dbpa" class="com.tydic.sso.authenticator.DBPAuthenticationHandler">
+                            <property name="sql" value="SELECT E.EMPEE_ID STAFF_ID,E.EMPEE_NAME STAFF_NAME,E.EMPEE_PWD PASSWORD,E.PWD_CRT_DATE,E.IP_ADDRESS IP,E.LATN_ID ZONE_ID FROM TB_PTY_EMPEE E WHERE E.STATE='G01' AND EMPEE_ACCT = ?" />
+                            <property name="userLog" value="insert into DBP_SYS_LOG (LOG_ID, STAFF_NAME, CREATE_DATE, LOG_STATE, LOG_INFO, IP,ZONE_ID,STAFF_ID,OPR_OBJ_ID,OPR_TYPE)
+																values(SEQ_DBP_SYS_LOG.NEXTVAL,:staffName,:createDate,:logstate,:logInfo,:ip,:zoneId,:staffId,:oprObjId,:oprType)" />
+                            <property name="sysLog" value="insert into DBP_SYS_MONITOR (MONITOR_ID,STAFF_ID,OPR_DATE,OPR_TYPE,OPR_OBJ_ID,OPR_OBJ_NAME,OPR_STATE,OPR_INFO,LAST_LOG_ID)
+															    values(SEQ_DBP_SYS_MONITOR.NEXTVAL,:staffId,:createDate,:opType,:opId,:opName,:opState,:opInfo,:lastId)" />
+                            <property name="dataSource" ref="dataSource" />
+                          <property  name="passwordEncoder"  ref="dbpPasswordEncoder" />
+                     </bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="dbpPasswordEncoder" class="com.tydic.dbp.coder.AHPasswordEncoder"/>
+	
+	
+	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+   		<property name="jndiName">
+       		<value>${jdbc.dbp.jndi}</value>
+  		</property>
+	</bean> 
+
+	<!--
+	This bean defines the security roles for the Services Management application.  Simple deployments can use the in-memory version.
+	More robust deployments will want to use another option, such as the Jdbc version.
+	
+	The name of this should remain "userDetailsService" in order for Acegi to find it. 
+	
+	To use this, you should add an entry similar to the following between the two value tags:
+	battags=notused,ROLE_ADMIN
+	
+	where battags is the username you want to grant access to.  You can put one entry per line.
+	 -->	
+	<bean id="userDetailsService" class="org.springframework.security.userdetails.memory.InMemoryDaoImpl">
+		<property name="userMap">
+			<value>
+			
+		    </value>
+		</property>
+	</bean> 
+	
+	<!-- 
+	Bean that defines the attributes that a service may return.  This example uses the Stub/Mock version.  A real implementation
+	may go against a database or LDAP server.  The id should remain "attributeRepository" though.
+	 -->
+        <bean id="attributeRepository"
+                class="org.jasig.services.persondir.support.jdbc.SingleRowJdbcPersonAttributeDao">
+        <constructor-arg index="0" ref="dataSource"/>
+        <constructor-arg index="1">
+            <list>
+                <value>username</value>
+            </list>
+        </constructor-arg>
+        <constructor-arg index="2">
+            <value>
+				SELECT S.EMPEE_ID STAFF_ID,
+				       S.EMPEE_CODE STAFF_CODE,
+				       S.EMPEE_ACCT STAFF_ACCOUNT,
+				       S.EMPEE_NAME STAFF_NAME,
+				       S.EMPEE_LEVEL STAFF_LEVEL_ID,
+				       S.LATN_ID ZONE_ID,
+				       S.IP_ADDRESS IP,
+				       S.MAC MAC_ADDRESS,
+				       S.EMPEE_TEL_NO TELE_NO,
+				       S.EMPEE_EMAIL_ADDR MAIL,
+				       S.EMPEE_MOB_NO MOBLE,
+				       S.QQ IM_NO,
+				       S.TITLE POSITIONS,
+				       S.STATE STATE,
+				       S.CRT_DATE CREATE_DATE,
+				       S.PWD_CRT_DATE UPDATE_PSD_DATE,
+				       S.CRM_EMPEE_ACCT   CRM_ACCT,
+				       CASE
+				         WHEN S.SSO_URL IS NULL THEN
+				          0
+				         ELSE
+				          1
+				       END IS_SSO,
+				       S.SSO_URL SSO_URL,
+				       (SELECT IN_ORG_ID
+				          FROM TB_SYS_EMPEE_ORG
+				         WHERE EMPEE_ID = S.EMPEE_ID
+				           AND MAIN_POST = 1) ORG_ID,
+				       (SELECT INTER_ORG_STRUC_ID
+				          FROM TB_SYS_EMPEE_ORG O, TB_PTY_INTER_ORG_REL R
+				         WHERE O.IN_ORG_ID = R.INTER_ORG_ID
+				           AND O.EMPEE_ID = S.EMPEE_ID AND O.MAIN_POST = 1) ORG_LEVEL
+				  FROM TB_PTY_EMPEE S
+				 WHERE S.STATE = 'G01'
+				   AND S.EMPEE_ACCT = ?
+                        </value>
+        </constructor-arg>
+        <property name="columnsToAttributes">
+             <map>
+                   <entry key="STAFF_ID" value="userId" />
+                   <entry key="STAFF_CODE" value="staffCode" />
+                   <entry key="STAFF_ACCOUNT" value="staffAccount" />
+                   <entry key="STAFF_NAME" value="staffName" />
+                   <entry key="STAFF_LEVEL_ID" value="staffLevelId" />
+                   <entry key="ZONE_ID" value="areaId" />
+                   <entry key="IP" value="userIp" />
+                   <entry key="MAC_ADDRESS" value="macAddress" />
+                   <entry key="TELE_NO" value="teleNo" />
+                   <entry key="MAIL" value="mail" />
+                   <entry key="MOBLE" value="moble" />
+                   <entry key="IM_NO" value="imNo" />
+                   <entry key="POSITIONS" value="positions" />
+                   <entry key="STATE" value="state" />
+                   <entry key="CREATE_DATE" value="createDate" />
+                   <entry key="UPDATE_PSD_DATE" value="updatePsdDate" />
+                   <entry key="IS_SSO" value="isSso" />
+                   <entry key="SSO_URL" value="ssoUrl" />
+                   <entry key="ORG_ID" value="zoneId" />
+                   <entry key="ORG_LEVEL" value="zoneLevel" />
+                   <entry key="CRM_ACCT" value="crmAcct" />
+             </map>   
+        </property>
+        </bean>
+
+
+
+
+	<!--  select ZONE_ID,UPDATE_PSD_DATE from DBP_SYS_STAFF where staff_account=?
+	Sample, in-memory data store for the ServiceRegistry. A real implementation
+	would probably want to replace this with the JPA-backed ServiceRegistry DAO
+	The name of this bean should remain "serviceRegistryDao".
+	 -->
+	<bean
+		id="serviceRegistryDao"
+		class="org.jasig.cas.services.InMemoryServiceRegistryDaoImpl" />
+</beans>

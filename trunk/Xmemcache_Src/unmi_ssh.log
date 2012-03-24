@@ -1,0 +1,45 @@
+390 [main] WARN  XMemcachedClient -- XMemcachedClient use Binary protocol
+437 [main] INFO  SelectorManager -- Creating 4 reactors...
+531 [main] WARN  AbstractController -- The Controller started at localhost/127.0.0.1:0 ...
+547 [Xmemcached-Reactor-0] WARN  AbstractController -- Add a session: 127.0.0.1:11211
+547 [Xmemcached-Reactor-0] WARN  AbstractController -- Add a session: 127.0.0.1:11211
+547 [main] WARN  Optimizer -- change mergeFactor from 150 to 50
+8718 [Thread-5] WARN  AbstractController -- Remove a session: 127.0.0.1:11211
+8781 [Thread-5] WARN  AbstractController -- Remove a session: 127.0.0.1:11211
+8781 [Thread-5] INFO  AbstractController -- Controller has been stopped.
+782 [main] WARN  XMemcachedClient -- XMemcachedClient use Binary protocol
+1438 [main] INFO  SelectorManager -- Creating 4 reactors...
+1578 [main] WARN  AbstractController -- The Controller started at localhost/127.0.0.1:0 ...
+1719 [Xmemcached-Reactor-0] WARN  AbstractController -- Add a session: 127.0.0.1:11211
+1719 [Xmemcached-Reactor-0] WARN  AbstractController -- Add a session: 127.0.0.1:11211
+1719 [main] WARN  Optimizer -- change mergeFactor from 150 to 50
+10157 [Thread-5] WARN  AbstractController -- Remove a session: 127.0.0.1:11211
+10157 [Thread-5] WARN  AbstractController -- Remove a session: 127.0.0.1:11211
+10157 [Thread-5] INFO  AbstractController -- Controller has been stopped.
+219 [main] WARN  XMemcachedClient -- XMemcachedClient use Text protocol
+266 [main] INFO  SelectorManager -- Creating 4 reactors...
+344 [main] WARN  AbstractController -- The Controller started at localhost/127.0.0.1:0 ...
+360 [Xmemcached-Reactor-0] WARN  AbstractController -- Add a session: 127.0.0.1:11211
+360 [Xmemcached-Reactor-0] WARN  AbstractController -- Add a session: 127.0.0.1:11211
+360 [main] WARN  Optimizer -- change mergeFactor from 150 to 50
+438 [Thread-5] WARN  AbstractController -- Remove a session: 127.0.0.1:11211
+438 [Thread-5] INFO  AbstractController -- Controller has been stopped.
+438 [Xmemcached-Reactor-2] WARN  AbstractController -- Remove a session: 127.0.0.1:11211
+343 [main] WARN  XMemcachedClient -- XMemcachedClient use Text protocol
+406 [main] INFO  SelectorManager -- Creating 4 reactors...
+484 [main] WARN  AbstractController -- The Controller started at localhost/127.0.0.1:0 ...
+21687 [Xmemcached-Reactor-0] WARN  AbstractController -- Add a session: 127.0.0.1:11211
+25109 [Xmemcached-Reactor-0] WARN  AbstractController -- Add a session: 127.0.0.1:11211
+25109 [main] WARN  Optimizer -- change mergeFactor from 150 to 50
+25187 [Thread-5] WARN  AbstractController -- Remove a session: 127.0.0.1:11211
+25203 [Thread-5] WARN  AbstractController -- Remove a session: 127.0.0.1:11211
+25203 [Thread-5] INFO  AbstractController -- Controller has been stopped.
+234 [main] WARN  XMemcachedClient -- XMemcachedClient use Text protocol
+265 [main] INFO  SelectorManager -- Creating 4 reactors...
+359 [main] WARN  AbstractController -- The Controller started at localhost/127.0.0.1:0 ...
+375 [Xmemcached-Reactor-0] WARN  AbstractController -- Add a session: 127.0.0.1:11211
+375 [Xmemcached-Reactor-0] WARN  AbstractController -- Add a session: 127.0.0.1:11211
+375 [main] WARN  Optimizer -- change mergeFactor from 150 to 50
+468 [Thread-5] WARN  AbstractController -- Remove a session: 127.0.0.1:11211
+468 [Thread-5] WARN  AbstractController -- Remove a session: 127.0.0.1:11211
+468 [Thread-5] INFO  AbstractController -- Controller has been stopped.

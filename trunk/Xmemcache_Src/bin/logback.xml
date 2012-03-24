@@ -1,0 +1,44 @@
+<configuration>     
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">     
+       <!-- <filter class="ch.qos.logback.core.filter.EvaluatorFilter">     
+            <evaluator>  defaults to type ch.qos.logback.classic.boolex.JaninoEventEvaluator   
+                <expression>logger.contains("springframework")</expression>     
+            </evaluator>     
+            <OnMismatch>NEUTRAL</OnMismatch>     
+            <OnMatch>DENY</OnMatch>     
+        </filter> 
+   	-->  
+        <encoder charset="UTF-8">     
+            <pattern>%-4r - %d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n </pattern>     
+        </encoder>     
+    </appender>       
+      
+    <appender name="RollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">     
+        <file>unmi_ssh.log</file>     
+      
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">     
+            <level>INFO</level>     
+        </filter>     
+      
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">     
+            <fileNamePattern>unmi_ssh.%d{yyyy-MM-dd}..log.zip</fileNamePattern>     
+            <minIndex>1</minIndex>     
+            <maxIndex>3</maxIndex>     
+        </rollingPolicy>     
+      
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">     
+            <maxFileSize>5MB</maxFileSize>     
+        </triggeringPolicy>     
+      
+        <encoder>     
+            <pattern>%-1relative [%thread] %-5level %logger{0} -- %msg%n</pattern>     
+        </encoder>     
+    </appender>     
+      
+    <root level="DEBUG">     
+        <appender-ref ref="stdout" />     
+        <appender-ref ref="RollingFile"/>     
+    </root>
+    
+         
+</configuration>   
