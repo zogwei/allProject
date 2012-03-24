@@ -1,0 +1,40 @@
+@charset "utf-8";
+/*ext实例展示主页面样式*/
+
+/*样式表文件*/
+/*通用样式*/
+body,html,div,li,ul,form,span{margin:0 ; padding:0}
+body,html,div,li,ul,form,span,table,tr,td{font-family: "宋体";font-size: 12px;}
+button,em {
+	font-family: "宋体";
+	font-size: 12px;
+}
+
+
+.left{ float:left}
+.right{ float:right}
+.inputTextCss {border: #00CCFF 1px solid ; background:#00FFCC}
+.inputPassCss {border: #00CCFF 1px solid ; background:#00FFCC}
+
+/*专用样式*/
+/*页面加载对话框样式*/
+#loadingTab{position:absolute;left:38%;top:40%;padding:2px;z-index:20001;height:auto;border:1px solid #CCCCFF; width:300px}
+#loadingTab a {color:#225588;text-decoration:none}
+#loadingTab a:hover {color:#999900;text-decoration: underline;}
+#loadingTab .loading-indicator{background:white;color:#444;font:bold 15px tahoma,arial,helvetica;padding:10px;margin:0;height:auto;}
+#loading-yfo a { font:"宋体";font-size:12px;color:#999999;text-decoration:none}
+#loading-yfo a:hover {color:#000000;text-decoration:none}
+#loading-msg {font:"宋体",normal; font-size:12px}
+
+/*主页面上端样式*/
+#north{border:0 none;padding-top:3px;padding-left:3px;}
+#north .api-title {color:#333333;margin:5px;font-weight: bold;font-variant: normal;font-size: 16px;}
+
+/*主页面下端样式*/
+#south{border:0 none;}
+#south .power{float:left;margin:5px}
+#south .power a {color:#0000FF;text-decoration:none}
+#south .power a:hover {color:#999900;text-decoration: underline;}
+#south .bq{float:right;margin:5px}
+#south .bq a {color:#0000FF;text-decoration:none}
+#south .bq a:hover {color:#999900;text-decoration: underline;}

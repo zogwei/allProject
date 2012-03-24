@@ -1,0 +1,24 @@
+[
+		{
+			"text":"卡卡西班",
+			"id":"01",
+			"allowDrag":false,
+			"des":"最强的组合！",
+			"children":[
+				{"text":"小樱","id":"0101","leaf":true,"allowDrag":true,"des":"一个很可爱的女孩！"},
+				{"text":"鸣人","id":"0102","leaf":true,"allowDrag":true,"des":"四代火影的儿子！"},
+				{"text":"佐助","id":"0103","leaf":true,"allowDrag":true,"des":"为了杀自己哥哥而活着的男人！"}
+			]
+		},
+		{
+			"text":"凯班",
+			"id":"02",
+			"allowDrag":false,
+			"des":"有一个很白痴的老师！",
+			"children":[
+				{"text":"小李","id":"0201","leaf":true,"allowDrag":true,"des":"他的努力意识值得任何人学习！"},
+				{"text":"宁次","id":"0202","leaf":true,"allowDrag":true,"des":"白眼族的天才忍者！"},
+				{"text":"天天","id":"0203","leaf":true,"allowDrag":true,"des":"她救活了一个暗器公司！"}
+			]
+		}
+	]

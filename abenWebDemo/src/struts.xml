@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd" >
+<struts>
+    <constant name="struts.devMode" value="true"></constant>
+	<constant name="struts.configuration.xml.reload" value="false"></constant>
+	<constant name="struts.multipart.parser" value="jakarta"></constant>
+	<constant name="struts.multipart.maxSize" value="800485760"></constant>
+	<constant name="struts.messages.error.file.too.large" value="您上传的文件太大，请重新选择!"></constant>
+	<constant name="struts.multipart.saveDir" value="java.io.tmpdir"></constant>
+	<constant name="struts.i18n.encoding" value="GBK"></constant>
+	
+	<!-- 用于CRUD Action的parent package -->
+	<package name="sys-default" namespace="/sys"
+		extends="convention-default,json-default">
+		<!-- 基于paramsPrepareParamsStack,增加store interceptor保证actionMessage在redirect后不会丢失 -->
+		<global-results>
+			<result name="messageDisplay">
+				/common/messageDisplay.jsp
+			</result>
+		</global-results>
+		<action name="*_*_*" method="{3}" 
+			class="com.aben.sys.{1}.action.{2}Action">
+			<result name="jsp">/page/{1}/${targetUrl}.jsp</result>
+			<result name="backInput">${targetUrl}</result>
+			<result name="html">/page/{1}/${targetUrl}.html</result>
+			<result name="main">/frame/default.jsp</result>
+			<result name="success">/mainFrame.jsp</result>
+		</action>
+	</package>
+</struts>
