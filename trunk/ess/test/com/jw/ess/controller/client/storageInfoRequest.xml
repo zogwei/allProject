@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<request>
+	<condition>
+		<tenantId>1</tenantId>
+		<floorId>3</floorId>
+	</condition>
+</request>

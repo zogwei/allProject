@@ -1,0 +1,232 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<title>系统管理员--查询</title>
+		<link href="<%=basePath %>css/admin.css" rel="stylesheet" type="text/css">
+		<link href="<%=basePath %>css/admin_css.css" rel="stylesheet" type="text/css">
+		<script type="text/javascript" src="<%=basePath %>js/admin.js"></script>
+		<style type="text/css">
+<!--
+.STYLE3 {
+	font-size: 16px
+}
+
+body,td,th {
+	font-family: Tahoma;
+}
+
+body {
+	background-color: #FFFFFF;
+}
+-->
+</style>
+	</head>
+	<body>
+		<br>
+		<br>
+		<br>
+		<table width="95%" border="0" align="center" cellpadding="0"
+			cellspacing="1">
+			<form name="form1" method="post" action="?act=classaddsave">
+				<tr>
+					<td height="25" align="right" class="col1">
+						<div align="center" class="STYLE3">
+							<div align="left">
+								所查询的系统管理员
+							</div>
+						</div>
+					</td>
+				</tr>
+			</form>
+		</table>
+		<br>
+		<table width="95%" border="0" align="center" cellpadding="5"
+			cellspacing="1" bgcolor="#000000">
+			<tr align="center">
+				<td width="4%" height="26" class="col1">
+					序号
+				</td>
+				<td width="9%" align="center" class="col1">
+					账号
+				</td>
+				<td width="6%" align="center" class="col1">
+					姓名
+				</td>
+				<td width="6%" align="center" class="col1">
+					密码
+				</td>
+				<td width="4%" class="col1">
+					性别
+				</td>
+				<td width="11%" class="col1">
+					电话
+				</td>
+				<td width="10%" class="col1">
+					证件号
+				</td>
+				<td width="15%" class="col1">
+					地址
+				</td>
+				<td width="8%" class="col1">
+					角色
+				</td>
+				<td width="13%" class="col1">
+					备注
+				</td>
+				<td width="14%" class="col1">
+					创建日期
+				</td>
+			</tr>
+
+			<tr align="center">
+				<td height="24" align="center" class="col2">
+					1
+				</td>
+				<td align="center" class="col2">
+					xxxxxx
+				</td>
+				<td align="center" class="col2">
+					<div align="left">
+						xxxxxx
+					</div>
+				</td>
+				<td height="24" align="center" class="col2">
+					<label></label>
+					<div align="left">
+						xxxxxx
+					</div>
+				</td>
+				<td align="center" class="col2">
+					<div align="left">
+						xxxxxx
+					</div>
+				</td>
+				<td align="center" class="col2">
+					&nbsp;
+				</td>
+				<td align="center" class="col2">
+					&nbsp;
+				</td>
+				<td align="center" class="col2">
+					<div align="left">
+						xxxxxx
+					</div>
+				</td>
+				<td align="center" class="col2">
+					&nbsp;
+				</td>
+				<td align="center" class="col2">
+					&nbsp;
+				</td>
+				<td align="center" class="col2">
+					&nbsp;
+				</td>
+			</tr>
+
+			<tr align="center">
+				<td height="24" align="center" class="col2">
+					2
+				</td>
+				<td align="center" class="col2">
+					xxxxxx
+				</td>
+				<td align="center" class="col2">
+					<div align="left">
+						xxxxxx
+					</div>
+				</td>
+				<td height="24" align="center" class="col2">
+					<div align="left">
+						xxxxxx
+					</div>
+				</td>
+				<td align="center" class="col2">
+					<div align="left">
+						xxxxxx
+					</div>
+				</td>
+				<td align="center" class="col2">
+					&nbsp;
+				</td>
+				<td align="center" class="col2">
+					&nbsp;
+				</td>
+				<td align="center" class="col2">
+					<div align="left">
+						xxxxxx
+					</div>
+				</td>
+				<td align="center" class="col2">
+					&nbsp;
+				</td>
+				<td align="center" class="col2">
+					&nbsp;
+				</td>
+				<td align="center" class="col2">
+					&nbsp;
+				</td>
+			</tr>
+
+			<tr align="center">
+				<td height="24" align="center" class="col2">
+					3
+				</td>
+				<td align="center" class="col2">
+					xxxxxx
+				</td>
+				<td align="center" class="col2">
+					<div align="left">
+						xxxxxx
+					</div>
+				</td>
+				<td height="24" align="center" class="col2">
+					<div align="left">
+						xxxxxx
+					</div>
+				</td>
+				<td align="center" class="col2">
+					<div align="left">
+						xxxxxx
+					</div>
+				</td>
+				<td align="center" class="col2">
+					&nbsp;
+				</td>
+				<td align="center" class="col2">
+					&nbsp;
+				</td>
+				<td align="center" class="col2">
+					<div align="left">
+						xxxxxx
+					</div>
+				</td>
+				<td align="center" class="col2">
+					&nbsp;
+				</td>
+				<td align="center" class="col2">
+					&nbsp;
+				</td>
+				<td align="center" class="col2">
+					&nbsp;
+				</td>
+			</tr>
+		</table>
+		<table width="95%" border="0" align="center" cellpadding="0"
+			cellspacing="0">
+			<tr>
+				<td>
+					<label></label>
+				</td>
+			</tr>
+		</table>
+
+	</body>
+</html>

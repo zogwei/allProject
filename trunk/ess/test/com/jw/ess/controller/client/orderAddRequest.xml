@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<request>
+	<condition>
+		<order>
+			<amount>5000</amount>
+			<imprest>1000</imprest>
+			<tenantId>2</tenantId>
+			<customerId>1</customerId>
+			<operatorId>4</operatorId>
+			<items>
+				<item>
+					<floorId>3</floorId>
+					<amount>1000</amount>
+					<area>200</area>
+					<sellPrice>50</sellPrice>
+				</item>
+				<item>
+					<floorId>4</floorId>
+					<amount>2000</amount>
+					<area>10</area>
+					<sellPrice>200</sellPrice>
+				</item>
+				<item>
+					<floorId>1</floorId>
+					<amount>1000</amount>
+					<area>200</area>
+					<sellPrice>50</sellPrice>
+				</item>
+				<item>
+					<floorId>2</floorId>
+					<amount>1000</amount>
+					<area>200</area>
+					<sellPrice>50</sellPrice>
+				</item>
+			</items>
+		</order>
+	</condition>
+</request>

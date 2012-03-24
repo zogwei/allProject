@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<request>
+	<condition>
+		<stateId>1</stateId>
+		<operatorId>1</operatorId>
+		<operateDateBegin>1</operateDateBegin>
+		<operateDateEnd>1500000000</operateDateEnd>
+		<minAmount>0</minAmount>
+		<maxAmount>10000000</maxAmount>
+	</condition>
+	<page>		
+		<currentPage>1</currentPage>
+		<pageSize>3</pageSize>
+	</page>
+</request>
+

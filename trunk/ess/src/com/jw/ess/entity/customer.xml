@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jw.ess.mapper.CustomerMapper">
+	<!-- 映射-->
+	<resultMap type="Customer" id="customerMap">
+		<id property="id" column="c_id" />
+		<result property="name" column="c_name" />
+		<result property="linkman" column="c_linkman" />
+		<result property="phone" column="c_phone" />
+		<result property="address" column="c_address" />
+		<result property="createdDate" column="c_createdDate" />
+		<result property="isValid" column="c_isValid" />
+		<result property="desc" column="c_desc" />
+		<result property="tenantId" column="c_tenantId" />
+		<result property="employeeId" column="c_employeeId" />
+	</resultMap>
+	<!--重用sql语句段-->
+	<sql id="customerColumns">
+		id as c_id,customerName as c_name,linkman as
+		c_linkman,phone as c_phone,
+		address as c_address,createdDate as
+		c_createdDate,isValid as
+		c_isValid,
+		description as c_desc,employeeId as
+		c_employeeId,
+		tenantId as
+		c_tenantId
+	</sql>
+
+	<insert id="insertCustomer" parameterType="Customer"
+	useGeneratedKeys="true" keyProperty="id">
+
+		insert into
+		tbl_customer(customerName,linkman,phone,address,createdDate,isValid,description,
+		tenantId,employeeId)
+		values(#{name},#{linkman},#{phone},#{address},#{createdDate},#{isValid},
+		#{desc},#{tenantId},#{employeeId})
+
+	</insert>
+
+	<update id="updateCustomer" parameterType="Customer">
+		update tbl_customer
+		set customerName = #{name},
+		linkman=#{linkman},phone=#{phone},address=#{address},
+		description=#{desc} 
+		where id = #{id}
+	</update>
+
+	<select id="findCustomerById" parameterType="int" resultMap="customerMap">
+		select
+		<include refid="customerColumns" />
+		from tbl_customer where id = #{id} and isValid = 1
+	</select>
+
+	<select id="findCustomersBy" parameterType="int" resultMap="customerMap">
+		select
+		<include refid="customerColumns" />
+		from tbl_customer where employeeId = #{employeeId} and isValid = 1
+	</select>
+	
+	<select id="findCustomerName" parameterType="map" resultType="string">
+		select customerName from tbl_customer where customerName = #{customerName} and employeeId = #{employeeId}
+	</select>
+	
+	<select id="findCustomerNameExcludeSelf" parameterType="map" resultType="string">
+		select customerName from tbl_customer where customerName = #{customerName} and employeeId = #{employeeId} and id != #{customerId}
+	</select>
+</mapper>

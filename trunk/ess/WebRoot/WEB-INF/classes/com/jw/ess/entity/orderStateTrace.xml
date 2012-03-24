@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jw.ess.mapper.OrderStateTraceMapper">
+	<resultMap type="OrderStateTrace" id="OrderStateTraceMap">
+		<result property="stateId" column="stateId"/>
+		<result property="desc" column="description"/>
+		<result property="operateDate" column="operateDate"/>
+		<result property="orderId" column="stateTraceOrderId"/>
+	</resultMap>
+	
+	<insert id="insertOrderStateTrace" parameterType="OrderStateTrace">
+		insert into
+		tbl_order_state_trace(stateId,orderId,description,operateDate)
+		values(#{stateId},#{orderId},#{desc},#{operateDate})
+	</insert>
+	<select id="findOperateDate" parameterType="int" resultType="int">
+		select operateDate from tbl_order_state_trace where orderId = #{id} and stateId = 1
+	</select>
+</mapper>

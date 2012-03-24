@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<request>
+	<condition>
+		<order>
+			<orderId>12</orderId>
+			<operatorId>2</operatorId>
+			<items>
+				<item>
+					<floorId>3</floorId>
+					<area>10</area>
+					<amount>100</amount>
+				</item>
+				<item>
+					<floorId>4</floorId>
+					<area>10</area>
+					<amount>120</amount>
+				</item>
+			</items>
+			<description>退货原因123456</description>
+		</order>
+	</condition>
+</request>

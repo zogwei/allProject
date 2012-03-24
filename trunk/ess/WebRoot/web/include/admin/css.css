@@ -1,0 +1,149 @@
+body,td,th {
+	font-size: 12px;
+	color: #000000;
+	margin-top:5px;
+}
+TD {
+	FONT-SIZE: 11px; FONT-FAMILY: "Tahoma"
+}
+.title {
+	FONT-WEIGHT: bolder; FONT-SIZE: 14px
+}
+.comm {
+	FONT-SIZE: 12px
+}
+.button {
+	FONT-SIZE: 10px
+}
+.copyright {
+	FONT-SIZE: 9px; FONT-FAMILY: "Tahoma"
+}
+A:link {FONT-SIZE: 12px; COLOR: #000000; TEXT-DECORATION: none}
+A:visited {FONT-SIZE: 12px; COLOR: #000000; TEXT-DECORATION: none}
+A:hover {FONT-SIZE: 12px; COLOR: #FF0000; TEXT-DECORATION: underline}
+BODY {
+	FONT-SIZE: 11px; FONT-FAMILY: "Tahoma"
+}
+.bg {
+	FONT-SIZE: 12px; BACKGROUND-COLOR: #f6f6f6
+}
+INPUT {
+	FONT-SIZE: 12px;
+	font-family: "Tahoma";
+}
+.br {
+	LINE-HEIGHT: 80%
+}
+.toma {
+	FONT-SIZE: 9px; FONT-FAMILY: "Tahoma"
+}
+.table-line {
+	BORDER-COLLAPSE: collapse;
+}
+.menu-line {
+	BORDER-COLLAPSE: collapse;
+
+
+
+}
+.td-title-color {
+	FONT-WEIGHT: bold;
+	BACKGROUND-COLOR: #666666;
+	padding-left: 20px;
+	color: #FFFFFF;
+}
+.td-body-color {
+	BACKGROUND-COLOR: #f7f7f7
+}
+.pad-left {
+	PADDING-LEFT: 20px
+}
+.px12 {
+	FONT-SIZE: 12px;
+
+}
+.menu-td-bargain {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px
+}
+.td-border-all {
+	BORDER-RIGHT: 1px solid; BORDER-TOP: 1px solid; BORDER-LEFT: 1px solid; BORDER-BOTTOM: 1px solid
+}
+A.aa:link {
+	COLOR: #333333; TEXT-DECORATION: none
+}
+A.aa:visited {
+	COLOR: #333333; TEXT-DECORATION: none
+}
+A.aa:hover {
+	COLOR: #990000; TEXT-DECORATION: none
+}
+.td-menu {
+	BORDER-RIGHT: #848284 2px solid; BORDER-TOP: #d6d3ce 2px solid; BORDER-LEFT: #d6d3ce 2px solid; BORDER-BOTTOM: #848284 2px solid
+}
+.lh {
+	LINE-HEIGHT: 160%
+}
+.td-menu-color {
+	padding-left: 10px;
+	background-color: #D6D3CE;
+	background-image: url(../images/td_bar.gif);
+	color: #000000;
+
+
+
+}
+.cssselect {
+	font-family: "Tahoma";
+	font-size: 11px;
+}
+.mover {
+	border-top: 1px solid #FFFFFF;
+	border-right: 1px solid #848284;
+	border-bottom: 1px solid #848284;
+	border-left: 1px solid #FFFFFF;
+}
+
+.mout {
+	border: 1px solid #D6D3CE;
+}
+.col1 {
+	background-color: #FFE271;
+}
+.col2 {
+	background-color: #F5F5F5;
+}
+.col3 {
+	background-color: #E8E8E8;
+}
+.font1 {
+	font-family: "Tahoma", "Arial";
+	font-weight: bold;
+	color: #7D6400;
+
+}
+.font2 {
+	font-family: "Tahoma", "Arial";
+	color: #9B7C00;
+}
+.img-space {
+	margin-right: 5px;
+}
+.table-line-4 {
+	BORDER-COLLAPSE: collapse;
+	border: 1px solid #999999;
+
+}
+.fontw {
+	color: #FFFFFF;
+}
+.pad-button {
+	padding: 0px;
+	font-size: 11.5px;
+
+}
+.style1 {
+	color: #000000;
+	font-size: 12px;
+}
+.STYLE2 {color: #CC3300}
+.input {BORDER: 0px solid; padding:0px;BACKGROUND-COLOR: #FFE271; width:60px}

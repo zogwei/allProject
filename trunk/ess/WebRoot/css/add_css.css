@@ -1,0 +1,13 @@
+.td_title {
+	margin:10px;
+	font-size:18px;
+	font-weight: bolder;
+}
+.button_style {
+	width: 80px;
+	height: 25px;
+}
+.navigation_style {
+	font-style:italic;
+	font-size:14px;
+}

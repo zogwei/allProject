@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<request>
+	<condition>
+		<id>1</id>
+		<customerName>New_Modify</customerName>
+		<linkman>3123456</linkman>
+		<phone>1234567890</phone>
+		<address></address>
+		<isValid>1</isValid>
+		<createDate>123456789</createDate>
+		<description>miaoshu</description>
+		<tenantId>1</tenantId>
+		<employeeId>1</employeeId>
+	</condition>
+</request>
