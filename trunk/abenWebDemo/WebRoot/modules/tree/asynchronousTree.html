@@ -1,0 +1,27 @@
+<div id="tree-asynchronousTree-info" style="margin:5px;">
+	<br>
+    下面的例子是一个异步加载的tree例子,每当展开一个节点的时候重新到服务器上读取节点信息,大体上和简单tree没有区别，区别主要在于加载的json的格式.<br><br>
+	本例用到的js文件为：<a href="modules/tree/asynchronousTree.js" target="_blank">asynchronousTree.js</a><br><br>
+    <span style=" font-weight:bold; color:#FF0000">json的格式如下如果节点有孩子的时候格式如下:</span><br>
+    <span style=" font-weight:bold; color:#0000FF">
+    &nbsp;[<br>
+	&nbsp; &nbsp;{<br>
+	&nbsp; &nbsp; &nbsp;"text":"卡卡西班",<br>
+	&nbsp; &nbsp; &nbsp;"id":"01",<br>
+	&nbsp; &nbsp; &nbsp;"leaf":false
+	&nbsp; &nbsp;}<br>
+	&nbsp;]<br>
+    </span><br />
+    <span style=" font-weight:bold; color:#FF0000">节点没有有孩子的时候格式如下:</span><br>
+    <span style=" font-weight:bold; color:#0000FF">
+    &nbsp;[<br>
+	&nbsp; &nbsp;{<br>
+	&nbsp; &nbsp; &nbsp;"text":"鸣人",<br>
+	&nbsp; &nbsp; &nbsp;"id":"01",<br>
+	&nbsp; &nbsp; &nbsp;"leaf":true
+	&nbsp; &nbsp;}<br>
+	&nbsp;]<br>
+    </span>
+</div><br>
+
+<div id="tree-asynchronousTree-main" style="margin:10px"></div>

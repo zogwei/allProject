@@ -1,0 +1,35 @@
+{
+	"data":[
+		{
+			"group":"曹操",
+			"users":[
+				{"name":"曹仁","sexy":"男"},
+				{"name":"曹洪","sexy":"男"},
+				{"name":"张辽","sexy":"男"},
+				{"name":"典韦","sexy":"男"},
+				{"name":"夏侯惇","sexy":"男"}
+			]
+		},
+		{
+			"group":"刘备",
+			"users":[
+				{"name":"关羽","sexy":"男"},
+				{"name":"张飞","sexy":"男"},
+				{"name":"赵云","sexy":"男"},
+				{"name":"马超","sexy":"男"},
+				{"name":"黄忠","sexy":"男"}
+			]
+		},
+		{
+			"group":"孙权",
+			"users":[
+				{"name":"周瑜","sexy":"男"},
+				{"name":"吕蒙","sexy":"男"},
+				{"name":"黄盖","sexy":"男"},
+				{"name":"太史慈","sexy":"男"},
+				{"name":"甘宁","sexy":"男"}
+			]
+		}
+			
+	]
+}

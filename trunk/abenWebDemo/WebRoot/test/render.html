@@ -1,0 +1,29 @@
+  
+<html>  
+<head>  
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">  
+<title>applyTo与renderTo的区别</title>  
+		<link rel="stylesheet" type="text/css" href="/AbenDemo/js/ext-2.2/resources/css/ext-all.css">
+		<script language="javascript" type="text/javascript" src="/AbenDemo/js/ext-2.2/adapter/ext/ext-base.js"></script>
+		<script language="javascript" type="text/javascript" src="/AbenDemo/js/ext-2.2/ext-all.js"></script>
+		<script language="javascript" type="text/javascript" src="/AbenDemo/js/ext-2.2/source/locale/ext-lang-zh_CN.js"></script> 
+<script type="text/javascript">  
+    Ext.onReady(function(){   
+        var _panel = new Ext.Panel({   
+            title:"个人信息",   
+            width:300,   
+            height:300,   
+            frame:true,   
+        
+            renderTo:"appConId"   
+        });   
+    });   
+</script>  
+</head>  
+<body>  
+    <div id="appId" style="padding:30px;width:600px;height6500px;background-color: blue;">  
+        <div id="appConId" style="width:400px;height:400px;background-color:green;"></div>  
+    </div>  
+  
+</body>  
+</html>  

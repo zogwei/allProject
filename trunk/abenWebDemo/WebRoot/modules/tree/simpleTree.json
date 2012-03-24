@@ -1,0 +1,22 @@
+[
+		{
+			"text":"卡卡西班",
+			"id":"01",
+			"allowDrag":false,
+			"children":[
+				{"text":"小樱","id":"0101","leaf":true,"allowDrag":true},
+				{"text":"鸣人","id":"0102","leaf":true,"allowDrag":true},
+				{"text":"佐助","id":"0103","leaf":true,"allowDrag":true}
+			]
+		},
+		{
+			"text":"凯班",
+			"id":"02",
+			"allowDrag":false,
+			"children":[
+				{"text":"小李","id":"0201","leaf":true,"allowDrag":true},
+				{"text":"宁次","id":"0202","leaf":true,"allowDrag":true},
+				{"text":"天天","id":"0203","leaf":true,"allowDrag":true}
+			]
+		}
+	]
