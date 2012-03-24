@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<request>
+	<condition>
+		<tenantId>1</tenantId>
+		<categoryId>1</categoryId>
+		<colorCodeId>1</colorCodeId>
+		<veinId>1</veinId>
+		<specId>1</specId>
+	</condition>
+	<page>		
+		<pageSize>3</pageSize>
+		<currentPage>1</currentPage>
+	</page>
+</request>

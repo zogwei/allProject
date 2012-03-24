@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+	<result>
+		<dailySalesStatsList>
+			<dailySalesStats>
+				<salesAmount>813766.0</salesAmount>
+				<salesDate>2011-12-20</salesDate>
+			</dailySalesStats>
+			<dailySalesStats>
+				<salesAmount>11111.0</salesAmount>
+				<salesDate>2011-12-21</salesDate>
+			</dailySalesStats>
+			<dailySalesStats>
+				<salesAmount>0.0</salesAmount>
+				<salesDate>2011-12-22</salesDate>
+			</dailySalesStats>
+			<dailySalesStats>
+				<salesAmount>0.0</salesAmount>
+				<salesDate>2011-12-23</salesDate>
+			</dailySalesStats>
+			<dailySalesStats>
+				<salesAmount>11111.0</salesAmount>
+				<salesDate>2011-12-24</salesDate>
+			</dailySalesStats>
+		</dailySalesStatsList>
+	</result>
+</response>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<comment>对应MessageCode</comment>
+	<!-- Tenant -->
+	<entry key="10000">租户名称已经存在！</entry>
+	<!-- Employee -->
+	<entry key="13000">员工账号已经存在！</entry>
+	<entry key="13001">员工姓名已经存在！</entry>
+	<entry key="13002">用户名或密码错误！</entry>
+	<entry key="13003">添加员工成功！</entry>
+
+	<!-- Customer -->
+	<entry key="12000">客户名称已经存在！</entry>
+	<entry key="12001">添加客户成功！</entry>
+	
+	<!-- Order -->
+	<entry key="23001">订单项添加失败！</entry>
+	<entry key="23002">订单项查找失败！</entry>
+	
+	<!-- Supplier -->
+	<entry key="14001">供应商已经存在！</entry>
+	
+	<!-- InStorage -->
+	<entry key="20001">地板编号已经存在！</entry>
+	
+	<!-- FloorCategory -->
+	<entry key="30002">地板类别名称已经存在！</entry>
+	
+	<!-- Spec -->
+	<entry key="15000">规格名称已经存在！</entry>
+	<entry key="15001">添加规格成功！</entry>
+
+	<!-- ColorCode -->
+	<entry key="17000">色号名称已经存在！</entry>
+	<entry key="17001">添加色号成功！</entry>
+
+	<!-- Vein -->
+	<entry key="18000">纹理名称已经存在！</entry>
+	<entry key="18001">添加纹理成功！</entry>
+
+	<!-- DailySalesStats -->
+	<entry key="40001">此员工的天销售记录已经存在！</entry>
+	<entry key="40002">此员工的天销售记录不存在！</entry>
+	<entry key="40003">退款金额大于销售统计金额！</entry>
+	
+	<!-- Other -->
+	<entry key="90000">系统异常！</entry>
+	<entry key="90001">数据库异常！</entry>
+	<entry key="90002">参数异常！</entry>
+	<entry key="90003">未知异常！</entry>
+	<entry key="90004">操作成功！</entry>
+</properties>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<request>
+	<condition>
+		<employeeId>2</employeeId>
+		<startDate>1293811200</startDate>
+		<endDate>1354291200</endDate>
+	</condition>
+</request>

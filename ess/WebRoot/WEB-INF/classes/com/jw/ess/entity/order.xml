@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jw.ess.mapper.OrderMapper">
+	<resultMap type="Order" id="OrderMap">
+		<id property="id" column="id"/>
+		<result property="orderNo" column="orderNo"/>
+		<result property="isValid" column="isValid"/>
+		<result property="amount" column="amount"/>
+		<result property="imprest" column="imprest"/>
+		<result property="refund" column="refund"/>
+		<result property="received" column="received"/>
+		<result property="tenantId" column="tenantId"/>
+		<result property="operateDate" column="operateDate"/>
+		<result property="currentState" column="currentState"/>
+		<result property="deliveryDate" column="deliveryDate"/>
+		<association property="operator" javaType="Employee" column="operatorId">
+			<id column="operatorId" property="id"/>
+			<result column="operatorName" property="name"/>
+		</association>
+		<association property="customer" column="orderCustomerId" javaType="Customer">
+			<id column="customerId" property="id" javaType="int"/>
+			<result column="customerName" property="name" javaType="string"/>
+			<result column="linkman" property="linkman" javaType="string"/>
+			<result column="phone" property="phone" javaType="string"/>
+			<result column="address" property="address" javaType="string"/>
+		</association>
+
+		<collection property="items" column="itemOrderId" ofType="OrderItem">
+			<id column="itemId" javaType="int" property="id"/>
+			<result column="itemOrderId" property="orderId"/>
+			<result column="itemSellPrice" property="sellPrice"/>
+			<result column="itemArea" property="area"/>
+			<result column="itemAmount" property="amount"/>
+			<association property="floor" column="itemFloorId" javaType="Floor">
+				  <id column="floorId" property="id" javaType="int"/>
+				  <result column="floorName" property="name" javaType="string"/>
+				  <result column="floorNumber" property="number" javaType="string"/>
+				  <association property="category" column="floorCategoryId" javaType="FloorCategory">
+				  	<result column="categoryName" property="name" javaType="string"/>
+				  </association>
+				  <association property="spec" column="floorSpecId" javaType="Spec">
+				  	<result column="specName" property="name" javaType="string"/>
+				  </association>
+				  <association property="vein" column="floorVeinId" javaType="Vein">
+				  	<result column="veinName" property="name" javaType="string"/>
+				  </association>
+				  <association property="colorCode" column="floorColorCodeId" javaType="ColorCode">
+				  	<result column="colorCodeName" property="name" javaType="string"/>
+				  </association>
+			</association>
+		</collection>
+		
+		<collection property="stateTraces" ofType="OrderStateTrace"  column="stateTraceOrderId">
+			<result property="stateId" column="stateId"/>
+			<result property="operateDate" column="operateDate"/>
+			<result property="orderId" column="stateTraceOrderId"/>
+		</collection>
+	</resultMap>
+	
+	<select id="findOrderById" parameterType="int" resultMap="OrderMap">
+		<include refid="orderDetail"/>
+	</select>
+	
+	<sql id="orderDetail">
+		select o.id as id, o.orderNo as orderNo, o.amount as amount, o.imprest as imprest,o.deliveryDate deliveryDate,
+		o.refund as refund, o.received as received,o.currentState as currentState,
+		o.operatorId as operatorId , o.customerId as orderCustomerId, o.isValid as isValid, o.tenantId as tenantId,
+		oi.id as itemId, oi.orderId as itemOrderId, oi.sellPrice as itemSellPrice, oi.area as itemArea,
+		oi.amount as itemAmount, oi.floorId as itemFloorId, ost.orderId as stateTraceOrderId, ost.stateId as stateId, 
+		ost.operateDate as operateDate,f.id as floorId, f.floorName as floorName, f.number as floorNumber, f.categoryId as floorCategoryId, 
+		f.specId as floorSpecId, f.veinId as floorVeinId, f.colorCodeId as floorColorCodeId,
+		fc.categoryName as categoryName, s.specName as specName, 
+		v.veinName as veinName, cc.colorCodeName as colorCodeName, c.id as customerId,
+		c.customerName as customerName, c.linkman as linkman, c.phone as phone, 
+		c.address as address ,e.empName as operatorName
+		from tbl_order o, tbl_customer c, tbl_order_item oi, 
+		tbl_order_state_trace ost, tbl_floor f, 
+		tbl_vein v, tbl_floor_category fc, tbl_spec s, tbl_color_code cc ,tbl_employee e
+		where o.id = oi.orderId and o.id = ost.orderId and oi.floorId = f.id 
+		and o.customerId = c.id and f.veinId = v.id and f.specId = s.id 
+		and e.id = o.operatorId 
+		and f.colorCodeId = cc.id and f.categoryId = fc.id and o.id = #{orderId}
+	</sql>
+	
+	<insert id="insertOrder" parameterType="Order"
+		useGeneratedKeys="true" keyProperty="id" >
+		insert into
+		tbl_order(orderNo,customerId,operatorId,isValid,amount,imprest,refund,received,currentState,operateDate,deliveryDate,tenantId)
+		values(#{orderNo},#{customer.id},#{operator.id},#{isValid},#{amount},#{imprest},#{refund},#{received},#{currentState},#{operateDate},#{deliveryDate},#{tenantId})
+	</insert>
+	<resultMap type="Order" id="SimpleOrderMap">
+		<id column="id" property="id" javaType="int"/>
+		<result column="orderNo" property="orderNo" javaType="string"/>
+		<result column="amount" property="amount" javaType="double"/>
+		<result column="imprest" property="imprest" javaType="double"/>
+		<result column="refund" property="refund" javaType="double"/>
+		<result column="received" property="received" javaType="double"/>
+		<result column="isValid" property="isValid" javaType="int"/>
+		<result column="tenantId" property="tenantId" javaType="int"/>
+		<result column="currentState" property="currentState" javaType="int"/>
+		<result column="deliveryDate" property="deliveryDate" javaType="string"/>
+		<association property="customer" column="orderCustomerId" javaType="Customer">
+			<id column="customerId" property="id" javaType="int"/>
+			<result column="customerName" property="name" javaType="string"/>
+			<result column="linkman" property="linkman" javaType="string"/>
+			<result column="phone" property="phone" javaType="string"/>
+			<result column="address" property="address" javaType="string"/>
+		</association>
+		<association property="operator" column="operatorId" javaType="Employee">
+			<id column="employeeId" property="id" javaType = "int" />
+			<result column="employeeName" property="name" javaType="string" />
+		</association>
+		<collection property="stateTraces" ofType="OrderStateTrace"  column="id">
+			<result property="operateDate" column="operateDate"/>
+		</collection>	
+	</resultMap>
+	
+	<select id="findOrdersBy" parameterType="map" resultMap="SimpleOrderMap">
+		select o.id as id, o.orderNo as orderNo, o.amount as amount, o.imprest as imprest, o.deliveryDate deliveryDate,
+		o.refund as refund, o.received as received, o.currentState as currentState, 
+		o.operateDate as operateDate, o.isValid as isValid, o.tenantId as tenantId, o.operatorId  as operatorId,
+		o.customerId as orderCustomerId, c.id as customerId, c.customerName as customerName, 
+		c.linkman as linkman, c.phone as phone, c.address as address ,
+		e.id as employeeId ,e.empName as employeeName,
+		s.operateDate as operateDate
+		from tbl_order o, tbl_customer c ,tbl_order_state_trace s,tbl_employee e
+		<include refid="queryOrdersCond"/> 
+		limit #{beginIndex} ,#{pageSize}
+	</select>
+	
+	<select id="findCountOfOrder" parameterType="map" resultType="int">
+		select count(*) from tbl_order o ,tbl_customer c ,tbl_order_state_trace s ,tbl_employee e	
+		<include refid="queryOrdersCond"/>
+	</select>
+	
+	<sql id="queryOrdersCond">
+		<where>
+		<if test="operatorId > 0">
+			and o.operatorId = #{operatorId}
+		</if>
+		<if test="tenantId > 0">
+			and o.tenantId = #{tenantId}
+		</if>
+		<if test="currentState > 0">
+			and o.currentState = #{currentState}
+		</if>
+		<if test="startTime > 0">
+			and o.operateDate >= #{startTime}
+		</if>
+		<if test="endTime > 0">
+			and o.operateDate <![CDATA[<=]]> #{endTime}
+		</if>
+		<if test="minAmount > 0">
+			and o.amount >= #{minAmount}
+		</if>
+		<if test="maxAmount > 0">
+			and o.amount <![CDATA[<=]]> #{maxAmount}
+		</if>
+			and o.customerId = c.id 
+			and s.orderId = o.id and s.stateId = 1
+			and o.operatorId = e.id
+		</where>
+	</sql>
+	
+	<update id="updateOrderReceivced" parameterType="Order" >
+		update tbl_order set received = #{received} ,currentState = #{currentState},operateDate = #{operateDate}
+		where id = #{id}
+	</update>
+	
+	<update id="cancelOrder" parameterType="Order">
+		update tbl_order set refund = #{refund} , currentState = #{currentState} , operateDate = #{operateDate}
+		where id = #{id}
+	</update>
+
+</mapper>

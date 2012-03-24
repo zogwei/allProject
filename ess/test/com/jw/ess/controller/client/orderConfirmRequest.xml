@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<request>
+	<condition>
+		<order>
+			<id>12</id>
+			<received>3000.0000</received>
+		</order>
+	</condition>
+</request>

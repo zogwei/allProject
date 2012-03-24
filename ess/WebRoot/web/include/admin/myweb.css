@@ -1,0 +1,87 @@
+body{
+margin:0px;
+font-family:Verdana;
+font-size:12px;
+color:white;
+background-color:#EAEAEA;
+scrollbar-face-color: #3691C7;
+scrollbar-highlight-color: #ffffff;
+scrollbar-shadow-color:  #666666;
+scrollbar-3dlight-color: #ADA696;
+scrollbar-arrow-color:  ffffff;
+scrollbar-track-color: #ffffff;
+scrollbar-darkshadow-color: #ffffff;
+}
+a:link{
+font-family:Verdana;
+font-size:12px;
+color:#252323;
+text-decoration:none;
+}
+a:hover{
+font-family:Verdana;
+font-size:12px;
+color:#800000;
+text-decoration:none;
+}
+a:actice{
+font-family:Verdana;
+font-size:12px;
+color:#800000;
+text-decoration:none;
+}
+a:visited{
+font-family:Verdana;
+font-size:12px;
+color:#252323;
+text-decoration:none;
+}
+table,td{
+font-family:Verdana;
+font-size:12px;
+
+}
+input,textarea{
+border-left: 1px  solid #3691C6;
+border-right: 1px  solid #3691C6;
+border-top: 1px  solid #3691C6;
+border-bottom: 1px  solid #3691C6;
+background-color:#ffffff;
+}
+.left_table{
+background_color:#3691C6;
+}
+.sec_menu {
+	background-image:url(../admin/left_table_bg.gif);
+        left:2px;
+}
+
+.menu_title{
+	 COLOR: #215dc6; POSITION: relative; TOP: 2px
+}
+.font_span{
+text-indent:30px;
+color:#FFFFFF;
+font-size:12px;
+POSITION: relative; TOP: 12px; 
+}
+.main_table{
+border-left: 1px  solid #3691C6;
+border-right: 1px  solid #3691C6;
+border-top: 1px  solid #3691C6;
+border-bottom: 1px  solid #3691C6;
+background-color:white;
+}
+.main_topbg{
+background-image:url(../admin/main_top_bg.gif);
+height:31px;
+}
+.myweb_td{
+ background:#EBEBEB;
+font-family:Verdana;
+font-size:12px;
+background-color:#EBEBEB;
+color:black;
+line-height:20px;
+height:25px;
+}

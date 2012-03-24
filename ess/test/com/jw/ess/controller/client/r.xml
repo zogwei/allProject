@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+	<orders>
+		<order>
+			<id>2</id>
+			<orderNo>dd201112222386</orderNo>
+			<amount>2730.0</amount>
+			<imprest>100.0</imprest>
+			<refund>0.0</refund>
+			<received>2730.0</received>
+			<operateDate>1324370008</operateDate>
+			<customer>
+				<customerName>isoftstone</customerName>
+				<linkman>chenming</linkman>
+				<phone>13545678910</phone>
+				<address>weixin</address>
+			</customer>
+		</order>
+		<order>
+			<id>5</id>
+			<orderNo>dd20111229081007</orderNo>
+			<amount>4000.0</amount>
+			<imprest>1000.0</imprest>
+			<refund>0.0</refund>
+			<received>0.0</received>
+			<operateDate>1325236003</operateDate>
+			<customer>
+				<customerName>isoftstone</customerName>
+				<linkman>chenming</linkman>
+				<phone>13545678910</phone>
+				<address>weixin</address>
+			</customer>
+		</order>
+	</orders>
+	<page>
+		<currentPage>1</currentPage>
+		<pageSize>3</pageSize>
+		<count>2</count>
+	</page>
+</response>

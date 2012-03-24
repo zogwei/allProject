@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jw.ess.mapper.FloorCategoryMapper">
+	
+	<!-- 地板类型表的 列与实体类赋值关系映射 -->
+	<resultMap type="FloorCategory" id="FloorCategoryMap">
+		<id property="id" column="id"/>
+		<result property="name" column="categoryName"/>
+		<result property="desc" column="description"/>
+		<result property="isValid" column="isValid"/>
+		<result property="tenantId" column="tenantId"/>
+	</resultMap>
+	
+	<!-- 地板类型表的所有列,用于查询 -->
+	<sql id="tbl_floor_category_column_all">
+		id, categoryName, description, isValid, tenantId
+	</sql>
+	
+	<!-- 地板类型表的 部分列,用于插入 -->
+	<sql id="tbl_floor_category_column_part">
+		(categoryName, description, isValid, tenantId)
+	</sql>
+	
+	<!-- 插入一条地板类型信息 -->
+	<insert id="insertFloorCategory" parameterType="FloorCategory" useGeneratedKeys="true" keyProperty="id">
+		insert into tbl_floor_category 
+			<include refid="tbl_floor_category_column_part"/> 
+		values 
+			(#{name}, #{desc}, #{isValid}, #{tenantId})
+	</insert>
+	
+	<!-- 根据地板类型id查找地板类型 -->
+	<select id="findFloorCategoryById" parameterType="integer" resultMap="FloorCategoryMap">
+		select
+			<include refid="tbl_floor_category_column_all"/> 
+		from tbl_floor_category 
+		where id = #{value}
+	</select>
+	
+	<!-- 根据租户id查询该租户的所有地板类型信息 -->
+	<select id="findAllFloorCategorysByTenantId" parameterType="integer" resultMap="FloorCategoryMap">
+		select
+			<include refid="tbl_floor_category_column_all"/> 
+		from tbl_floor_category
+		where tenantId = #{value}
+	</select>
+	
+	<!-- 根据租户id批量插入地板类型信息 -->
+	<insert id="insertFloorCategorysByBatch" parameterType="map">
+		insert into tbl_floor_category 
+			<include refid="tbl_floor_category_column_part"/> 
+		values
+			<foreach collection="floorCategorys" item="item" separator=",">
+				(#{item.name}, #{item.desc}, #{item.isValid}, #{tenantId})
+			</foreach>
+	</insert>
+	
+	<select id="findCategoryName" parameterType="FloorCategory" resultType="String">
+		select categoryName
+		from tbl_floor_category
+		where 11=11 and categoryName=#{name}
+	</select>
+	
+</mapper>
