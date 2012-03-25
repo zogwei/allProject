@@ -1,6 +1,9 @@
 package com.jw.ess.controller.client;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -112,5 +115,27 @@ public class CustomerEndpoint
 		}
 		return response;
 	}
+	
+		
+
+	@RequestMapping("/customer/c/querylist")
+	public @ResponseBody
+	String getCustomers(HttpEntity<String> entity)
+	{
+		String response;
+		try
+		{
+			Customer customer=customerModifyConverter.fromXml(entity.getBody());
+			List<Customer> customers=customerService.getCustomers(customer);
+			response = customerListConverter.toXml(customers);
+		}
+		catch (EssException e)
+		{
+			logger.error("failed to getCustomersBy", e);
+			response = exceptionConverter.toXml(e);
+		}
+		return response;
+	}
+
 
 }

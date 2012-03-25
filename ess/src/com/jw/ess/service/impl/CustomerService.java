@@ -72,5 +72,12 @@ public class CustomerService implements ICustomerService
 
 		customerDao.updateCustomer(customer);
 	}
+	
+		@Override
+	public List<Customer> getCustomers(Customer customer) throws EssException
+	{
+		// TODO Auto-generated method stub
+		return customerDao.findCustomers(customer);
+	}
 
 }

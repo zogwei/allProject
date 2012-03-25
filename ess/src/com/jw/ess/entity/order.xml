@@ -14,6 +14,7 @@
 		<result property="operateDate" column="operateDate"/>
 		<result property="currentState" column="currentState"/>
 		<result property="deliveryDate" column="deliveryDate"/>
+		<result property="desription" column="desription"/>
 		<association property="operator" javaType="Employee" column="operatorId">
 			<id column="operatorId" property="id"/>
 			<result column="operatorName" property="name"/>
@@ -63,7 +64,7 @@
 	</select>
 	
 	<sql id="orderDetail">
-		select o.id as id, o.orderNo as orderNo, o.amount as amount, o.imprest as imprest,o.deliveryDate deliveryDate,
+		select o.id as id, o.orderNo as orderNo, o.amount as amount, o.imprest as imprest,o.deliveryDate deliveryDate,o.desription desription,
 		o.refund as refund, o.received as received,o.currentState as currentState,
 		o.operatorId as operatorId , o.customerId as orderCustomerId, o.isValid as isValid, o.tenantId as tenantId,
 		oi.id as itemId, oi.orderId as itemOrderId, oi.sellPrice as itemSellPrice, oi.area as itemArea,
@@ -86,8 +87,8 @@
 	<insert id="insertOrder" parameterType="Order"
 		useGeneratedKeys="true" keyProperty="id" >
 		insert into
-		tbl_order(orderNo,customerId,operatorId,isValid,amount,imprest,refund,received,currentState,operateDate,deliveryDate,tenantId)
-		values(#{orderNo},#{customer.id},#{operator.id},#{isValid},#{amount},#{imprest},#{refund},#{received},#{currentState},#{operateDate},#{deliveryDate},#{tenantId})
+		tbl_order(orderNo,customerId,operatorId,isValid,amount,imprest,refund,received,currentState,operateDate,deliveryDate,desription,tenantId)
+		values(#{orderNo},#{customer.id},#{operator.id},#{isValid},#{amount},#{imprest},#{refund},#{received},#{currentState},#{operateDate},#{deliveryDate},#{desription},#{tenantId})
 	</insert>
 	<resultMap type="Order" id="SimpleOrderMap">
 		<id column="id" property="id" javaType="int"/>
@@ -100,6 +101,7 @@
 		<result column="tenantId" property="tenantId" javaType="int"/>
 		<result column="currentState" property="currentState" javaType="int"/>
 		<result column="deliveryDate" property="deliveryDate" javaType="string"/>
+		<result column="desription" property="desription" javaType="string"/>
 		<association property="customer" column="orderCustomerId" javaType="Customer">
 			<id column="customerId" property="id" javaType="int"/>
 			<result column="customerName" property="name" javaType="string"/>
@@ -117,7 +119,7 @@
 	</resultMap>
 	
 	<select id="findOrdersBy" parameterType="map" resultMap="SimpleOrderMap">
-		select o.id as id, o.orderNo as orderNo, o.amount as amount, o.imprest as imprest, o.deliveryDate deliveryDate,
+		select o.id as id, o.orderNo as orderNo, o.amount as amount, o.imprest as imprest, o.deliveryDate deliveryDate,o.desription desription,
 		o.refund as refund, o.received as received, o.currentState as currentState, 
 		o.operateDate as operateDate, o.isValid as isValid, o.tenantId as tenantId, o.operatorId  as operatorId,
 		o.customerId as orderCustomerId, c.id as customerId, c.customerName as customerName, 

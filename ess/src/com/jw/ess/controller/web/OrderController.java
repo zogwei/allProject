@@ -1,16 +1,20 @@
 package com.jw.ess.controller.web;
 
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.ibatis.annotations.Param;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,8 +28,10 @@ import com.jw.ess.service.IEmployeeService;
 import com.jw.ess.service.IOrderService;
 import com.jw.ess.util.CommonConstant;
 import com.jw.ess.util.DateUtil;
+import com.jw.ess.util.ExcelUtil;
 import com.jw.ess.util.ex.EssException;
 import com.jw.ess.util.page.Page;
+import com.jw.ess.util.page.PageSupport;
 
 @Controller
 public class OrderController {
@@ -99,6 +105,10 @@ public class OrderController {
 		}
 		Employee employee = new Employee();
 		employee.setTenantId(tenantId);
+		if(tenantId==1)
+		{
+			employee.setTenantId(-1);
+		}
 		employee.setCategory(CommonConstant.EMPLOYEE_ROLE_SALESMAN);
 		try {
 			map.addAttribute("orders", orderService.getOrdersBy(paramMap));
@@ -115,6 +125,133 @@ public class OrderController {
 			e.printStackTrace();
 		}
 		return "order/orderMain";
+	}
+	
+	@RequestMapping("/order/exportExcel")
+	public void exportExcel(@Param(value = "tenantId") int tenantId,
+			@Param(value="currentState") String currentState,
+			@Param(value="startTime")String startTime,
+			@Param(value="endTime")String endTime,
+			@Param(value="minAmount")String minAmount,
+			@Param(value="maxAmount")String maxAmount,
+			@Param(value = "operatorId") int operatorId,
+			@Param(value = "exportPage") int exportPage,
+			@Param(value = "exportSize") int exportSize, HttpServletRequest request, HttpServletResponse response) {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("tenantId", tenantId);
+		if(tenantId==1)
+		{
+			paramMap.put("tenantId", -1);
+		}
+		paramMap.put("operatorId", operatorId);
+		paramMap.put("exportPage", exportPage);
+		paramMap.put("exportSize", exportSize);
+		if(StringUtils.isBlank(currentState)){
+			currentState = "0";
+		}else{
+			paramMap.put("currentState", Integer.parseInt(currentState));
+		}
+		if(StringUtils.isBlank(endTime)){
+			paramMap.put("endTime", 0);
+			endTime = "0";
+		}else{
+			if(!endTime.equals("0")){
+			paramMap.put("endTime", DateUtil.transformTimeSecs(endTime));
+			}
+			else{
+				paramMap.put("endTime", 0);
+			}
+		}
+		if(StringUtils.isBlank(startTime))	{
+			paramMap.put("startTime", 0);
+			startTime = "0";
+		}else
+		{
+			if(!startTime.equals("0"))
+			{
+				paramMap.put("startTime", DateUtil.transformTimeSecs(startTime));
+			}else{
+				paramMap.put("startTime", 0);
+			}
+		}
+		if(StringUtils.isBlank(minAmount))	{
+			paramMap.put("minAmount", -1);
+			minAmount = "0";
+		}else{
+			paramMap.put("minAmount", Double.parseDouble(minAmount));
+		}
+		if(StringUtils.isBlank(maxAmount))	{
+			paramMap.put("maxAmount", -1);
+			maxAmount = "0";
+		}else{
+			paramMap.put("maxAmount", Double.parseDouble(maxAmount));
+		}
+		Employee employee = new Employee();
+		employee.setTenantId(tenantId);
+		if(tenantId==1)
+		{
+			employee.setTenantId(-1);
+		}
+		employee.setCategory(CommonConstant.EMPLOYEE_ROLE_SALESMAN);
+		try {
+			PageSupport<Order> orders = orderService.getOrdersByForExport(paramMap);
+			exportOrderList(orders,request,response);
+		} catch (EssException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void exportOrderList(PageSupport<Order> orders, HttpServletRequest request, HttpServletResponse response)
+	{
+		try{
+			List datalist = coverToExportList(orders);
+			List headList = getOrderExportHead();
+			 HSSFWorkbook workBook=ExcelUtil.createExcelBook(datalist,headList);
+	         OutputStream out=null;
+	         response.reset();
+	         response.setContentType("application/vnd.ms-excel");
+	         response.setHeader ( "Content-Disposition" ,"attachment;filename=exportExcel.xls") ;
+	         out = response.getOutputStream();
+	         workBook.write(out);
+	         out.flush();
+	         out.close();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	private List<List> coverToExportList(PageSupport<Order> orders)
+	{
+		List<List> returnList = new ArrayList<List>();
+		List<Order> list = orders.getResult();
+		for(Order order : list)
+		{
+			List orderItemList = new ArrayList();
+			orderItemList.add(order.getOrderNo()); //
+			
+			orderItemList.add(order.getAmount());
+			orderItemList.add(order.getCustomer().getName());
+			orderItemList.add(order.getOperator().getName());
+			orderItemList.add(order.getDeliveryDate());
+			
+			returnList.add(orderItemList);
+		}
+		return returnList;
+	}
+	
+	
+	private List<String> getOrderExportHead()
+	{
+		List<String> returnList = new ArrayList<String>();
+		returnList.add("订单号");
+		returnList.add("销售金额");
+		returnList.add("顾客");
+		returnList.add("销售人员");
+		returnList.add("最晚交货日期");
+		
+		return returnList;
 	}
 
 	@RequestMapping("/order/cancel")
@@ -187,6 +324,10 @@ public class OrderController {
 	public String operatorList(int tenantId, ModelMap map) {
 		Employee employee = new Employee();
 		employee.setTenantId(tenantId);
+		if(tenantId==1)
+		{
+			employee.setTenantId(-1);
+		}
 		employee.setCategory(CommonConstant.EMPLOYEE_ROLE_SALESMAN);
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("tenantId", tenantId);

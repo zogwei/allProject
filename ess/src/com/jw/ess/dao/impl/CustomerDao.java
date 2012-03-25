@@ -25,6 +25,8 @@ public class CustomerDao implements ICustomerDao {
 	private static final Log logger = LogFactory.getLog(CustomerDao.class);
 
 	private SqlSessionTemplate sqlSessionTemplate;
+	
+		private static final String FIND_CUSTOMERS = MapperConstant.MAPPER_NAMESPACE_CUSTOMER + ".findCustomers";
 
 	private static final String INSERT_CUSTOMER = MapperConstant.MAPPER_NAMESPACE_CUSTOMER + ".insertCustomer";
 
@@ -110,6 +112,20 @@ public class CustomerDao implements ICustomerDao {
 			return (String) sqlSessionTemplate.selectOne(FIND_CUSTOMER_NAME_EXCLUDE_SELF, param);
 		} catch (PersistenceException e) {
 			logger.error("failed to findCustomerNameExcludeSelf", e);
+			throw new EssException(e, MessageCode.DATABASE_ERROR);
+		}
+	}
+	
+		
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Customer> findCustomers(Customer param) throws EssException {
+		try {
+			@SuppressWarnings("unchecked")
+			List<Customer> customers = (List<Customer>) sqlSessionTemplate.selectList(FIND_CUSTOMERS, param);
+			return customers;
+		} catch (PersistenceException e) {
+			logger.error("failed to findCustomersBy", e);
 			throw new EssException(e, MessageCode.DATABASE_ERROR);
 		}
 	}

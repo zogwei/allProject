@@ -69,4 +69,12 @@ public interface ICustomerDao
 	 */
 	String findCustomerName(int employeeId, int customerId, String customerName)
 			throws EssException;
+			
+		/**
+	 * 
+	 * @param param
+	 * @return
+	 * @throws EssException
+	 */
+	List<Customer> findCustomers(Customer param) throws EssException;
 }

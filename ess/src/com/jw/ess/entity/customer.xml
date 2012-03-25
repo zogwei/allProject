@@ -8,6 +8,7 @@
 		<result property="name" column="c_name" />
 		<result property="linkman" column="c_linkman" />
 		<result property="phone" column="c_phone" />
+		<result property="telNum" column="c_telNum" />
 		<result property="address" column="c_address" />
 		<result property="createdDate" column="c_createdDate" />
 		<result property="isValid" column="c_isValid" />
@@ -18,7 +19,7 @@
 	<!--重用sql语句段-->
 	<sql id="customerColumns">
 		id as c_id,customerName as c_name,linkman as
-		c_linkman,phone as c_phone,
+		c_linkman,phone as c_phone,telNum as c_telNum,
 		address as c_address,createdDate as
 		c_createdDate,isValid as
 		c_isValid,
@@ -32,9 +33,9 @@
 	useGeneratedKeys="true" keyProperty="id">
 
 		insert into
-		tbl_customer(customerName,linkman,phone,address,createdDate,isValid,description,
+		tbl_customer(customerName,linkman,phone,telNum,address,createdDate,isValid,description,
 		tenantId,employeeId)
-		values(#{name},#{linkman},#{phone},#{address},#{createdDate},#{isValid},
+		values(#{name},#{linkman},#{phone},#{telNum},#{address},#{createdDate},#{isValid},
 		#{desc},#{tenantId},#{employeeId})
 
 	</insert>
@@ -42,7 +43,7 @@
 	<update id="updateCustomer" parameterType="Customer">
 		update tbl_customer
 		set customerName = #{name},
-		linkman=#{linkman},phone=#{phone},address=#{address},
+		linkman=#{linkman},phone=#{phone},telNum=#{telNum},address=#{address},
 		description=#{desc} 
 		where id = #{id}
 	</update>
@@ -52,6 +53,26 @@
 		<include refid="customerColumns" />
 		from tbl_customer where id = #{id} and isValid = 1
 	</select>
+	
+		<select id="findCustomers" parameterType="Customer" resultMap="customerMap">
+		select
+		<include refid="customerColumns" />
+		from tbl_customer where 
+		11=11
+		<if test="name != null">
+		    and
+		    f.customerName like "%"#{name}"%"
+		</if>
+		<if test="linkman != null">
+		    and
+		    f.linkman like "%"#{linkman}"%"
+		</if>
+		<if test="phone != null">
+		    and
+		    f.phone = #{phone}
+		</if>
+	</select>
+	
 
 	<select id="findCustomersBy" parameterType="int" resultMap="customerMap">
 		select

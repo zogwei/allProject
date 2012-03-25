@@ -146,6 +146,7 @@
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<input type="button" name="Submit2" value="查询订单" class="button_style"
 					onClick= "form1.action = '<%=basePath %>order/list';form1.submit();"/>
+					&nbsp;&nbsp;
 				<span style="color: red" id="accountInfo">${errorMessage }</span>
 			</div>
 		</form>
@@ -245,9 +246,25 @@
 						<a href="javascript:;" onclick="
 						form2.action = '<%=basePath %>order/list?currentPage=${orders.currentPage + 1}';form2.submit();">下一页</a>
 						&nbsp;
+						
 						<a href="javascript:;" onclick="
 						form2.action = '<%=basePath %>order/list?currentPage=${orders.totalPages}';form2.submit();">尾页</a>
 					</c:if>
+						<input type="button" name="Submit2" value="导出" class="button_style" onClick= "exportExcel();"/>
+					<script type="text/javascript"> 
+					   var maxNum = ${orders.count};
+					   var exportSize = 1000;
+					   var exportPage = 1;
+						function exportExcel()
+						{
+							if(maxNum>exportSize)
+							{
+								alert("最多导出"+exportSize+"条记录！");
+							};
+							form2.action = '<%=basePath %>order/exportExcel?exportSize='+exportSize+'&exportPage='+exportPage;
+							form2.submit();
+						}
+					</script>
 					</form>
 				</td>
 			</tr>

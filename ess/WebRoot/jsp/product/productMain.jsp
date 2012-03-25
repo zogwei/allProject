@@ -82,6 +82,7 @@
 							</option>
 						</select>
 					</td>
+					<!-- 
 					<td width="100" height="25" align="right" nowrap class="col2">
 						纹理：
 					</td>
@@ -92,6 +93,7 @@
 							</option>
 						</select>
 					</td>
+					 -->
 					<td width="100" height="25" align="right" nowrap class="col2">
 						规格：
 					</td>

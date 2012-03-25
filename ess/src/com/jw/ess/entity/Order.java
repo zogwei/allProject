@@ -28,6 +28,8 @@ public class Order {
 	private int operateDate;//订单操作时间
 	
 	private String deliveryDate;//订单操作时间
+	
+	private String desription ;//描述
 
 	private int tenantId;// 租户ID
 
@@ -42,6 +44,17 @@ public class Order {
 	public Customer getCustomer() {
 		return customer;
 	}
+
+	
+	public String getDesription() {
+		return desription;
+	}
+
+
+	public void setDesription(String desription) {
+		this.desription = desription;
+	}
+
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;

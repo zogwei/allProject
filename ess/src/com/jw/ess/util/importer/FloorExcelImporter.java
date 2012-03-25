@@ -56,6 +56,7 @@ public class FloorExcelImporter<T> implements Importer<T> {
 				floor.setSpec(new Spec());
 				floor.setColorCode(new ColorCode());
 				floor.setVein(new Vein());
+				floor.getVein().setName("vein");
 				Row row = (Row) rows.next();
 				if (row.getRowNum() <= 0)					
 					continue;		
@@ -84,13 +85,14 @@ public class FloorExcelImporter<T> implements Importer<T> {
 					case 5:
 						floor.getColorCode().setName(cell.getStringCellValue());
 						break;
-					case 6:
+					/*case 6:
 						floor.getVein().setName(cell.getStringCellValue());
 						break;
-					case 7:
+					*/
+					case 6:
 						floor.setSellPrice((float) cell.getNumericCellValue());
 						break;
-					case 8:
+					case 7:
 						floor.setDesc(cell.getStringCellValue());
 						break;
 					default:

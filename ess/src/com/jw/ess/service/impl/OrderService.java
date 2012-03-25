@@ -112,6 +112,25 @@ public class OrderService implements IOrderService {
 		}
 		return ps;
 	}
+	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = EssException.class)
+	public PageSupport<Order> getOrdersByForExport(Map<String, Object> map)
+			throws EssException {
+		PageSupport<Order> ps = new PageSupport<Order>();
+
+		ps.setCurrentPage(Integer.parseInt(String.valueOf(map
+				.get("exportPage"))));
+		ps.setPageSize(Integer.parseInt((String.valueOf(map
+				.get("exportSize")))));
+		map.put(ParameterMapKeys.BEGIN_INDEX, ps.beginIndexOf());
+		map.put("pageSize", Integer.parseInt((String.valueOf(map
+				.get("exportSize")))));
+		List<Order> orders = orderDao.findOrdersBy(map);
+		ps.setResult(orders);
+		
+		return ps;
+	}
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = EssException.class)

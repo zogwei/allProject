@@ -136,7 +136,10 @@
 						<span id="colorCodeName_msg" class="msg"></span>
 					</td>
 				</tr>
-				<tr>
+				
+				<tr style="display:none">
+					<input  id="veinTag" name="vein.id" value="1" hidden/>
+					<!-- 
 					<td width="5%" height="25" align="right" nowrap class="col2">
 						纹理：
 					</td>
@@ -149,7 +152,9 @@
 						</select>
 						<span id="veinName_msg" class="msg"></span>
 					</td>
+					 -->
 				</tr>
+				
 				<tr>
 					<td width="5%" height="25" align="right" nowrap class="col2">
 						<div align="right">

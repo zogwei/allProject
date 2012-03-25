@@ -5,6 +5,21 @@ var area_flag = true;
 var price_flag = true;
 
 $( function() {
+
+	var url = basePath + "floor/json/list";
+		$.post(
+			url,
+			function(data) {
+				$.each(data, function(index, floorCategory){
+					var $opt = $("<option value='" + floorCategory.id + "'>" + floorCategory.name + "</option>");
+					if(categoryId == floorCategory.id)
+						$opt = $("<option value='" + floorCategory.id + "' selected='selected'>" + floorCategory.name + "</option>");
+					$opt.appendTo($("#floor_name"));
+				}); 
+			},
+			"json"
+	);
+	/*
 	var floor_name = $.trim($("#floor_name").val());
 	$("#floor_name").keyup( function() {
 		//发送ajax请求
@@ -43,6 +58,7 @@ $( function() {
 		);
     });
 	
+	
 	$("#floor_name").blur( function() {
 		var url = basePath + "floor/json/one";
 		$.post(
@@ -65,6 +81,13 @@ $( function() {
 			"json"
 		);
 	});
+	*/
+	
+	$("#floor_name").change(function(){
+		$("input[id=floor.id]").val($(this).children('option:selected').val());
+		//Document.getElementById("floor.id").value = $(this).children('option:selected').val();
+		//alert($("input[id=floor.id]").val());
+	 });
 	
     //进价校验
     $("#price").blur(function(){
@@ -124,6 +147,27 @@ $( function() {
   
   //表单提交校验
   $("#form_id").submit(function(){
+	  
+	 //校验密码
+	var pwd = window.prompt("密码验证","请输入您的密码");
+	var Pwdcheck = "0";
+	$.post(
+			"pwdcheck",
+			function(data) {
+				if(data !="OK")
+					{
+						alert("密码错误！");
+						Pwdcheck="1" ;
+					}
+			},
+			"xml"
+	);
+	if(Pwdcheck!="0")
+	{
+		return false;
+	}
+	//校验密码完毕  
+	
 	if($.trim($("#area").val())=="")
 	{
 		area_flag = false;
@@ -134,14 +178,12 @@ $( function() {
 		price_flag = false;
 	    $("#price_msg").html("进价不能为空");
 	}
-	if($.trim($("#floor_name").val())=="")
+	if($.trim($("#floor_name").val())=="-1")
 	{
 		floor_flag = false;
 	    $("#floor_msg").html("地板名称不能为空");
 	}
-	if($.trim($("#floor_name").val()) == floor_name){
-		floor_flag = true;
-	}
+
   	if(floor_flag && area_flag && price_flag){
   		return true;
   	}else{

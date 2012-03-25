@@ -119,6 +119,7 @@
 						${floor.colorCode.name}
 					</td>
 				</tr>
+				<!-- 
 				<tr>
 					<td height="25" align="right" nowrap class="col2">
 						纹理：
@@ -128,6 +129,7 @@
 						${floor.vein.name}
 					</td>
 				</tr>
+				 -->
 				<tr>
 					<td width="4%" align="left" nowrap class="col2">
 						<div align="right">

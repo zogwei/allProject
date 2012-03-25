@@ -55,6 +55,10 @@ public class OrderConstant
 	public static final String ORDER_DELIVERYDATE_START = "<deliveryDate>";
 	public static final String ORDER_DELIVERYDATE_END = "</deliveryDate>";
 	
+	public static final String ORDER_DESRIPTION = "desription";
+	public static final String ORDER_DESRIPTION_START = "<desription>";
+	public static final String ORDER_DESRIPTION_END = "</desription>";
+	
 	public static final String ORDER_IMPREST = "imprest";
 	public static final String ORDER_IMPREST_START = "<imprest>";
 	public static final String ORDER_IMPREST_END = "</imprest>";

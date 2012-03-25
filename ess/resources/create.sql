@@ -22,6 +22,7 @@ create table tbl_customer
 	customerName varchar(64) not null,
 	linkman varchar(64),
 	phone varchar(50),
+	telNum varchar(50),
 	address varchar(256),
 	isValid tinyint not null,
 	createdDate int not null,
@@ -175,6 +176,7 @@ create table tbl_order
 	deliveryDate varchar(50),
 	isValid tinyint not null,
 	tenantId int not null,
+	desription varchar(1000),
 	primary key(id)
 );
 
@@ -236,11 +238,5 @@ create table tbl_storage_info
 );
 
 use ess;
-
-insert into tbl_tenant(tenantName,createdDate,isValid,isDefault,description) 
-values('system',1324203964,1,1,'i am system tenant');
-
-insert into tbl_employee(account,password,empName,sex,phone,address,cardNo,state,category,isValid,createdDate,description,tenantId) 
-values('admin','admin','admin',1,null,null,null,1,1,1,1324204283,'i am system admin',1);
 
 commit;

@@ -62,6 +62,7 @@
    
    <select id="findStorageInfo" parameterType="map" resultMap="storageInfoResultMap">
       select 
+      TS.id AS storage_id,
       TS.floorId AS storage_floorId,
       TS.tenantId AS storage_tenantId,
       TS.area AS storage_area,
