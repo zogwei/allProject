@@ -110,6 +110,16 @@ $(function(){
 					</td>
 				</tr>
 				<tr>
+					<td width="100px" align="left" nowrap class="col2">
+						<div align="right">
+							描述：
+						</div>
+					</td>
+					<td  align="left" class="col2">
+						${order.desription }
+					</td>
+				</tr>
+				<tr>
 					<td width="95px" align="left" nowrap class="col2">
 						<div align="right">
 							当前状态：

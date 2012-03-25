@@ -17,13 +17,15 @@ import com.jw.ess.util.SessionManager;
 public class SessionFilter implements Filter {
 
 	private static final long serialVersionUID = 1L;
+	
+	private static final String[] passStringS  = {"js","css","jpg","jpeg","gif","bmp","png","zip","rar","xls","xlsx","html","jsp"};
 
 	public void doFilter(ServletRequest arg0, ServletResponse arg1,
 		FilterChain arg2) throws IOException, ServletException {
 		HttpServletRequest request = (HttpServletRequest) arg0;
 		String url = request.getRequestURI();
 		// client or web login
-		if (isClientRequestUri(url) || isWebLoginUri(url)) {
+		if (isClientRequestUri(url) || isWebLoginUri(url) ||isStaticRequest (request) ) {
 			arg2.doFilter(arg0, arg1);
 			return;
 		}
@@ -38,6 +40,24 @@ public class SessionFilter implements Filter {
 		}
 		arg2.doFilter(arg0, arg1);
 		return;
+	}
+	
+	private boolean isStaticRequest(HttpServletRequest arg0){
+		boolean returnValue = false;
+		String url = arg0.getRequestURL().toString();
+		String uri = arg0.getRequestURI().toString();
+		
+		int num = passStringS.length;
+		for(int i = 0 ; i< num ;i++)
+		{
+			if(url.endsWith(passStringS[i]))
+			{
+				returnValue = true;
+				break;
+			}
+		}
+		
+		return returnValue;
 	}
 
 	private boolean isClientRequestUri(String uri) {

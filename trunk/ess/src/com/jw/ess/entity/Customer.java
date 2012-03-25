@@ -14,6 +14,8 @@ public class Customer
 	private String linkman;// 联系人
 
 	private String phone;// 电话
+	
+		private String telNum;//客户电话
 
 	private String address;// 地址
 
@@ -65,6 +67,14 @@ public class Customer
 	public void setPhone(String phone)
 	{
 		this.phone = phone;
+	}
+	
+		public String getTelNum() {
+		return telNum;
+	}
+
+	public void setTelNum(String telNum) {
+		this.telNum = telNum;
 	}
 
 	public String getAddress()

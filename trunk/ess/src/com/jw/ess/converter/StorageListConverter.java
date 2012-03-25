@@ -49,8 +49,8 @@ public class StorageListConverter extends
 			int specId = Integer.parseInt(conditionEle
 					.elementTextTrim(StorageConstant.SPEC_ID));
 			
-			int veinId = Integer.parseInt(conditionEle
-					.elementTextTrim(StorageConstant.VEIN_ID));
+//			int veinId = Integer.parseInt(conditionEle
+//					.elementTextTrim(StorageConstant.VEIN_ID));
 			
 			int categoryId = Integer.parseInt(conditionEle
 					.elementTextTrim(StorageConstant.CATEGORY_ID));
@@ -70,14 +70,14 @@ public class StorageListConverter extends
 			Spec spec = new Spec();
 			spec.setId(specId);
 			
-			Vein vein = new Vein();
-			vein.setId(veinId);
-			
+//			Vein vein = new Vein();
+//			vein.setId(veinId);
+//			
 			Floor floor = new Floor();
 			floor.setTenant(tenant);
 			floor.setCategory(category);
 			floor.setColorCode(colorCode);
-			floor.setVein(vein);
+//			floor.setVein(vein);
 			floor.setSpec(spec);
 			
 			paramMap.put("floor", floor);

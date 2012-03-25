@@ -161,6 +161,7 @@
 							</option>
 					  </select>
 					</td>
+					<!-- 
 					<td width=100" height="25" align="right" nowrap class="col2">
 						<div align="right">
 							纹理名称：
@@ -173,6 +174,7 @@
 							</option>
 					  </select>
 					</td>
+					 -->
 					<td width=100" height="25" align="right" nowrap class="col2">
 						起始日期：
 					</td>

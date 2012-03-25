@@ -14,8 +14,8 @@ values('wanghao','wanghao','wanghao',1,13266688976,null,null,1,1,1,1324204465,'i
 insert into tbl_supplier(supplierName,linkman,phone,address,isValid,createdDate,description,tenantId) 
 values('jiangyizhao','jiangyizhao',13123456789,null,1,1324204465,'i am supplier jiangyizhao',2);
 
-insert into tbl_customer(customerName,linkman,phone,address,isValid,createdDate,description,employeeId,tenantId) 
-values('isoftstone','chenming','13545678910','weixin',1,1324204954,'i am customer chenming',2,2);
+insert into tbl_customer(customerName,linkman,phone,telNum,address,isValid,createdDate,description,employeeId,tenantId) 
+values('isoftstone','chenming','13545678910','3333','weixin',1,1324204954,'i am customer chenming',2,2);
 
 insert into tbl_spec(specName,description,isValid,tenantId) 
 values('900*50*18',null,1,2);
@@ -23,7 +23,6 @@ insert into tbl_spec(specName,description,isValid,tenantId)
 values('900*65*18',null,1,2);
 insert into tbl_spec(specName,description,isValid,tenantId) 
 values('900*70*18',null,1,2);
-
 insert into tbl_floor_category(categoryName,description,isValid,tenantId)
  values('floorCategory1',null,1,2);
 insert into tbl_floor_category(categoryName,description,isValid,tenantId)
@@ -62,12 +61,12 @@ insert into tbl_floor_category(categoryName,description,isValid,tenantId)
  insert into tbl_storage (floorId,area,count,tenantId) values(5,10000,860000,2);
  
 
-insert into tbl_order(orderNo,customerId,operatorId,isValid,amount,imprest,refund,received,currentState,operateDate,tenantId)
-  values('dd201112222318',1,1,1,1688,100,0,0,1,1324370008,2);
-insert into tbl_order(orderNo,customerId,operatorId,isValid,amount,imprest,refund,received,currentState,operateDate,tenantId)
-  values('dd201112222386',1,2,1,2730,100,0,2730,2,1324370008,2);
-insert into tbl_order(orderNo,customerId,operatorId,isValid,amount,imprest,refund,received,currentState,operateDate,tenantId)
-  values('dd201112222389',1,2,1,2160,100,0,0,3,1324370008,2);
+insert into tbl_order(orderNo,customerId,operatorId,isValid,amount,imprest,refund,received,currentState,operateDate,deliveryDate,desription,tenantId)
+  values('dd201112222318',1,1,1,1688,100,0,0,1,1324370008,1324370008,'',2);
+insert into tbl_order(orderNo,customerId,operatorId,isValid,amount,imprest,refund,received,currentState,operateDate,deliveryDate,desription,tenantId)
+  values('dd201112222386',1,2,1,2730,100,0,2730,2,1324370008,1324370008,'',2);
+insert into tbl_order(orderNo,customerId,operatorId,isValid,amount,imprest,refund,received,currentState,operateDate,deliveryDate,desription,tenantId)
+  values('dd201112222389',1,2,1,2160,100,0,0,3,1324370008,1324370008,'',2);
 
 insert into tbl_in_storage(floorId,length,width,quantity,area,price,count,operator,isValid,createdDate,description,tenantId)
 values(1,1,1,10000,10000,108,1080000,2,1,1324370008,null,2);

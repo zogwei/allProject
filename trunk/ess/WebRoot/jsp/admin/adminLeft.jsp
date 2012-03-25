@@ -96,6 +96,7 @@
 							添加色号 </a>
 				</TD>
 			</TR>
+			<!-- 
 			<TR>
 				<TD height="36" class="menu_title" style="CURSOR: hand">
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -103,6 +104,7 @@
 							添加纹理 </a> 
 				</TD>
 			</TR>
+			 -->
 		</TABLE>
 
 		<TABLE id="storage_menu" cellSpacing="0" cellPadding="0" width="180"
@@ -200,18 +202,6 @@
 
 		</TABLE>
 
-		<TABLE id="supplier_menu" cellSpacing="0" cellPadding="0" width="180"
-			align="center">
-			<TR>
-				<TD background="<%=basePath%>img/web/menu_bg.gif" height="36"
-					class="menu_title" onClick="showSupplierMenu();"
-					style="CURSOR: hand">
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<a href="<%=basePath%>supplier/list" target="main"> 供应商管理 </a>
-				</TD>
-
-			</TR>
-		</TABLE>
 		
 		<TABLE id="setPwd_menu" cellSpacing="0" cellPadding="0" width="180"
 			align="center">

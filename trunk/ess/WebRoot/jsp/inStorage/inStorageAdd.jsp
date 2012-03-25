@@ -49,7 +49,7 @@
 					<td height="25" colspan="7" align="right" nowrap class="col1">
 						<div align="center" class="td_title">
 							<div align="left">
-								产品入库<input id="floor_id" name="floor.id" type="hidden" >
+								产品入库<input id="floor.id" name="floor.id" type="hidden" value="-1">
 							</div>
 						</div>
 					</td>
@@ -58,16 +58,19 @@
 					<td width="95px" height="25" align="right" nowrap class="col2">
 						地板名称：
 					</td>
+					
 					<td align="left" nowrap class="col2">
 						&nbsp;
-						<input name="floor_name" type="text" id="floor_name" size="35">
-						<div style="position: absolute;background-color: white;">
-							<table id="floors" width="200px" class="Table_B">
-							</table>
-						</div>
-						<span id="floor_msg" style="color: red"></span>
+						<select id="floor_name" name="floor_name"  size="1">
+							<option value="-1">
+								-- 请选择 --
+							</option>
+						</select>
+						<span id="supplierName_msg" class="msg"></span>
 					</td>
-					</tr>
+				</tr>
+					
+					
 					<tr>
 					<td width="95px" height="25" align="right" nowrap class="col2">
 						入库面积：

@@ -164,6 +164,10 @@ public class OrderListConverter extends
 				content.append(OrderConstant.ORDER_DELIVERYDATE_START);
 				content.append(o.getDeliveryDate()!=null?o.getDeliveryDate():"");
 				content.append(OrderConstant.ORDER_DELIVERYDATE_END);
+				//desription
+				content.append(OrderConstant.ORDER_DESRIPTION_START);
+				content.append(o.getDesription()!=null?o.getDesription():"");
+				content.append(OrderConstant.ORDER_DESRIPTION_END);
 				// customer
 				content.append(OrderConstant.ORDER_CUSTOMER_START);
 				// name

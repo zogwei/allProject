@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,6 +44,31 @@ public class LoginController {
 			map.addAttribute("login_error","&nbsp;&nbsp;&nbsp;用户名或密码错误");
 			logger.error("failed to login", ex);
 			return "../login";
+		}
+	}
+	
+	@RequestMapping("/pwdcheck")
+	public String pwdCheck(@Param(value = "loginPwd") String loginPwd,HttpSession session) {
+		try {
+			Employee employ = (Employee)session.getAttribute("userSession");
+			if(employ!=null)
+			{
+				String account = employ.getAccount();
+				Employee employee = employeeService.login(account,loginPwd);
+				//如果不是管理员
+				if(employee!=null){
+					return "ok";
+					
+				}else{
+					return "error";
+				}
+			}else{
+				return "error";
+			}
+			
+		} catch (EssException ex) {
+			logger.error("failed to login", ex);
+			return "error";
 		}
 	}
 	

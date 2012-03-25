@@ -44,4 +44,5 @@ public interface ICustomerService
 	 */
 	List<Customer> getCustomersBy(int employeeId) throws EssException;
 
+	List<Customer> getCustomers(Customer customer)throws EssException;
 }

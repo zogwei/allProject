@@ -66,5 +66,8 @@ public interface IOrderService {
 	 * @param operatorId
 	 * @return void 
 	 * */
+
+	PageSupport<Order> getOrdersByForExport(Map<String, Object> map)
+			throws EssException;
 }
 

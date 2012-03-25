@@ -65,6 +65,17 @@ public class OrderAddConverter extends DefaultXmlConverter<Order>
 			{
 				order.setDeliveryDate(orderEle.elementTextTrim(OrderConstant.ORDER_DELIVERYDATE));
 			}
+			
+			//desription
+			if(StringUtils.isBlank(orderEle.elementTextTrim(OrderConstant.ORDER_DESRIPTION)))
+			{
+				order.setDesription("");
+			}else
+			{
+				order.setDesription(orderEle.elementTextTrim(OrderConstant.ORDER_DESRIPTION));
+			}
+			
+			
 			// Amount
 			order.setAmount(Double.parseDouble(orderEle
 					.elementTextTrim(OrderConstant.ORDER_AMOUNT)));

@@ -64,7 +64,9 @@ $(function() {
 			"json"
 		);
 		
+		
 		//初始化纹理下拉菜单
+		/*
 		var url = basePath + "vein/json/list";
 		$("#veinTag option:gt(0)").remove();
 		$.post(
@@ -79,6 +81,7 @@ $(function() {
 			},
 			"json"
 		);
+		*/
 		
 		//初始化供应商下拉菜单
 		var url = basePath + "supplier/json/list";
@@ -157,12 +160,14 @@ $(function() {
 			$("#supplierName_msg").html("请选择供应商");
 	})
 	
+	/*
 	$("#veinTag").change(function() {
 		if($("#veinTag").val() >= 0)
 			$("#veinName_msg").html("");
 		else
 			$("#veinName_msg").html("请选择纹理");
 	});
+	*/
 	
 	$("#colorCodeTag").change(function() {
 		if($("#colorCodeTag").val() >= 0)
@@ -194,12 +199,14 @@ $(function() {
 			$("#categoryName_msg").html("请输入类别名称");
 	});
 	
+	/*
 	$("#veinName").blur(function() {
 		if($("#veinName").val().length > 0)
 			$("#veinName_msg").html("");
 		else
 			$("#veinName_msg").html("请输入纹理名称");
 	});
+	*/
 	
 	$("#colorCodeName").blur(function() {
 		if($("#colorCodeName").val().length > 0)
@@ -222,12 +229,14 @@ $(function() {
 		}
 	});
 	
+	/*
 	$("#vein_form").submit(function(event) {
 		if($("#veinName").val().length <= 0) {
 			$("#veinName_msg").html("请输入纹理名称");
 			event.preventDefault();
 		}
 	});
+	*/
 	
 	$("#colorCode_form").submit(function(event) {
 		if($("#colorCodeName").val().length <= 0) {
@@ -235,6 +244,7 @@ $(function() {
 			event.preventDefault();
 		}
 	});
+	
 	
 	$("#spec_form").submit(function(event) {
 		if($("#specName").val().length <= 0) {
@@ -266,10 +276,12 @@ function formValidate(event) {
 		$("#supplierName_msg").html("请选择供应商");
 		event.preventDefault();
 	}
+	/*
 	if($("#veinTag").val() < 0) {
 		$("#veinName_msg").html("请选择纹理");
 		event.preventDefault();
 	}
+	*/
 	if($("#colorCodeTag").val() < 0) {
 		$("#colorCodeName_msg").html("请选择色号");
 		event.preventDefault();
