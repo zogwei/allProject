@@ -183,4 +183,59 @@ public class OrderService implements IOrderService {
 		monthlySalesStatsService.subMonthlySalesAmount(paramOrder.getOperator().getId(),
 				confirmDate, paramOrder.getRefund());	
 	}
+	
+	/**
+	 * 新增修改订单
+	 * 
+	 * @param order
+	 *            订单对象
+	 * @throws EssException
+	 */
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = EssException.class)
+	public void addUpdateOrder(Order order,Map param) throws EssException{
+		//新增订单
+		order.setCurrentState(CommonConstant.ORDER_STATE_BOOK);
+		order.setOperateDate(DateUtil.currentTimeSecs());
+		order.setOrderNo(DefaultNumberGenerator.OrderNumberGenerate());
+		int orderId = orderDao.insertOrder(order);
+		List<OrderItem> items = order.getItems();
+		for (OrderItem item : items) {
+			item.setOrderId(orderId);
+			orderItemDao.insertOrderItem(item);
+		}
+		OrderStateTrace stateTrace = new OrderStateTrace();
+		stateTrace.setStateId(CommonConstant.ORDER_STATE_BOOK);
+		stateTrace.setOperateDate(DateUtil.currentTimeSecs());
+		stateTrace.setOrderId(order.getId());
+		orderStateTraceDao.insertOrderStateTrace(stateTrace);
+		
+		//新增修改订单表
+		
+		
+		//修改原订单状态
+		
+	}
+	
+	/**
+	 * 修改订单
+	 * 
+	 * @param order
+	 *            订单对象
+	 * @throws EssException
+	 */
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = EssException.class)
+	public void updateOrderAuth(int orderId,Map param) throws EssException{
+		//如果不确认，修改状态（新的无效，旧的待确认）
+		
+		//如果确认
+		//修改新旧订单状态 和 是否有效
+		
+		//修改销售表(去掉以前的销售，增加新的销售)
+		
+		//修改订单跟踪表
+		
+		
+	}
 }
