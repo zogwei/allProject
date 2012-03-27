@@ -21,6 +21,24 @@ public interface IOrderService {
 	 * @throws EssException
 	 */
 	int addOrder(Order order) throws EssException;
+	
+	/**
+	 * 新增修改订单
+	 * 
+	 * @param order
+	 *            订单对象
+	 * @throws EssException
+	 */
+	void addUpdateOrder(Order order,Map param) throws EssException;
+	
+	/**
+	 * 修改订单
+	 * 
+	 * @param order
+	 *            订单对象
+	 * @throws EssException
+	 */
+	void updateOrderAuth(int orderId,Map param) throws EssException;
 
 	/**
 	 * 根据订单id查询订单

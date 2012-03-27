@@ -150,4 +150,27 @@ public class OrderEndpoint
 		}
 		return response;
 	}
+	
+	// 新增修改订单
+	@RequestMapping("/order/c/confirm")
+	public @ResponseBody
+	String Order(HttpEntity<String> entity)
+	{
+		String response;
+		try
+		{
+			Order o = orderAddConverter.fromXml(entity.getBody());
+			List<OrderItem> items = orderItemAddConverter.fromXml(entity
+					.getBody());
+			o.setItems(items);
+			orderService.addOrder(o);
+			response = orderAddConverter.toXml(o);
+		}
+		catch (EssException e)
+		{
+			logger.error("failed to add order", e);
+			response = exceptionConverter.toXml(e);
+		}
+		return response;
+	}
 }
