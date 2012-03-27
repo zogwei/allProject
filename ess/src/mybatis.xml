@@ -15,11 +15,13 @@
 		<typeAlias type="com.jw.ess.entity.Customer" alias="Customer"/>
 		<typeAlias type="com.jw.ess.entity.Employee" alias="Employee"/>
 		<typeAlias type="com.jw.ess.entity.Order" alias="Order"/>
+		<typeAlias type="com.jw.ess.entity.OrderUpdate" alias="OrderUpdate"/>
 		<typeAlias type="com.jw.ess.entity.OrderItem" alias="OrderItem"/>
 		<typeAlias type="com.jw.ess.entity.OrderStateTrace" alias="OrderStateTrace"/>
 		<typeAlias type="com.jw.ess.entity.PicPath" alias="PicPath"/>
 		<typeAlias type="com.jw.ess.entity.StorageInfo" alias="StorageInfo"/>
 		<typeAlias type="com.jw.ess.entity.SalesStats" alias="SalesStats"/>
+		
 	</typeAliases>
 
 	<mappers>

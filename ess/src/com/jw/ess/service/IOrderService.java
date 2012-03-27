@@ -38,7 +38,7 @@ public interface IOrderService {
 	 *            订单对象
 	 * @throws EssException
 	 */
-	void updateOrderAuth(int orderId,Map param) throws EssException;
+	void updateOrderAuth(Map param,boolean result) throws EssException;
 
 	/**
 	 * 根据订单id查询订单

@@ -184,10 +184,10 @@ drop table if exists tbl_order_update;
 create table tbl_order_update
 (
 	id int not null AUTO_INCREMENT,
-	newOrderNo varchar(50) not null,
-	oldOrderNo varchar(50) not null,
+	newOrderId int not null,
+	oldOrderId int not null,
 	operatorId int not null,
-	currentState int not null,
+	operateDate int not null,
 	status varchar(10) ,
 	primary key(id)
 );

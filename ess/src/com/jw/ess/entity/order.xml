@@ -165,6 +165,7 @@
 			and o.customerId = c.id 
 			and s.orderId = o.id and s.stateId = 1
 			and o.operatorId = e.id
+			and o.isValid = 1
 		</where>
 	</sql>
 	
@@ -177,5 +178,24 @@
 		update tbl_order set refund = #{refund} , currentState = #{currentState} , operateDate = #{operateDate}
 		where id = #{id}
 	</update>
+	
+	<update id="updateOrder" parameterType="Order">
+		UPDATE  tbl_order 
+		<set>  
+			<if test="isValid != 0">  
+	           isValid = #{isValid} 
+	        </if>  
+			<if test="currentState != 0 ">  
+	           currentState = #{currentState} 
+	        </if>  
+	    </set>
+			where id = #{id}
+	</update>
 
+	<insert id="insertOrderUpdate" parameterType="OrderUpdate"
+		useGeneratedKeys="true" keyProperty="id" >
+		insert into
+		tbl_order_update(newOrderId,oldOrderId,operatorId,operateDate,status)
+		values(#{newOrderId},#{oldOrderId},#{operatorId},#{operateDate},#{status})
+	</insert>
 </mapper>
