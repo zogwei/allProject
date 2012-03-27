@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.jw.ess.entity.Order;
+import com.jw.ess.entity.OrderUpdate;
 import com.jw.ess.util.ex.EssException;
 
 /**
@@ -78,5 +79,9 @@ public interface IOrderDao {
 	 * */
 	
 	void cancelOrder(Order order) throws EssException;
+	
+	void updateOrder(Order order) throws EssException;
+	
+	int insertOrderUpdateDao(OrderUpdate orderUpdate) throws EssException ;
 	
 }

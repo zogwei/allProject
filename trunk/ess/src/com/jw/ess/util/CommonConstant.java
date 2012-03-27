@@ -32,6 +32,8 @@ public class CommonConstant
 	
 	public static final int ORDER_STATE_CANCEL = 3;//退货
 	
+	public static final int ORDER_STATE_UPDATE = 4; //修改待确认状态
+	
 	//定义每页显示数初始值
 	public static final int PAGE_SIZE = 15;
 }

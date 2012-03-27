@@ -16,6 +16,7 @@ import com.jw.ess.dao.IOrderStateTraceDao;
 import com.jw.ess.entity.Order;
 import com.jw.ess.entity.OrderItem;
 import com.jw.ess.entity.OrderStateTrace;
+import com.jw.ess.entity.OrderUpdate;
 import com.jw.ess.entity.SalesStats;
 import com.jw.ess.service.IDailySalesStatsService;
 import com.jw.ess.service.IMonthlySalesStatsService;
@@ -198,6 +199,7 @@ public class OrderService implements IOrderService {
 		order.setCurrentState(CommonConstant.ORDER_STATE_BOOK);
 		order.setOperateDate(DateUtil.currentTimeSecs());
 		order.setOrderNo(DefaultNumberGenerator.OrderNumberGenerate());
+		order.setIsValid(2);//新订单为无效
 		int orderId = orderDao.insertOrder(order);
 		List<OrderItem> items = order.getItems();
 		for (OrderItem item : items) {
@@ -210,11 +212,20 @@ public class OrderService implements IOrderService {
 		stateTrace.setOrderId(order.getId());
 		orderStateTraceDao.insertOrderStateTrace(stateTrace);
 		
-		//新增修改订单表
-		
-		
 		//修改原订单状态
+		Order orderUpdate = new Order();
+		orderUpdate.setId(Integer.valueOf((String)param.get("oldOrderId")).intValue());
+		orderUpdate.setCurrentState(CommonConstant.ORDER_STATE_UPDATE);
+		orderDao.updateOrder(orderUpdate);
 		
+		//插入新旧订单关系表
+		OrderUpdate orderUpdateASS = new OrderUpdate();
+		orderUpdateASS.setNewOrderId(orderId);
+		orderUpdateASS.setOldOrderId(Integer.valueOf((String)param.get("oldOrderId")).intValue());
+		orderUpdateASS.setOperatorId(order.getOperator().getId());
+		orderUpdateASS.setOperateDate(order.getOperateDate());
+		orderUpdateASS.setStatus("1");
+		orderDao.insertOrderUpdateDao(orderUpdateASS);
 	}
 	
 	/**
@@ -226,15 +237,57 @@ public class OrderService implements IOrderService {
 	 */
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = EssException.class)
-	public void updateOrderAuth(int orderId,Map param) throws EssException{
-		//如果不确认，修改状态（新的无效，旧的待确认）
+	public void updateOrderAuth(Map param,boolean result) throws EssException{
 		
-		//如果确认
-		//修改新旧订单状态 和 是否有效
 		
-		//修改销售表(去掉以前的销售，增加新的销售)
+		int oldOrderId = Integer.valueOf((String)param.get("oldOrderId")).intValue();
+		int newOrderId = Integer.valueOf((String)param.get("newOrderId")).intValue();
+		if(!result)
+		{
+			//如果不确认，修改状态（新的无效，）
+			//修改原订单状态，回复确认状态
+			Order orderUpdate = new Order();
+			orderUpdate.setId(oldOrderId);
+			orderUpdate.setCurrentState(CommonConstant.ORDER_STATE_BOOK);
+			orderDao.updateOrder(orderUpdate);
+		}
+		else
+		{
+			//如果确认
+			
+			//修改新订单设置有效，旧的设置为无效
+			Order oldorderUpdate = new Order();
+			oldorderUpdate.setId(oldOrderId);
+			oldorderUpdate.setIsValid(2);
+			orderDao.updateOrder(oldorderUpdate);
+			
+			Order neworderUpdate = new Order();
+			neworderUpdate.setId(newOrderId);
+			neworderUpdate.setIsValid(1);
+			orderDao.updateOrder(neworderUpdate);
+			
+			//修改销售表
+			//减去以前的销售，
+			Order paramOrder = orderDao.findOrderById(oldOrderId);
+			int confirmDate = orderStateTraceDao.findConfirmDate(oldOrderId);
+			dailySalesStatsService.subSalesAmount(paramOrder.getOperator().getId(),
+					confirmDate, paramOrder.getRefund());
+			monthlySalesStatsService.subMonthlySalesAmount(paramOrder.getOperator().getId(),
+					confirmDate, paramOrder.getRefund());	
+			//增加新的销售
+			Order newparamOrder = orderDao.findOrderById(newOrderId);
+			SalesStats salesState = new SalesStats();
+			salesState.setEmployeeId(newparamOrder.getOperator().getId());
+			salesState.setTenantId(newparamOrder.getTenantId());
+			salesState.setSalesAmount(newparamOrder.getAmount());
+			salesState.setSalesDate(newparamOrder.getOperateDate());
+			dailySalesStatsService.addDailyStats(salesState);
+			monthlySalesStatsService.addMonthlyStats(salesState);
+			
+			
+			//修改订单跟踪表,旧订单无效，新订单生效
+		}
 		
-		//修改订单跟踪表
 		
 		
 	}

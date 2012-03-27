@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 
 import com.jw.ess.dao.IOrderDao;
 import com.jw.ess.entity.Order;
+import com.jw.ess.entity.OrderUpdate;
 import com.jw.ess.util.MapperConstant;
 import com.jw.ess.util.TypeUtil;
 import com.jw.ess.util.ex.EssException;
@@ -39,6 +40,8 @@ public class OrderDao implements IOrderDao {
 	private static final String COUNT_BY_MAP = MapperConstant.MAPPER_NAMESPACE_ORDER + ".findCountOfOrder";
 
 	private static final String CANCEL_ORDER = MapperConstant.MAPPER_NAMESPACE_ORDER+".cancelOrder";
+	
+	private static final String UPDATE_ORDER = MapperConstant.MAPPER_NAMESPACE_ORDER+".updateOrder";
 	
 	private static final String UPDATE_ORDER_RECEIVED = MapperConstant.MAPPER_NAMESPACE_ORDER+".updateOrderReceivced";
 	@Override
@@ -107,4 +110,23 @@ public class OrderDao implements IOrderDao {
 		}
 	}
 	
+	@Override
+	public void updateOrder(Order order) throws EssException {
+		try{
+			sqlSessionTemplate.update(UPDATE_ORDER, order);
+		}catch (PersistenceException e) {
+			logger.error("failed to cancelorder", e);
+		}
+	}
+	
+	@Override
+	public int insertOrderUpdateDao(OrderUpdate orderUpdate) throws EssException {
+		try {
+			sqlSessionTemplate.insert(INSERT_ORDER, orderUpdate);
+			return orderUpdate.getId();
+		} catch (PersistenceException e) {
+			logger.error("failed to insertOrder", e);
+			throw new EssException(e, MessageCode.DATABASE_ERROR);
+		}
+	}
 }
