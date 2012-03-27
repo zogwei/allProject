@@ -86,6 +86,15 @@ public class OrderListConverter extends
 										.parseDouble(conditionEle
 												.elementTextTrim(OrderConstant.ORDER_MIN_AMOUNT)));
 			}
+			
+			if (!StringUtils.isBlank(conditionEle
+					.elementTextTrim(OrderConstant.ORDER_CUST_NAME))) {
+				paramMap.put("custName", conditionEle
+						.elementTextTrim(OrderConstant.ORDER_CUST_NAME));
+			}
+			
+			
+			
 			if (StringUtils.isBlank(conditionEle
 					.elementTextTrim(OrderConstant.ORDER_MAX_AMOUNT))) {
 				paramMap.put(ParameterMapKeys.MAX_AMOUNT, 0);

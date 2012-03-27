@@ -82,5 +82,7 @@ public class OrderConstant
 	public static final String ORDER_OPERATOR_ID = "operatorId";
 	public static final String ORDER_OPERATOR_ID_START = "<operatorId>";
 	public static final String ORDER_OPERATOR_ID_EN = "</operatorId>";
+	
+	public static final String ORDER_CUST_NAME = "custName";
 
 }

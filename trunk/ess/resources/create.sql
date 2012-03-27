@@ -180,6 +180,18 @@ create table tbl_order
 	primary key(id)
 );
 
+drop table if exists tbl_order_update;
+create table tbl_order_update
+(
+	id int not null AUTO_INCREMENT,
+	newOrderNo varchar(50) not null,
+	oldOrderNo varchar(50) not null,
+	operatorId int not null,
+	currentState int not null,
+	status varchar(10) ,
+	primary key(id)
+);
+
 drop table if exists tbl_order_item;
 create table tbl_order_item
 (
