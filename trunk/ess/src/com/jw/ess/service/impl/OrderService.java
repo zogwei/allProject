@@ -241,8 +241,8 @@ public class OrderService implements IOrderService {
 	public void updateOrderAuth(Map param,boolean result) throws EssException{
 		
 		
-		int oldOrderId = Integer.valueOf((String)param.get("oldOrderId")).intValue();
-		int newOrderId = Integer.valueOf((String)param.get("newOrderId")).intValue();
+		int oldOrderId =  ((Integer)param.get("oldOrderId")).intValue();
+		int newOrderId = ((Integer)param.get("newOrderId")).intValue();
 		if(!result)
 		{
 			//如果不确认，修改状态（新的无效，）

@@ -213,7 +213,7 @@
 							<a href="<%=basePath %>order/cancelDetail?orderId=${order.id}">退货</a>
 						</c:when>
 						<c:when test="${order.currentState ==4}">
-							<a href="<%=basePath %>order/orderUpdateConfirmPage?orderId=${order.id}">修改确认</a>|
+							<a href="<%=basePath %>order/orderUpdateConfirmPage?orderId=${order.id}&newOrderId=0">修改确认</a>|
 						</c:when>
 						<c:otherwise>
 							<a href="<%=basePath %>order/editDetail?orderId=${order.id}">详情</a>

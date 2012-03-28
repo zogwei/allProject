@@ -119,9 +119,12 @@ values(3,1324350999,3,null);
  
  
  insert into tbl_daily_sales_stats(tenantId,employeeId,salesAmount,salesDate)
- values(2,2,2730,1324370008);
+ values(2,2,2730,1324310400);
  insert into tbl_daily_sales_stats(tenantId,employeeId,salesAmount,salesDate)
  values(2,2,2730,1324370008);
+ 
+insert into tbl_monthly_sales_stats(tenantId,employeeId,salesAmount,salesDate)
+ values(2,2,2730,1324310400);
  
  insert into tbl_storage_info(floorId,countInStorage,countOrder,countOrderCancel)
  values(1,1,2,1);
