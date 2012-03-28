@@ -43,6 +43,10 @@ public class OrderDao implements IOrderDao {
 	
 	private static final String UPDATE_ORDER = MapperConstant.MAPPER_NAMESPACE_ORDER+".updateOrder";
 	
+	private static final String UPDATE_ORDER_STATUS = MapperConstant.MAPPER_NAMESPACE_ORDER+".updateOrderUpdateStatus";
+	
+	private static final String UPDATE_ORDER_SELECT = MapperConstant.MAPPER_NAMESPACE_ORDER+".selectOrderUpdate";
+	
 	private static final String UPDATE_ORDER_RECEIVED = MapperConstant.MAPPER_NAMESPACE_ORDER+".updateOrderReceivced";
 	@Override
 	public int insertOrder(Order order) throws EssException {
@@ -127,6 +131,26 @@ public class OrderDao implements IOrderDao {
 		} catch (PersistenceException e) {
 			logger.error("failed to insertOrder", e);
 			throw new EssException(e, MessageCode.DATABASE_ERROR);
+		}
+	}
+	
+	@Override
+	public Map selectOrderUpdate(Map parameter) throws EssException {
+		
+		try {
+			return (Map) sqlSessionTemplate.selectOne(UPDATE_ORDER_SELECT, parameter);
+		} catch (PersistenceException e) {
+			logger.error("fail to find order by orderId", e);
+			throw new EssException(e, MessageCode.DATABASE_ERROR);
+		}
+	}
+	
+	@Override
+	public void updateOrderUpdateStatus(Map parameter) throws EssException {
+		try{
+			sqlSessionTemplate.update(UPDATE_ORDER_STATUS, parameter);
+		}catch (PersistenceException e) {
+			logger.error("failed to cancelorder", e);
 		}
 	}
 }

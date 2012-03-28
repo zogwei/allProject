@@ -84,4 +84,7 @@ public interface IOrderDao {
 	
 	int insertOrderUpdateDao(OrderUpdate orderUpdate) throws EssException ;
 	
+	public Map selectOrderUpdate(Map parameter) throws EssException;
+	
+	public void updateOrderUpdateStatus(Map parameter) throws EssException;
 }

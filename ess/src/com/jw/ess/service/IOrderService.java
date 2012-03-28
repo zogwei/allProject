@@ -87,5 +87,7 @@ public interface IOrderService {
 
 	PageSupport<Order> getOrdersByForExport(Map<String, Object> map)
 			throws EssException;
+	
+	public Map selectOrderUpdate(Map parameter) throws EssException;
 }
 
