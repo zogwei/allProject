@@ -1,6 +1,7 @@
 package com.jw.ess.service.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -285,10 +286,18 @@ public class OrderService implements IOrderService {
 			monthlySalesStatsService.addMonthlyStats(salesState);
 			
 			
-			//修改订单跟踪表,旧订单无效，新订单生效
+			//修改订单跟踪表,
+			
+			
+			//修改订单更新表状态
+			Map statusMap = new HashMap();
+			statusMap.put("oldOrderId", oldOrderId+"");
+			orderDao.updateOrderUpdateStatus(statusMap);
 		}
-		
-		
-		
+	}
+	
+	public Map selectOrderUpdate(Map parameter) throws EssException
+	{
+		return orderDao.selectOrderUpdate(parameter);
 	}
 }

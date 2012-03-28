@@ -394,5 +394,55 @@ public class OrderController {
 		}
 		return "order/orderCancel";
 	}
+	
+	@RequestMapping("/order/orderUpdateConfirmPage")
+	public String orderUpdateConfirmPage(int orderId,int newOrderId, ModelMap map) {
+		try {
+			map.addAttribute("order", orderService.getOrderById(orderId));
+			map.addAttribute("createDate", DateUtil.transformString(
+					orderService.getOrderById(orderId).getOperateDate(),
+					DateUtil.INPUT_DATE_FORMAT));
+			
+			Map parameter = new HashMap();
+			parameter.put("oldOrderId", orderId+"");
+			parameter.put("status", "1");
+			Map newOrderMap = orderService.selectOrderUpdate(parameter);
+			newOrderId = Integer.valueOf((String)newOrderMap.get("newOrderId")).intValue();
+			
+			map.addAttribute("orderNew", orderService.getOrderById(newOrderId));
+			map.addAttribute("createDateNew", DateUtil.transformString(
+					orderService.getOrderById(newOrderId).getOperateDate(),
+					DateUtil.INPUT_DATE_FORMAT));
+
+		} catch (EssException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "order/orderUpdateconfirm";
+	}
+	
+	@RequestMapping("/order/orderUpdateConfirm")
+	public String orderUpdateConfirm(int orderId,int newOrderId,int result, ModelMap map) {
+		try {
+			Map param = new HashMap();
+			param.put("oldOrderId", orderId);
+			param.put("newOrderId", newOrderId);
+			if(result == 1)
+			{
+				orderService.updateOrderAuth(param, true);
+			}
+			else
+			{
+				orderService.updateOrderAuth(param, false);
+			}
+			
+			
+
+		} catch (EssException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "order/orderMain";
+	}
 
 }

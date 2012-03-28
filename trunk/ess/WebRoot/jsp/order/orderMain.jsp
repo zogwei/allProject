@@ -121,6 +121,7 @@
 							<option value="1">已下单</option>
 							<option value="2" >已确认</option>
 							<option value="3" >已退货</option>
+							<option value="4" >修改待确认</option>
 						</select>
 					</td>
 					</tr>
@@ -210,6 +211,9 @@
 							<a href="<%=basePath %>order/editDetail?orderId=${order.id}">详情</a>|
 							<a href="<%=basePath %>order/one?orderId=${order.id}">确认</a>|
 							<a href="<%=basePath %>order/cancelDetail?orderId=${order.id}">退货</a>
+						</c:when>
+						<c:when test="${order.currentState ==4}">
+							<a href="<%=basePath %>order/orderUpdateConfirmPage?orderId=${order.id}">修改确认</a>|
 						</c:when>
 						<c:otherwise>
 							<a href="<%=basePath %>order/editDetail?orderId=${order.id}">详情</a>
