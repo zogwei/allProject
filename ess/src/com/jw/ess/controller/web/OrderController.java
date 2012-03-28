@@ -407,7 +407,7 @@ public class OrderController {
 			parameter.put("oldOrderId", orderId+"");
 			parameter.put("status", "1");
 			Map newOrderMap = orderService.selectOrderUpdate(parameter);
-			newOrderId = Integer.valueOf((String)newOrderMap.get("newOrderId")).intValue();
+			newOrderId = ((Integer)newOrderMap.get("newOrderId")).intValue();
 			
 			map.addAttribute("orderNew", orderService.getOrderById(newOrderId));
 			map.addAttribute("createDateNew", DateUtil.transformString(

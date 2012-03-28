@@ -199,7 +199,7 @@
 		values(#{newOrderId},#{oldOrderId},#{operatorId},#{operateDate},#{status})
 	</insert>
 	
-   <select id="selectOrderUpdate" parameterType="java.lang.HashMap" resultType="java.lang.HashMap">
+   <select id="selectOrderUpdate" parameterType="java.util.HashMap" resultType="java.util.HashMap">
 		select * from tbl_order_update where  1=1 
 		<if test="status != null">
 			and status = #{status} 
@@ -209,7 +209,7 @@
 		</if>
 	</select>
 	
-	<update id="updateOrderUpdateStatus" parameterType="java.lang.HashMap">
+	<update id="updateOrderUpdateStatus" parameterType="java.util.HashMap">
 		update tbl_order_update set status = 2 where status = 1 and oldOrderId = #{oldOrderId}
 	</update>
 	
