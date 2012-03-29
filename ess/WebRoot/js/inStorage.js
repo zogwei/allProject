@@ -146,52 +146,44 @@ $( function() {
     });
   
   //表单提交校验
-  $("#form_id").submit(function(){
+  $("#submitButton").click(function(){
 	  
 	 //校验密码
 	var pwd = window.prompt("密码验证","请输入您的密码");
-	var Pwdcheck = "0";
 	$.post(
 			basePath + "login/pwdcheck?loginPwd="+pwd,
 			function(data) {
-				alert(data);
-				if(data !="OK")
+				if(data =="ok")
 					{
-						alert("密码错误！");
+						if($.trim($("#area").val())=="")
+						{
+							area_flag = false;
+						    $("#area_msg").html("面积不能为空");
+						}
+						if($.trim($("#price").val())=="")
+						{
+							price_flag = false;
+						    $("#price_msg").html("进价不能为空");
+						}
+						if($.trim($("#floor_name").val())=="-1")
+						{
+							floor_flag = false;
+						    $("#floor_msg").html("地板名称不能为空");
+						}
+
+					  	if(floor_flag && area_flag && price_flag){
+					  		$("#form_id").submit();
+					  	}else{
+					  		return false;
+					  	}
+						
 					}
 				else{
-					Pwdcheck = "1";
+					alert("密码错误！");
 				}
 			},
-			"xml"
+			"json"
 	);
-	if(Pwdcheck!="1")
-	{
-		return false;
-	}
-	//校验密码完毕  
-	
-	if($.trim($("#area").val())=="")
-	{
-		area_flag = false;
-	    $("#area_msg").html("面积不能为空");
-	}
-	if($.trim($("#price").val())=="")
-	{
-		price_flag = false;
-	    $("#price_msg").html("进价不能为空");
-	}
-	if($.trim($("#floor_name").val())=="-1")
-	{
-		floor_flag = false;
-	    $("#floor_msg").html("地板名称不能为空");
-	}
-
-  	if(floor_flag && area_flag && price_flag){
-  		return true;
-  	}else{
-  		return false;
-  	}
   });
   
 });
