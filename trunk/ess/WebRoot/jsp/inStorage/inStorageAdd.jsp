@@ -131,7 +131,7 @@
 			</table>
 			<br/>
 			<div align="center">
-				<input type="submit" name="Submit22" class="button_style" value="添加">
+				<input id="submitButton" type="button" class="button_style" value="添加">
 				&nbsp;<input class="button_style" type="reset" value="重置">
 			</div>
 			<br/>

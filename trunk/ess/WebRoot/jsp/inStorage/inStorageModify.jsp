@@ -132,7 +132,7 @@
 			</table>
 			<br/>
 			<div align="center">
-				<input type="submit" value="修改">
+				<input id="submitButton" type="button" value="修改" />
 			</div>
 			<br/>
 			<div align="center">
