@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jw.ess.entity.Employee;
 import com.jw.ess.entity.Tenant;
@@ -47,7 +48,8 @@ public class LoginController {
 		}
 	}
 	
-	@RequestMapping("/pwdcheck")
+	@ResponseBody
+	@RequestMapping("/login/pwdcheck")
 	public String pwdCheck(@Param(value = "loginPwd") String loginPwd,HttpSession session) {
 		try {
 			Employee employ = (Employee)session.getAttribute("userSession");

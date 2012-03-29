@@ -44,6 +44,12 @@ public class CustomerConstant {
 
 	public static final String PHONE_END = "</phone>";
 	
+	public static final String TELNUM = "telNum";
+	
+	public static final String TELNUM_START = "<telNum>";
+
+	public static final String TELNUM_END = "</telNum>";
+	
 	public static final String ADDRESS = "address";
 	
 	public static final String ADDRESS_START = "<address>";

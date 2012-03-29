@@ -36,7 +36,8 @@ public class CustomerAddConverter extends DefaultXmlConverter<Customer> {
 			String address = conditionEle.elementTextTrim(CustomerConstant.ADDRESS);
 
 			int isValid = Integer.parseInt(conditionEle.elementTextTrim(CustomerConstant.IS_VALID));
-
+			
+			String telNum = conditionEle.elementTextTrim(CustomerConstant.TELNUM);
 
 			String desc = conditionEle.elementTextTrim(CustomerConstant.DESCRIPTION);
 
@@ -54,6 +55,7 @@ public class CustomerAddConverter extends DefaultXmlConverter<Customer> {
 			}
 			
 			Customer customer = new Customer();
+			customer.setTelNum(telNum);
 			customer.setName(name);
 			customer.setLinkman(linkman);
 			customer.setPhone(phone);

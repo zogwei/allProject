@@ -152,17 +152,20 @@ $( function() {
 	var pwd = window.prompt("密码验证","请输入您的密码");
 	var Pwdcheck = "0";
 	$.post(
-			"pwdcheck",
+			basePath + "login/pwdcheck?loginPwd="+pwd,
 			function(data) {
+				alert(data);
 				if(data !="OK")
 					{
 						alert("密码错误！");
-						Pwdcheck="1" ;
 					}
+				else{
+					Pwdcheck = "1";
+				}
 			},
 			"xml"
 	);
-	if(Pwdcheck!="0")
+	if(Pwdcheck!="1")
 	{
 		return false;
 	}

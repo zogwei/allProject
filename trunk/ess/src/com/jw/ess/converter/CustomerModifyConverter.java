@@ -37,7 +37,10 @@ public class CustomerModifyConverter extends DefaultXmlConverter<Customer> {
 
 			String desc = conditionEle.elementTextTrim(CustomerConstant.DESCRIPTION);
 			
+			String telNum = conditionEle.elementTextTrim(CustomerConstant.TELNUM);
+			
 			Customer customer = new Customer();
+			customer.setTelNum(telNum);
 			customer.setId(id);
 			customer.setName(name);
 			customer.setLinkman(linkman);

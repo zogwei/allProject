@@ -169,7 +169,7 @@ table tr td {
 						</td>
 						<td  align="left" class="col2">
 							
-							${item.floor.name}
+							${item.floor.name}    ${item.floor.spec.name}
 							<input type="hidden" name="floorIds" value="${item.floor.id }" />
 						</td>
 						<td  height="26" rowspan="4" align="center">

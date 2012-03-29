@@ -160,7 +160,7 @@
 			and o.amount <![CDATA[<=]]> #{maxAmount}
 		</if>
 		<if test="custName != null">
-			and o.customerName like "%"#{name}"%"
+			and c.customerName like "%"#{name}"%"
 		</if>
 			and o.customerId = c.id 
 			and s.orderId = o.id and s.stateId = 1
