@@ -152,28 +152,23 @@ table tr td {
 								订单细节
 							</div>
 						</div>
-						(选中复选框表示退该地板)
 					</td>
-					
-					
 				</tr>
 			</table>
 			<c:forEach items="${order.items}" var="item">
 				<table width="60%" border="0" align="center" cellpadding="0"
 					cellspacing="1" bgcolor="#FFFFFF">
 					<tr>
-						<td width="95px" height="25" align="left" class="col2">
+						<!-- <TD ROWSPAN=3 width="20px"></TD> -->
+						<td width="95px" height="25"  align="left" class="col2">
 							<div align="right">
 								地板：
 							</div>
 						</td>
-						<td  align="left" class="col2">
+						<td  align="left" class="col2" COLSPAN=5>
 							
 							${item.floor.name}    ${item.floor.spec.name}
 							<input type="hidden" name="floorIds" value="${item.floor.id }" />
-						</td>
-						<td  height="26" rowspan="4" align="center">
-							<input type="checkbox" name="cancels" value="${item.floor.id }" />
 						</td>
 					</tr>
 					<tr>
@@ -182,33 +177,53 @@ table tr td {
 								单价：
 							</div>
 						</td>
-						<td align="left" class="col2">
+						<td align="left" class="col2" width="20%">
 							&nbsp;
 							${item.sellPrice}
 							
 						</td>
-					</tr>
-					<tr>
+						
 						<td width="95px" align="left" class="col2">
 							<div align="right">
 								面积：
 							</div>
 						</td>
-						<td align="left" class="col2">
-							&nbsp;
-							<input type="text" value="${item.area}" name="areas" size="35" />
+						<td align="left" class="col2" width="20%">
+							&nbsp;${item.area}
+							<input type="hidden" value="${item.area}" name="areas" size="35" />
 						</td>
-					</tr>
-					<tr>
-						<td width="95px" align="left" class="col2">
+						
+						
+						<td width="95px" align="left" class="col2" >
 							<div align="right">
 								小计：
 							</div>
 						</td>
-						<td align="left" class="col2">
-							&nbsp;
-							<input type="text" value="${item.amount}" name="amounts"
+						<td align="left" class="col2" width="20%">
+							&nbsp;${item.amount}
+							<input type="hidden" value="${item.amount}" name="amounts"
 								size="35" />
+						</td>
+					</tr>
+					<tr>
+						<td width="95px" height="25"  align="left" class="col2">
+							<div align="right">
+								全部退货：
+							</div>
+						</td>
+						<td  align="left" class="col2">
+							&nbsp;是<INPUT TYPE="RADIO" NAME="${item.floor.id }_cancelFlag" VALUE="yes" onclick="javascript:changeAllCacel(${item.floor.id })">
+							&nbsp;否<INPUT TYPE="RADIO" NAME="${item.floor.id }_cancelFlag" VALUE="no" checked="checked" onclick="javascript:changeAllCacel(${item.floor.id })">
+						</td>
+						<td width="95px" height="25"  align="left" class="col2">
+							<div align="right">
+								退货块数：
+							</div>
+						</td>
+						<td  align="left" class="col2" COLSPAN=3>
+							&nbsp;	<input type="text" name="${item.floor.id }_cancelblock" value="0" onblur="javascript:blockChange(this,${item.onearea },${item.area},${item.sellPrice},${item.floor.id })" />
+							<input type="text" name="${item.floor.id }_cancelPrice" value="0" />
+							<input type="text" name="${item.floor.id }_cancelArea" value="0" />						
 						</td>
 					</tr>
 				</table>
@@ -248,3 +263,44 @@ table tr td {
 		<br />
 	</body>
 </html>
+<script>
+function blockChange(item,oneArea,totalArea,oneprice,foorId)
+{
+	//检查是不是整数
+	var itemValue = item.value;
+	var r =/^\d+$/;
+	var checkFlag =	r.test(itemValue); 
+	if(!checkFlag)
+	{
+		item.value = 0;
+		document.getElementById(foorId+"_cancelPrice").value="0";
+		document.getElementById(foorId+"_cancelArea").value="0";
+		alert("退货块数必须是整数");
+		return ;
+	}
+
+	//检查总面积是不是超过了
+	if(oneArea*itemValue>totalArea)
+	{
+		item.value = 0;
+		document.getElementById(foorId+"_cancelPrice").value="0";
+		document.getElementById(foorId+"_cancelArea").value="0";
+		alert("退货总面积不能大于订货面积");
+		return ;
+	}
+	
+	//计算退货的总价和退货总面积
+	document.getElementById(foorId+"_cancelPrice").value=itemValue*oneprice;
+	document.getElementById(foorId+"_cancelArea").value=oneArea*itemValue;
+}
+
+function changeAllCacel(foorId)
+{
+	//获得劝退状态
+	
+	//如果劝退，disable 块数
+	
+	//如果解开，解开disable 
+}
+
+</script>

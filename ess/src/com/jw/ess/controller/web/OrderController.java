@@ -260,7 +260,7 @@ public class OrderController {
 			@Param(value = "area") Double[] areas,
 			@Param(value = "amount") Double[] amounts, Order order,
 			@Param(value = "desc") String desc,
-			@Param(value = "operatorId") int operatorId) {
+			@Param(value = "operatorId") int operatorId,HttpServletRequest request) {
 		try {
 			if(cancels == null||cancels.length==0){
 				return "forward:/order/cancelDetail?orderId=" + order.getId();
@@ -276,31 +276,69 @@ public class OrderController {
 			Employee employee = new Employee();
 			employee.setId(operatorId);
 			order.setOperator(employee);
-			List<OrderItem> items = new ArrayList<OrderItem>();
-			for (int j = floorIds.length, i = 0; i < j; i++) {
-				OrderItem item = new OrderItem();
-				Floor floor = new Floor();
-				floor.setId(floorIds[i]);
-				item.setFloor(floor);
-				item.setArea(areas[i]);
-				item.setAmount(amounts[i]);
-				items.add(item);
-			}
 			
-				for (int i = items.size() - 1; i > 0; i--) {
-
-					for (int j = 0, k = cancels.length; j < k; j++) {
-
-						if (cancels[j] != items.get(i).getId()) {
-							items.remove(i);
-						}
+			//获得需要退货的item ,剩下的item
+			List<OrderItem> items = new ArrayList<OrderItem>();
+			List<OrderItem> remainItems = new ArrayList();
+			
+			for (int j = floorIds.length, i = 0; i < j; i++) {
+				
+				//不是劝退，判读是不是有部分退，将退的部分加入退货item，不退的加入remainItems
+				String cancelFlag = request.getParameter(floorIds[i]+"_cancelFlag");
+				if("yes".equals(cancelFlag))
+				{
+					//判断是否劝退，如果劝退，加入退货item
+					OrderItem item = new OrderItem();
+					Floor floor = new Floor();
+					floor.setId(floorIds[i]);
+					item.setFloor(floor);
+					item.setArea(areas[i]);
+					item.setAmount(amounts[i]);
+					items.add(item);
+				}
+				else
+				{
+					String cancelblock = request.getParameter(floorIds[i]+"_cancelblock");
+					if(!"0".equals(cancelblock))
+					{
+						//部分退货，将退的部分加入退货item，不退的加入remainItems
+						OrderItem item = new OrderItem();
+						Floor floor = new Floor();
+						floor.setId(floorIds[i]);
+						double cancelPrice = Double.parseDouble(request.getParameter(floorIds[i]+"_cancelPrice"));
+						double cancelArea = Double.parseDouble(request.getParameter(floorIds[i]+"_cancelArea"));
+						
+						//退货item
+						item.setFloor(floor);
+						item.setArea(cancelArea);
+						item.setAmount(cancelPrice);
+						items.add(item);
+						//remainItems
+						OrderItem remainitem = new OrderItem();
+						remainitem.setFloor(floor);
+						remainitem.setArea(areas[i]-cancelArea);
+						remainitem.setAmount(amounts[i]-cancelPrice);
+						remainItems.add(remainitem);
+					}
+					else
+					{
+						//不退
+						OrderItem item = new OrderItem();
+						Floor floor = new Floor();
+						floor.setId(floorIds[i]);
+						item.setFloor(floor);
+						item.setArea(areas[i]);
+						item.setAmount(amounts[i]);
+						remainItems.add(item);
 					}
 				}
-				order.setItems(items);
-				System.out.println(items);
-				orderService.cancelOrder(order);
-		
+			}
 			
+			order.setItems(items);
+			
+			System.out.println(items);
+			System.out.println(remainItems);
+			orderService.cancelOrder(order,remainItems);
 			
 		} catch (EssException e) {
 			logger.error("fail to cancel", e);

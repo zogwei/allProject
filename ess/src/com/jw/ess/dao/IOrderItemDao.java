@@ -1,6 +1,7 @@
 package com.jw.ess.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.jw.ess.entity.OrderItem;
 import com.jw.ess.util.ex.EssException;
@@ -26,4 +27,8 @@ public interface IOrderItemDao {
 	 * @throws EssException
 	 */
 	List<OrderItem> findItemsByOrderId(int orderId)throws EssException;
+	
+	public void updateItems(Map param) throws EssException;
+	
+	public void deleteItems(Map param) throws EssException;
 }

@@ -1,6 +1,7 @@
 package com.jw.ess.dao.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -35,6 +36,12 @@ public class OrderItemDao implements IOrderItemDao
 	private static final String FIND_ITEMS_BY_ORDERID = MapperConstant.MAPPER_NAMESPACE_ORDERITEM
     + ".findItemsByOrderId";
 	
+	private static final String UPDATEITEMS = MapperConstant.MAPPER_NAMESPACE_ORDERITEM
+		    + ".updateItems";
+	
+	private static final String DELETEITEMS = MapperConstant.MAPPER_NAMESPACE_ORDERITEM
+		    + ".deleteItems";
+	
 	@Override
 	public void insertOrderItem(OrderItem orderItem) throws EssException 
 	{
@@ -55,6 +62,30 @@ public class OrderItemDao implements IOrderItemDao
 		try
 		{
 			return(List<OrderItem>) sqlSessionTemplate.selectList(FIND_ITEMS_BY_ORDERID, orderId);
+		}catch (PersistenceException e) {
+			logger.error("failed to findItemsByOrderId", e);
+			throw new EssException(e, MessageCode.DATABASE_ERROR);
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public void updateItems(Map param) throws EssException {
+		try
+		{
+			sqlSessionTemplate.update(UPDATEITEMS, param);
+		}catch (PersistenceException e) {
+			logger.error("failed to findItemsByOrderId", e);
+			throw new EssException(e, MessageCode.DATABASE_ERROR);
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public void deleteItems(Map param) throws EssException {
+		try
+		{
+			sqlSessionTemplate.update(DELETEITEMS, param);
 		}catch (PersistenceException e) {
 			logger.error("failed to findItemsByOrderId", e);
 			throw new EssException(e, MessageCode.DATABASE_ERROR);

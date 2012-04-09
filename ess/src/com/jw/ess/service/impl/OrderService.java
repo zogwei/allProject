@@ -85,7 +85,19 @@ public class OrderService implements IOrderService {
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = EssException.class)
 	public Order getOrderById(int orderId) throws EssException {
-		return orderDao.findOrderById(orderId);
+		Order returnOrder = orderDao.findOrderById(orderId);
+		List<OrderItem> items = returnOrder.getItems();
+		String specName = "";
+		String[] specs = null;
+		double onearea = 0.0;
+		for(OrderItem item : items)
+		{
+			specName = item.getFloor().getSpec().getName();
+			specs = specName.split("*");
+			onearea = Integer.valueOf(specs[0]).doubleValue()*Integer.valueOf(specs[1]).doubleValue();
+			item.setOnearea(onearea/10000.00);
+		}
+		return returnOrder;
 	}
 
 	@Override
@@ -160,7 +172,7 @@ public class OrderService implements IOrderService {
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = EssException.class)
-	public void cancelOrder(Order order) throws EssException {
+	public void cancelOrder(Order order,List<OrderItem> items) throws EssException {
 
 		order.setCurrentState(CommonConstant.ORDER_STATE_CANCEL);
 		order.setOperateDate(DateUtil.currentTimeSecs());
@@ -175,6 +187,16 @@ public class OrderService implements IOrderService {
 
 		orderStateTraceDao.insertOrderStateTrace(order.getStateTraces().get(0));
 		storageService.modifyStorageByOrderCancel(order);
+		
+		//增加对订单item的处理：全退的直接删除 item，不全退的要计算新的面积和总价
+		//操作上直接先删掉所有老的item，再添加现在的item
+		Map deleteparam = new HashMap();
+		deleteparam.put("orderId", order.getId());
+		orderItemDao.deleteItems(deleteparam);
+		for (OrderItem item : items) {
+			orderItemDao.insertOrderItem(item);
+		}
+		
 
 		// 销售处理
 		int confirmDate = orderStateTraceDao.findConfirmDate(order.getId());
