@@ -19,6 +19,18 @@ public class OrderItem
 	private double area;// 面积
 
 	private double amount;// 订单项总价
+	
+	private double onearea;// 一块面积
+	
+	
+
+	public double getOnearea() {
+		return onearea;
+	}
+
+	public void setOnearea(double onearea) {
+		this.onearea = onearea;
+	}
 
 	public int getId()
 	{

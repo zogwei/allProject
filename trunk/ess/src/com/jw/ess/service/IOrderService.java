@@ -1,8 +1,10 @@
 package com.jw.ess.service;
 
+import java.util.List;
 import java.util.Map;
 
 import com.jw.ess.entity.Order;
+import com.jw.ess.entity.OrderItem;
 import com.jw.ess.util.ex.EssException;
 import com.jw.ess.util.page.PageSupport;
 
@@ -77,7 +79,7 @@ public interface IOrderService {
 	 * @return void 
 	 * */
 	
-	void cancelOrder(Order order) throws EssException;
+	public void cancelOrder(Order order,List<OrderItem> items) throws EssException;
 	/***
 	 * 订单取消（退货）
 	 * @param order 
