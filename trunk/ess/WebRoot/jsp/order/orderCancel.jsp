@@ -20,9 +20,6 @@
 		<link href="<%=basePath%>css/add_css.css" rel="stylesheet"
 			type="text/css">
 		<script type="text/javascript" src="<%=basePath%>js/jquery-1.4.min.js"></script>
-		<script type="text/javascript" src="<%=basePath%>js/product.js"></script>
-		<script language="javascript" type="text/javascript"
-			src="<%=basePath%>js/My97DatePicker/WdatePicker.js"></script>
 		<style type="text/css">
 body {
 	background-image: url(<%=basePath%>img/web/22.jpg);
@@ -180,7 +177,7 @@ table tr td {
 						<td align="left" class="col2" width="20%">
 							&nbsp;
 							${item.sellPrice}
-							
+							<input type="hidden" value="${item.sellPrice}" name="sellPrice" size="35" />
 						</td>
 						
 						<td width="95px" align="left" class="col2">
@@ -221,9 +218,9 @@ table tr td {
 							</div>
 						</td>
 						<td  align="left" class="col2" COLSPAN=3>
-							&nbsp;	<input type="text" name="${item.floor.id }_cancelblock" value="0" onblur="javascript:blockChange(this,${item.onearea },${item.area},${item.sellPrice},${item.floor.id })" />
-							<input type="text" name="${item.floor.id }_cancelPrice" value="0" />
-							<input type="text" name="${item.floor.id }_cancelArea" value="0" />						
+							&nbsp;	<input type="text" name="${item.floor.id }_cancelblock" id="${item.floor.id }_cancelblock" value="0" onblur="javascript:blockChange(this,${item.onearea },${item.area},${item.sellPrice},${item.floor.id })" />
+							<input type="hidden" name="${item.floor.id }_cancelPrice" id="${item.floor.id }_cancelPrice" value="0" />
+							<input type="hidden" name="${item.floor.id }_cancelArea" id="${item.floor.id }_cancelArea" value="0" />						
 						</td>
 					</tr>
 				</table>
@@ -273,7 +270,8 @@ function blockChange(item,oneArea,totalArea,oneprice,foorId)
 	if(!checkFlag)
 	{
 		item.value = 0;
-		document.getElementById(foorId+"_cancelPrice").value="0";
+		var price = document.getElementById(foorId+"_cancelPrice");
+		price.value="0"
 		document.getElementById(foorId+"_cancelArea").value="0";
 		alert("退货块数必须是整数");
 		return ;
@@ -290,7 +288,7 @@ function blockChange(item,oneArea,totalArea,oneprice,foorId)
 	}
 	
 	//计算退货的总价和退货总面积
-	document.getElementById(foorId+"_cancelPrice").value=itemValue*oneprice;
+	document.getElementById(foorId+"_cancelPrice").value=itemValue*oneprice*oneArea;
 	document.getElementById(foorId+"_cancelArea").value=oneArea*itemValue;
 }
 

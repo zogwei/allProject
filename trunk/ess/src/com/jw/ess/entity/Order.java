@@ -27,6 +27,8 @@ public class Order {
 
 	private int operateDate;//订单操作时间
 	
+	private int bookDate;//订单操作时间
+	
 	private String deliveryDate;//订单操作时间
 	
 	private String desription ;//描述
@@ -46,6 +48,19 @@ public class Order {
 	}
 
 	
+	
+	public int getBookDate() {
+		return bookDate;
+	}
+
+
+
+	public void setBookDate(int bookDate) {
+		this.bookDate = bookDate;
+	}
+
+
+
 	public String getDesription() {
 		return desription;
 	}
