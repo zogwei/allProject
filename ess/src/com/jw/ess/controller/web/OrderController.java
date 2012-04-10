@@ -229,12 +229,14 @@ public class OrderController {
 		for(Order order : list)
 		{
 			List orderItemList = new ArrayList();
-			orderItemList.add(order.getOrderNo()); //
-			
-			orderItemList.add(order.getAmount());
-			orderItemList.add(order.getCustomer().getName());
-			orderItemList.add(order.getOperator().getName());
-			orderItemList.add(order.getDeliveryDate());
+			orderItemList.add(order.getOrderNo()+""); //
+			orderItemList.add(order.getCustomer().getName()+"");
+			orderItemList.add(order.getOperator().getName()+"");
+			orderItemList.add(order.getBookDate()+"");
+			orderItemList.add(order.getCurrentState()+"");
+			orderItemList.add(order.getImprest()+"");
+			orderItemList.add(order.getAmount()+"");
+			orderItemList.add(order.getOperateDate()+"");
 			
 			returnList.add(orderItemList);
 		}
@@ -245,11 +247,14 @@ public class OrderController {
 	private List<String> getOrderExportHead()
 	{
 		List<String> returnList = new ArrayList<String>();
-		returnList.add("订单号");
-		returnList.add("销售金额");
-		returnList.add("顾客");
-		returnList.add("销售人员");
-		returnList.add("最晚交货日期");
+		returnList.add("订单编号");
+		returnList.add("客户名");
+		returnList.add("经办人");
+		returnList.add("下单日期");
+		returnList.add("订单状态");
+		returnList.add("订金");
+		returnList.add("订单总价");
+		returnList.add("完成时间");
 		
 		return returnList;
 	}
@@ -258,13 +263,11 @@ public class OrderController {
 	public String orderCancel(@Param(value = "cancels") Integer[] cancels,
 			@Param(value = "floorId") Integer[] floorIds,
 			@Param(value = "area") Double[] areas,
+			@Param(value = "sellPrice") Double[] sellPrice,
 			@Param(value = "amount") Double[] amounts, Order order,
 			@Param(value = "desc") String desc,
 			@Param(value = "operatorId") int operatorId,HttpServletRequest request) {
 		try {
-			if(cancels == null||cancels.length==0){
-				return "forward:/order/cancelDetail?orderId=" + order.getId();
-			}
 			OrderStateTrace state = new OrderStateTrace();
 			state.setStateId(CommonConstant.ORDER_STATE_CANCEL);
 			state.setOperateDate(DateUtil.currentTimeSecs());
@@ -318,22 +321,28 @@ public class OrderController {
 						remainitem.setFloor(floor);
 						remainitem.setArea(areas[i]-cancelArea);
 						remainitem.setAmount(amounts[i]-cancelPrice);
+						remainitem.setSellPrice(sellPrice[i]);
+						remainitem.setOrderId(order.getId());
 						remainItems.add(remainitem);
 					}
 					else
 					{
 						//不退
-						OrderItem item = new OrderItem();
+						OrderItem remainitem = new OrderItem();
 						Floor floor = new Floor();
 						floor.setId(floorIds[i]);
-						item.setFloor(floor);
-						item.setArea(areas[i]);
-						item.setAmount(amounts[i]);
-						remainItems.add(item);
+						remainitem.setFloor(floor);
+						remainitem.setArea(areas[i]);
+						remainitem.setAmount(amounts[i]);
+						remainitem.setSellPrice(sellPrice[i]);
+						remainitem.setOrderId(order.getId());
+						remainItems.add(remainitem);
 					}
 				}
 			}
-			
+			if(items.size()==0){
+				return "forward:/order/cancelDetail?orderId=" + order.getId();
+			}
 			order.setItems(items);
 			
 			System.out.println(items);

@@ -23,7 +23,7 @@
 	</select> 
 	
 	<update id="deleteItems" parameterType="java.util.HashMap" >
-		delete tbl_order_item where orderId = #{orderId} 
+		delete from tbl_order_item where orderId = #{orderId} 
 	</update>
 	
 	<update id="updateItems" parameterType="java.util.HashMap" >

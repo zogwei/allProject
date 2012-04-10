@@ -100,6 +100,7 @@
 		<result column="isValid" property="isValid" javaType="int"/>
 		<result column="tenantId" property="tenantId" javaType="int"/>
 		<result column="currentState" property="currentState" javaType="int"/>
+		<result column="bookDate" property="bookDate" javaType="int"/>
 		<result column="deliveryDate" property="deliveryDate" javaType="string"/>
 		<result column="desription" property="desription" javaType="string"/>
 		<association property="customer" column="orderCustomerId" javaType="Customer">
@@ -125,7 +126,7 @@
 		o.customerId as orderCustomerId, c.id as customerId, c.customerName as customerName, 
 		c.linkman as linkman, c.phone as phone, c.address as address ,
 		e.id as employeeId ,e.empName as employeeName,
-		s.operateDate as operateDate
+		s.operateDate as bookDate
 		from tbl_order o, tbl_customer c ,tbl_order_state_trace s,tbl_employee e
 		<include refid="queryOrdersCond"/> 
 		limit #{beginIndex} ,#{pageSize}

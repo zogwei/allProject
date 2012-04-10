@@ -93,7 +93,7 @@ public class OrderService implements IOrderService {
 		for(OrderItem item : items)
 		{
 			specName = item.getFloor().getSpec().getName();
-			specs = specName.split("*");
+			specs = specName.split("\\*");
 			onearea = Integer.valueOf(specs[0]).doubleValue()*Integer.valueOf(specs[1]).doubleValue();
 			item.setOnearea(onearea/10000.00);
 		}
@@ -182,22 +182,10 @@ public class OrderService implements IOrderService {
 			totalRefund = totalRefund + item.getAmount();
 		}
 		order.setRefund(totalRefund);	
-		
 		orderDao.cancelOrder(order);
-
 		orderStateTraceDao.insertOrderStateTrace(order.getStateTraces().get(0));
 		storageService.modifyStorageByOrderCancel(order);
 		
-		//增加对订单item的处理：全退的直接删除 item，不全退的要计算新的面积和总价
-		//操作上直接先删掉所有老的item，再添加现在的item
-		Map deleteparam = new HashMap();
-		deleteparam.put("orderId", order.getId());
-		orderItemDao.deleteItems(deleteparam);
-		for (OrderItem item : items) {
-			orderItemDao.insertOrderItem(item);
-		}
-		
-
 		// 销售处理
 		int confirmDate = orderStateTraceDao.findConfirmDate(order.getId());
 		Order paramOrder = new Order();
@@ -205,7 +193,18 @@ public class OrderService implements IOrderService {
 		dailySalesStatsService.subSalesAmount(paramOrder.getOperator().getId(),
 				confirmDate, paramOrder.getRefund());
 		monthlySalesStatsService.subMonthlySalesAmount(paramOrder.getOperator().getId(),
-				confirmDate, paramOrder.getRefund());	
+				confirmDate, paramOrder.getRefund());
+		
+		//增加对订单item的处理：全退的直接删除 item，不全退的要计算新的面积和总价
+		//操作上直接先删掉所有老的item，再添加现在的item
+		Map deleteparam = new HashMap();
+		deleteparam.put("orderId", order.getId());
+		orderItemDao.deleteItems(deleteparam);
+		int numItem = items.size();
+		for(int i = 0;i<numItem;i++)
+		{
+			orderItemDao.insertOrderItem(items.get(i));
+		}
 	}
 	
 	/**
