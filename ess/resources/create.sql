@@ -122,11 +122,30 @@ create table tbl_floor
 	specId int not null,
 	colorCodeId int not null,
 	veinId int not null,
+	bookPrice decimal(16,4) not null,
+	amountPrice decimal(16,4) not null,
+	detailPrice decimal(16,4) not null,
 	sellPrice decimal(16,4) not null,
 	createdDate int not null,
 	isValid tinyint not null,
 	description varchar(256),
 	tenantId int not null,
+	primary key(id)
+);
+
+drop table if exists tbl_price;
+create table tbl_price
+(
+	id int not null AUTO_INCREMENT,
+	tenantId int not null,
+	floorId int not null,
+	bookPrice decimal(16,4) not null,
+	amountPrice decimal(16,4) not null,
+	detailPrice decimal(16,4) not null,
+	sellPrice decimal(16,4) not null,
+	createdDate int not null,
+	isValid tinyint not null,
+	description varchar(256),
 	primary key(id)
 );
 

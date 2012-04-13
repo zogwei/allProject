@@ -119,6 +119,18 @@
 			</TR>
 
 		</TABLE>
+		
+		<TABLE id="storage_menu" cellSpacing="0" cellPadding="0" width="180"
+			align="center">
+			<TR>
+				<TD background="<%=basePath %>img/web/menu_bg.gif" height="36" class="menu_title"
+					onClick="showStorageMenu();" style="CURSOR: hand">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="<%=basePath %>price/list"
+						target="main">价格管理</a>
+				</TD>
+			</TR>
+		</TABLE>
 
 		<TABLE id="supplier_menu" cellSpacing="0" cellPadding="0" width="180"
 			align="center">

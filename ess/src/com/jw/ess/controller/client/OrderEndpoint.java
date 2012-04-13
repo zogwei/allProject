@@ -76,7 +76,7 @@ public class OrderEndpoint
 		try
 		{
 			Order order = orderCancelConver.fromXml(entity.getBody());
-			orderService.cancelOrder(order);
+			orderService.cancelOrder(order,order.getRemain());
 			response = orderCancelConver.toXml(order);
 		}
 		catch (EssException e)

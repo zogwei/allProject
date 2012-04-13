@@ -10,6 +10,10 @@ public class OrderItemConstant {
 	public static final String ORDER_ITEM_START = "<item>";
 	public static final String ORDER_ITEM_END = "</item>";	
 	
+	public static final String ORDER_REMAINITEM = "remainitem";
+	public static final String ORDER_REMAINITEM_START = "<remainitem>";
+	public static final String ORDER_REMAINITEM_END = "</remainitem>";	
+	
 	public static final String ORDER_ITEM_ID = "id";
 	public static final String ORDER_ITEM_ID_START = "<id>";
 	public static final String ORDER_ITEM_ID_END = "</id>";

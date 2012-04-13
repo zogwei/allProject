@@ -52,9 +52,25 @@ public class OrderCancelConverter extends DefaultXmlConverter<Order> {
 				floor.setId(Integer.parseInt(e.elementTextTrim(OrderItemConstant.ORDER_ITEM_FLOOR_ID)));
 				item.setFloor(floor);
 				item.setArea(Double.parseDouble(e.elementTextTrim(OrderItemConstant.ORDER_ITEM_AREA)));
+				item.setSellPrice(Double.parseDouble(e.elementTextTrim(OrderItemConstant.ORDER_ITEM_SELLPRICE)));
 				items.add(item);
 			}
 			order.setItems(items);
+			
+			List<Element> reaminitemEle = itemsEle.elements(OrderItemConstant.ORDER_REMAINITEM);
+			List<OrderItem> raminitems = new ArrayList<OrderItem>();
+			for (Element e : reaminitemEle) {
+				OrderItem item = new OrderItem();
+				item.setAmount(Double.parseDouble(e.elementTextTrim(OrderItemConstant.ORDER_ITEM_AMOUNT)));
+				Floor floor = new Floor();
+				floor.setId(Integer.parseInt(e.elementTextTrim(OrderItemConstant.ORDER_ITEM_FLOOR_ID)));
+				item.setFloor(floor);
+				item.setArea(Double.parseDouble(e.elementTextTrim(OrderItemConstant.ORDER_ITEM_AREA)));
+				item.setSellPrice(Double.parseDouble(e.elementTextTrim(OrderItemConstant.ORDER_ITEM_SELLPRICE)));
+				raminitems.add(item);
+			}
+			order.setRemain(raminitems);
+			
 			OrderStateTrace stateTrace = new OrderStateTrace();
 			stateTrace.setStateId(CommonConstant.ORDER_STATE_CANCEL);
 			stateTrace.setOrderId(order.getId());

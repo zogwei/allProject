@@ -18,6 +18,8 @@ public class MapperConstant
 
 	public static final String MAPPER_NAMESPACE_VEIN = MAPPER_NAMESPACE_PREFIX
 			+ "VeinMapper";
+	public static final String MAPPER_NAMESPACE_PRICE = MAPPER_NAMESPACE_PREFIX
+			+ "PriceMapper";
 
 	public static final String MAPPER_NAMESPACE_EMPLOYEE = MAPPER_NAMESPACE_PREFIX
 			+ "EmployeeMapper";

@@ -40,6 +40,20 @@ public class Order {
 	private Employee operator;// 操作者
 
 	private List<OrderItem> items;// 订单项
+	
+	private List<OrderItem> remain;// 订单项
+	
+	
+
+	public List<OrderItem> getRemain() {
+		return remain;
+	}
+
+
+
+	public void setRemain(List<OrderItem> remain) {
+		this.remain = remain;
+	}
 
 	private List<OrderStateTrace> stateTraces;// 订单状态跟踪
 
