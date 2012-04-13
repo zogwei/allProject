@@ -79,7 +79,22 @@ tbl_vein 需要一条记录 id是1 veinName 是 vein
 		         
       4.后台退货问题
                       只能按块退货,不足一块的退货不让其退货
-        今天完成
+
+                  退回的借口修改借口如下 
+                   <item>
+					<floorId><!--地板Id--></floorId>
+					<area><!---面积---></area>
+					<amount><!—-退货金额--></amount>
+					<sellPrice><!—-销售价格--></sellPrice>
+				</item>
+                   
+                   <remainitem>
+					<floorId><!--地板Id--></floorId>
+					<area><!--面积---></area>
+					<amount><!—-金额--></amount>
+					<sellPrice><!—-销售价格--></sellPrice>
+				</remainitem>
+                   
                      
          
 

@@ -21,6 +21,7 @@
 		<typeAlias type="com.jw.ess.entity.PicPath" alias="PicPath"/>
 		<typeAlias type="com.jw.ess.entity.StorageInfo" alias="StorageInfo"/>
 		<typeAlias type="com.jw.ess.entity.SalesStats" alias="SalesStats"/>
+		<typeAlias type="com.jw.ess.entity.Price" alias="Price"/>
 		
 	</typeAliases>
 
@@ -43,6 +44,7 @@
 		<mapper resource="com/jw/ess/entity/picPath.xml"/>
 		<mapper resource="com/jw/ess/entity/dailySalesStats.xml"/>
 		<mapper resource="com/jw/ess/entity/monthlySalesStats.xml"/>
+		<mapper resource="com/jw/ess/entity/price.xml"/>
 	</mappers>
 	
 </configuration>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jw.ess.mapper.PriceMapper">
+
+	<!-- 规格表的 列与实体类赋值关系映射 -->
+	<resultMap type="Price" id="PriceMap">
+		<id property="id" column="id" />
+		<result property="tenantId" column="tenantId" />
+		<result property="floorId" column="floorId" />
+		<result property="bookPrice" column="bookPrice" />
+		<result property="amountPrice" column="amountPrice" />
+		<result property="detailPrice" column="detailPrice" />
+		<result property="sellPrice" column="sellPrice" />
+		<result property="createdDate" column="createdDate" />
+		<result property="isValid" column="isValid" />
+		<result property="desc" column="desc" />
+	</resultMap>
+
+	<!-- 插入一条规格信息 -->
+	<insert id="insertPrice" parameterType="Price" useGeneratedKeys="true"
+		keyProperty="id">
+		insert into
+		tbl_price(tenantId,floorId,sellPrice,bookPrice,amountPrice,detailPrice,createdDate,isValid,description)
+		values
+		(#{tenantId},#{floorId},#{sellPrice},#{bookPrice},#{amountPrice},#{detailPrice},#{createdDate},#{isValid},#{description})
+	</insert>
+
+	<select id="findPrice" parameterType="integer" resultMap="SpecMap">
+		select id, tenantId,floorId,sellPrice,bookPrice,amountPrice,detailPrice,createdDate,isValid,description from tbl_price where 11=11 and isValid = 1
+		<if test="tenantId >0">
+			and tenantId = #{tenantId}
+		</if>
+		<if test="floorId >0">
+			 and floorId = #{floorId}
+		</if>
+		 
+	</select>
+
+	<update id="updatePrice" parameterType="Price">
+		update tbl_price set
+		sellPrice = #{sellPrice},
+		bookPrice = #{bookPrice},
+		amountPrice = #{amountPrice},
+		detailPrice = #{detailPrice},
+		description = #{desc}
+		where tenantId = #{tenantId} and #{floorId}
+	</update>
+	
+	<update id="deletePrice" parameterType="Price">
+		delete from tbl_price where tenantId = #{tenantId} and #{floorId}
+	</update>
+	
+	
+</mapper>

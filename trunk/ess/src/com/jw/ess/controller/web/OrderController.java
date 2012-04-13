@@ -210,7 +210,7 @@ public class OrderController {
 	         OutputStream out=null;
 	         response.reset();
 	         response.setContentType("application/vnd.ms-excel");
-	         response.setHeader ( "Content-Disposition" ,"attachment;filename=exportExcel.xls") ;
+	         response.setHeader ( "Content-Disposition" ,"attachment;filename=订单清单.xls") ;
 	         out = response.getOutputStream();
 	         workBook.write(out);
 	         out.flush();
@@ -226,17 +226,38 @@ public class OrderController {
 	{
 		List<List> returnList = new ArrayList<List>();
 		List<Order> list = orders.getResult();
+		String status = "";
 		for(Order order : list)
 		{
 			List orderItemList = new ArrayList();
 			orderItemList.add(order.getOrderNo()+""); //
 			orderItemList.add(order.getCustomer().getName()+"");
 			orderItemList.add(order.getOperator().getName()+"");
-			orderItemList.add(order.getBookDate()+"");
-			orderItemList.add(order.getCurrentState()+"");
+			orderItemList.add(DateUtil.transformString(order.getBookDate(), DateUtil.INPUT_DATE_FORMAT));
+			status = order.getCurrentState()+"";
+			if(status.equals("1"))
+			{
+				orderItemList.add("已下单");
+			}
+			else if(status.equals("2")){
+				orderItemList.add("已确认");
+			}
+			else if(status.equals("3")){
+				orderItemList.add("已退货");
+			}
+			else if(status.equals("4")){
+				orderItemList.add("修改待确认");
+			}
+			
 			orderItemList.add(order.getImprest()+"");
 			orderItemList.add(order.getAmount()+"");
-			orderItemList.add(order.getOperateDate()+"");
+			if(status.equals("2")){
+				orderItemList.add(DateUtil.transformString(order.getStateTraces().get(0).getOperateDate(), DateUtil.INPUT_DATE_FORMAT));
+			}
+			else{
+				orderItemList.add("");
+			}
+			
 			
 			returnList.add(orderItemList);
 		}
@@ -491,5 +512,7 @@ public class OrderController {
 		}
 		return "order/orderMain";
 	}
+	
+	
 
 }

@@ -28,7 +28,13 @@ public class Floor
 
 	private Vein vein;// 纹理
 
-	private float sellPrice;// 单价(售价)
+	private float bookPrice;// 进货价
+	
+	private float amountPrice;// 批发价
+	
+	private float detailPrice;// 零售价
+	
+	private float sellPrice;// 建议销售价
 
 	private List<PicPath> picPath;// 图片地址
 
@@ -40,6 +46,32 @@ public class Floor
 	
 	private Tenant tenant;
 	
+	
+	
+	public float getBookPrice() {
+		return bookPrice;
+	}
+
+	public void setBookPrice(float bookPrice) {
+		this.bookPrice = bookPrice;
+	}
+
+	public float getAmountPrice() {
+		return amountPrice;
+	}
+
+	public void setAmountPrice(float amountPrice) {
+		this.amountPrice = amountPrice;
+	}
+
+	public float getDetailPrice() {
+		return detailPrice;
+	}
+
+	public void setDetailPrice(float detailPrice) {
+		this.detailPrice = detailPrice;
+	}
+
 	public int getId()
 	{
 		return id;
