@@ -52,9 +52,14 @@
 		<property name="user" value="root" />
 		<property name="password" value="zhong123" />
 		 -->
-		<!-- -->
-	    <property name="user" value="MySQL55" />
+		<!-- 
+	    <property name="user" value="root" />
 		<property name="password" value="a123" />
+		 -->
+		 
+		 <!-- -->
+	    <property name="user" value="root" />
+		<property name="password" value="root"/>
 		 
 	</bean>
 

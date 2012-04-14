@@ -40,16 +40,16 @@ insert into tbl_floor_category(categoryName,description,isValid,tenantId)
  insert into tbl_color_code(colorCodeName,description,isValid,tenantId)
  values("ColorCode2",null,1,2);
  
- insert into tbl_floor(number,floorName,supplierId,categoryId,specId,colorCodeId,veinId,sellPrice,createdDate,isValid,description,tenantId) 
- values('20001','floor name20001',1,1,1,1,1,55,1324206999,1,null,2);
-  insert into tbl_floor(number,floorName,supplierId,categoryId,specId,colorCodeId,veinId,sellPrice,createdDate,isValid,description,tenantId) 
- values('20002','floor name20002',1,1,2,1,2,34,1324207139,1,null,2);
-  insert into tbl_floor(number,floorName,supplierId,categoryId,specId,colorCodeId,veinId,sellPrice,createdDate,isValid,description,tenantId) 
- values('20003','floor name20003',1,2,1,2,2,108,1324207151,1,null,2);
-  insert into tbl_floor(number,floorName,supplierId,categoryId,specId,colorCodeId,veinId,sellPrice,createdDate,isValid,description,tenantId) 
- values('20004','floor name20004',1,2,2,1,1,79,1324207163,1,null,2);
-  insert into tbl_floor(number,floorName,supplierId,categoryId,specId,colorCodeId,veinId,sellPrice,createdDate,isValid,description,tenantId) 
- values('20005','floor name20005',1,1,1,1,2,86,1324207173,1,null,2);
+ insert into tbl_floor(number,floorName,supplierId,categoryId,specId,colorCodeId,veinId,sellPrice,bookPrice,amountPrice,detailPrice,createdDate,isValid,description,tenantId) 
+ values('20001','floor name20001',1,1,1,1,1,55,200,200,200,1324206999,1,null,2);
+  insert into tbl_floor(number,floorName,supplierId,categoryId,specId,colorCodeId,veinId,sellPrice,bookPrice,amountPrice,detailPrice,createdDate,isValid,description,tenantId) 
+ values('20002','floor name20002',1,1,2,1,2,34,200,200,200,1324207139,1,null,2);
+  insert into tbl_floor(number,floorName,supplierId,categoryId,specId,colorCodeId,veinId,sellPrice,bookPrice,amountPrice,detailPrice,createdDate,isValid,description,tenantId) 
+ values('20003','floor name20003',1,2,1,2,2,108,200,200,200,1324207151,1,null,2);
+  insert into tbl_floor(number,floorName,supplierId,categoryId,specId,colorCodeId,veinId,sellPrice,bookPrice,amountPrice,detailPrice,createdDate,isValid,description,tenantId) 
+ values('20004','floor name20004',1,2,2,1,1,79,200,200,200,1324207163,1,null,2);
+  insert into tbl_floor(number,floorName,supplierId,categoryId,specId,colorCodeId,veinId,sellPrice,bookPrice,amountPrice,detailPrice,createdDate,isValid,description,tenantId) 
+ values('20005','floor name20005',1,1,1,1,2,86,200,200,200,1324207173,1,null,2);
 
 
 

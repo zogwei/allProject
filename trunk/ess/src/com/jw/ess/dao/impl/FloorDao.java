@@ -1,5 +1,6 @@
 package com.jw.ess.dao.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,7 +14,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.jw.ess.dao.IFloorDao;
+import com.jw.ess.dao.IPriceDao;
 import com.jw.ess.entity.Floor;
+import com.jw.ess.entity.Price;
 import com.jw.ess.util.MapperConstant;
 import com.jw.ess.util.ParameterMapKeys;
 import com.jw.ess.util.TypeUtil;
@@ -31,6 +34,9 @@ public class FloorDao implements IFloorDao {
 	private static final Log logger = LogFactory.getLog(FloorDao.class);
 
 	private SqlSessionTemplate sqlSessionTemplate;
+	
+	@Resource(name = "priceDao")
+	private IPriceDao priceDao;
 
 	private static final String INSERT_FLOOR = MapperConstant.MAPPER_NAMESPACE_FLOOR
 			+ ".insertFloor";
@@ -61,6 +67,18 @@ public class FloorDao implements IFloorDao {
 		this.sqlSessionTemplate = sqlSessionTemplate;
 	}
 
+	@Override
+	public Floor findById(int id,int tenantId) throws EssException {
+		try {
+			Floor item =  (Floor) sqlSessionTemplate.selectOne(FIND_FLOOR, id);
+			return addTenentPrice(tenantId,item);
+		} catch (PersistenceException e) {
+			logger.error("failed to findFloor", e);
+			throw new EssException(e, MessageCode.DATABASE_ERROR);
+		}
+
+	}
+	
 	@Override
 	public Floor findById(int id) throws EssException {
 		try {
@@ -97,13 +115,22 @@ public class FloorDao implements IFloorDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Floor> findFloorsByTenantId(int tenantId) throws EssException {
+		List<Floor> returnItems = new ArrayList();
 		try {
-			return (List<Floor>) sqlSessionTemplate.selectList(
+			
+			List<Floor> items =  (List<Floor>) sqlSessionTemplate.selectList(
 					FIND_FLOORS_BY_TENANTID, tenantId);
+			
+			for(Floor item : items)
+			{
+				returnItems.add(addTenentPrice(tenantId,item));
+			}
+			
 		} catch (PersistenceException e) {
 			logger.error("failed to findFloorsByTenantId", e);
 			throw new EssException(e, MessageCode.DATABASE_ERROR);
 		}
+		return returnItems;
 	}
 	
 	@Override
@@ -120,15 +147,23 @@ public class FloorDao implements IFloorDao {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Floor> findFloorsBy(Map<String, Object> param)
+	public List<Floor> findFloorsBy(Map<String, Object> param,int tenantId)
 			throws EssException {
+		List<Floor> returnItems = new ArrayList();
 		try {
-			return (List<Floor>) sqlSessionTemplate.selectList(FIND_FLOORS,
+			List<Floor> items = (List<Floor>) sqlSessionTemplate.selectList(FIND_FLOORS,
 					param);
+			for(Floor item : items)
+			{
+				returnItems.add(addTenentPrice(tenantId,item));
+			}
+			
 		} catch (PersistenceException e) {
 			logger.error("failed to findAllEmployees", e);
 			throw new EssException(e, MessageCode.DATABASE_ERROR);
 		}
+		
+		return returnItems;
 	}
 
 	
@@ -139,9 +174,10 @@ public class FloorDao implements IFloorDao {
 		param.put(ParameterMapKeys.TENANT_ID, tenantId);
 		param.put(ParameterMapKeys.FLOOR_NAME, floorName);
 		try {
-			return (Floor) sqlSessionTemplate
+			 Floor item = (Floor) sqlSessionTemplate
 					.selectOne(FIND_FLOOR_NAME, param);
 
+			 return addTenentPrice(tenantId,item);
 		} catch (PersistenceException e) {
 			logger.error("failed to insertFloor", e);
 			throw new EssException(e, MessageCode.DATABASE_ERROR);
@@ -164,6 +200,38 @@ public class FloorDao implements IFloorDao {
 			logger.error("failed to insertFloor", e);
 			throw new EssException(e, MessageCode.DATABASE_ERROR);
 		}
+	}
+	
+	private Floor addTenentPrice(int tenantId,Floor floor){
+		Floor returnFloor = floor;
+		if(floor==null||floor.getId()==0)
+		{
+			return floor;
+		}
+		
+		int floorId = floor.getId();
+		
+		try{
+			Price price = new Price();
+			List<Price>  returnPrices = null;
+			Price itemPrice = null;
+			price.setTenantId(tenantId);
+			price.setFloorId(floorId);
+			returnPrices = priceDao.findPrice(price);
+			if(returnPrices.size()>0)
+			{
+				itemPrice = returnPrices.get(0);
+				floor.setAmountPrice(itemPrice.getAmountPrice());
+				floor.setSellPrice(itemPrice.getSellPrice());
+				floor.setDetailPrice(itemPrice.getDetailPrice());
+				returnFloor = floor;
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return returnFloor;
 	}
 
 }

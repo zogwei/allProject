@@ -65,7 +65,7 @@ public class PriceController {
 			Page page = new Page();
 			page.setCurrentPage(0);
 			page.setPageSize(Integer.MAX_VALUE);
-			map.put("floors", floorService.getFloorsBy(floor,page));
+			map.put("floors", floorService.getFloorsBy(floor,page,SessionManager.getTenantFrom(session).getId()));
 			
 			map.put("prices",  priceService.findPrice(price));
 			
@@ -88,7 +88,7 @@ public class PriceController {
 			Page page = new Page();
 			page.setCurrentPage(0);
 			page.setPageSize(Integer.MAX_VALUE);
-			map.put("floors", floorService.getFloorsBy(floor,page));
+			map.put("floors", floorService.getFloorsBy(floor,page,SessionManager.getTenantFrom(session).getId()));
 			
 			priceService.updatePrice(price);
 		} catch (EssException e) {
@@ -110,11 +110,11 @@ public class PriceController {
 			Page page = new Page();
 			page.setCurrentPage(0);
 			page.setPageSize(Integer.MAX_VALUE);
-			map.put("floors", floorService.getFloorsBy(floor,page));
+			map.put("floors", floorService.getFloorsBy(floor,page,SessionManager.getTenantFrom(session).getId()));
 		} catch (EssException e) {
 			logger.error("failed to getAllSpecs", e);
 		}
-		return "forward:/price/priceAdd";
+		return "price/priceAdd";
 	}
 	
 	@RequestMapping("/price/delete")

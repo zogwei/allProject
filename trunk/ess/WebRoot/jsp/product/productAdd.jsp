@@ -138,7 +138,7 @@
 				</tr>
 				
 				<tr style="display:none">
-					<input  id="veinTag" name="vein.id" value="1" hidden/>
+					<input  id="veinTag" name="vein.id" value="1" type="hidden"/>
 					<!-- 
 					<td width="5%" height="25" align="right" nowrap class="col2">
 						纹理：
@@ -158,7 +158,43 @@
 				<tr>
 					<td width="5%" height="25" align="right" nowrap class="col2">
 						<div align="right">
-							单价：
+							进货价：
+						</div>
+					</td>
+					<td width="17%" align="left" nowrap class="col2">
+						&nbsp;
+						<input id="bookPrice" name="bookPrice" type="text" id="MidCls3" size="35" value="${floor.bookPrice}">
+						<span id="bookPrice_msg" class="msg"></span>
+					</td>
+				</tr>
+				<tr>
+					<td width="5%" height="25" align="right" nowrap class="col2">
+						<div align="right">
+							批发价：
+						</div>
+					</td>
+					<td width="17%" align="left" nowrap class="col2">
+						&nbsp;
+						<input id="amountPrice" name="amountPrice" type="text" id="MidCls3" size="35" value="${floor.amountPrice}">
+						<span id="amountPrice_msg" class="msg"></span>
+					</td>
+				</tr>
+				<tr>
+					<td width="5%" height="25" align="right" nowrap class="col2">
+						<div align="right">
+							零售价：
+						</div>
+					</td>
+					<td width="17%" align="left" nowrap class="col2">
+						&nbsp;
+						<input id="detailPrice" name="detailPrice" type="text" id="MidCls3" size="35" value="${floor.detailPrice}">
+						<span id="detailPrice_msg" class="msg"></span>
+					</td>
+				</tr>
+				<tr>
+					<td width="5%" height="25" align="right" nowrap class="col2">
+						<div align="right">
+							建议销售价：
 						</div>
 					</td>
 					<td width="17%" align="left" nowrap class="col2">

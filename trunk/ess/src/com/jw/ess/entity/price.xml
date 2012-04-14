@@ -17,6 +17,8 @@
 		<result property="createdDate" column="createdDate" />
 		<result property="isValid" column="isValid" />
 		<result property="desc" column="desc" />
+		<result property="tenantName" column="tenantName" />
+		<result property="floorName" column="floorName" />
 	</resultMap>
 
 	<!-- 插入一条规格信息 -->
@@ -28,13 +30,15 @@
 		(#{tenantId},#{floorId},#{sellPrice},#{bookPrice},#{amountPrice},#{detailPrice},#{createdDate},#{isValid},#{description})
 	</insert>
 
-	<select id="findPrice" parameterType="integer" resultMap="SpecMap">
-		select id, tenantId,floorId,sellPrice,bookPrice,amountPrice,detailPrice,createdDate,isValid,description from tbl_price where 11=11 and isValid = 1
+	<select id="findPrice" parameterType="Price" resultMap="PriceMap">
+		select price.id, price.tenantId, price.floorId, t.tenantName tenantName, f.floorName  floorName, price.sellPrice,price.bookPrice,price.amountPrice,price.detailPrice,price.createdDate,price.isValid,price.description
+		
+		 from tbl_price price,tbl_tenant t,tbl_floor f where   t.id = price.tenantId and f.id = price.floorId
 		<if test="tenantId >0">
-			and tenantId = #{tenantId}
+			and price.tenantId = #{tenantId}
 		</if>
 		<if test="floorId >0">
-			 and floorId = #{floorId}
+			 and price.floorId = #{floorId}
 		</if>
 		 
 	</select>
@@ -50,7 +54,7 @@
 	</update>
 	
 	<update id="deletePrice" parameterType="Price">
-		delete from tbl_price where tenantId = #{tenantId} and #{floorId}
+		delete from tbl_price where id = #{id}
 	</update>
 	
 	

@@ -35,6 +35,11 @@ public class PriceDao implements IPriceDao {
 	
 	private static final String DELETEPRICE = MapperConstant.MAPPER_NAMESPACE_PRICE + ".deletePrice";
 	
+	@Resource(name = "sqlSessionTemplate")
+	public void setSqlSessionTemplate(SqlSessionTemplate sqlSessionTemplate) {
+		this.sqlSessionTemplate = sqlSessionTemplate;
+	}
+	
 	public void insertPrice(Price price) throws EssException{
 		try {
 			this.sqlSessionTemplate.insert(INSERTPRICE, price);
@@ -46,7 +51,7 @@ public class PriceDao implements IPriceDao {
 	
 	public List<Price> findPrice(Price price) throws EssException{
 		try {
-			return (List<Price>) sqlSessionTemplate.selectList(INSERTPRICE, price);
+			return (List<Price>) sqlSessionTemplate.selectList(FINDPRICE, price);
 		} catch (PersistenceException e) {
 			logger.error("failed to insertVein", e);
 			throw new EssException(e, MessageCode.DATABASE_ERROR);

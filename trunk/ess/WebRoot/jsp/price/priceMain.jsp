@@ -45,71 +45,19 @@
 		<font class="navigation_style">当前位置:产品管理&raquo;添加产品规格</font>
 		<br>
 		<br>
-		<!-- 
-		<form name="form1" method="post" action="">
-			<table id="search_table" width="95%" border="0" align="center" cellpadding="0"
-				cellspacing="1" bgcolor="#FFFFFF">
-				<tr>
-					<td height="25" colspan="6" align="right" class="col1">
-						<div align="center" class="td_title">
-							<div align="left">
-								订单管理
-							</div>
-						</div>
-					</td>
-	
-				</tr>
-				
-				<tr>
-					<td width="10%" height="25" align="right" class="col2">
-						租户：
-					</td>
-					<td  align="left" class="col2">
-						<c:choose>
-							<c:when test="${employees == null}">
-							</c:when>
-							<c:when test="${employees !=null}">
-								<select name="operatorId" style="width:120px;">
-									<option value="0">--请选择--</option>
-									<c:forEach items="${employees.result}" var="employee">
-									<c:if test="${operatorId == employee.id}">
-										<option value="${employee.id}" selected="selected">${employee.name}</option>
-									</c:if>
-									<c:if test="${operatorId != employee.id}" >
-										<option value="${employee.id}" >${employee.name}</option>
-									</c:if>
-									</c:forEach>
-								</select>
-							</c:when>
-						</c:choose>
-					</td>
-				
-				</tr>
-			</table>
-			<br/>
-			<div align="left">
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="button" name="Submit2" value="查询订单" class="button_style"
-					onClick= "form1.action = '<%=basePath %>order/list';form1.submit();"/>
-					&nbsp;&nbsp;
-				<span style="color: red" id="accountInfo">${errorMessage }</span>
-			</div>
-		</form>
-		 -->
 		
-		<input type="button" name="Submit2" value="添加" class="button_style"
-					onClick= "local = <%=basePath %>order/list"/>
-					
-		<table width="60%" border="0" align="center" cellpadding="0"
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" name="Submit22" value="添加地板" class="button_style"
+					onClick="window.location='<%=basePath %>price/toadd';">
+		
+		<br/>		
+		<br/>			
+		<table width="95%" border="0" align="center" cellpadding="0"
 			cellspacing="1" bordercolor="#FFFFFF" bgcolor="#FFFFFF">
 			<tr align="center">
 				<td width="10%" nowrap bgcolor="#FFFFFF" class="col2">
-
 					序号
 				</td>
-
 				<td width="15%"nowrap bgcolor="#FFFFFF" class="col2">
-
 					租户
 				</td>
 				<td width="25%" nowrap bgcolor="#FFFFFF" class="col2">
@@ -128,30 +76,35 @@
 
 					建议销售价
 				</td>
+				<td width="25%" nowrap bgcolor="#FFFFFF" class="col2">
+ 					操作
+				</td>
 			</tr>
 			<c:forEach items="${prices}" var="price" varStatus="stat">
 
 				<tr align="center">
 					<td width="10%" nowrap bgcolor="#FFFFFF" class="col2">
-
 						${stat.index + 1}
 					</td>
 
 					<td width="15%"  nowrap bgcolor="#FFFFFF" class="col2">
-
-						${price.name}
+						${price.tenantName}
 					</td>
 					<td width="25%" nowrap bgcolor="#FFFFFF" class="col2">
-						${price.foorName}
+						${price.floorName}
 					</td>
 					<td width="25%" nowrap bgcolor="#FFFFFF" class="col2">
-						${price.foorName}
+						￥${price.amountPrice}
 					</td>
 					<td width="25%" nowrap bgcolor="#FFFFFF" class="col2">
-						${price.foorName}
+						￥${price.detailPrice}
 					</td>
 					<td width="25%" nowrap bgcolor="#FFFFFF" class="col2">
-						${price.foorName}
+						￥${price.sellPrice}
+					</td>
+					
+					<td width="25%" nowrap bgcolor="#FFFFFF" class="col2">
+						<a href="<%=basePath %>price/delete?id=${price.id}">删除</a>
 					</td>
 				</tr>
 			</c:forEach>

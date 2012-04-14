@@ -183,6 +183,27 @@ $(function() {
 			$("#specName_msg").html("请选择规格");
 	});
 	
+	$("#bookPrice").blur(function() {
+		if(isPrice($("#bookPrice").val()))
+			$("#bookPrice_msg").html("");
+		else
+			$("#bookPrice_msg").html("请填写正确售价");
+	});
+	
+	$("#amountPrice").blur(function() {
+		if(isPrice($("#amountPrice").val()))
+			$("#amountPrice_msg").html("");
+		else
+			$("#amountPrice_msg").html("请填写正确售价");
+	});
+	
+	$("#detailPrice").blur(function() {
+		if(isPrice($("#detailPrice").val()))
+			$("#detailPrice_msg").html("");
+		else
+			$("#detailPrice_msg").html("请填写正确售价");
+	});
+	
 	$("#sellPrice").blur(function() {
 		if(isPrice($("#sellPrice").val()))
 			$("#sellPrice_msg").html("");
@@ -292,6 +313,18 @@ function formValidate(event) {
 	}
 	if($("#categoryTag").val() < 0) {
 		$("#categoryName_msg").html("请选择类别");
+		event.preventDefault();
+	}
+	if(!isPrice($("#bookPrice").val())) {
+		$("#bookPrice_msg").html("请填写正确售价");
+		event.preventDefault();
+	}
+	if(!isPrice($("#amountPrice").val())) {
+		$("#amountPrice_msg").html("请填写正确售价");
+		event.preventDefault();
+	}
+	if(!isPrice($("#detailPrice").val())) {
+		$("#detailPrice_msg").html("请填写正确售价");
 		event.preventDefault();
 	}
 	if(!isPrice($("#sellPrice").val())) {

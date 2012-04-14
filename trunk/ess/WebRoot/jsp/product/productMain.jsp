@@ -143,8 +143,19 @@
 				<td width="30%" height="26" align="center" nowrap class="col1">
 					名称
 				</td>
+				<c:if test="${userSession.tenantId==1}">
+					<td width="15%" height="26" align="center" nowrap class="col1">
+						进货价
+					</td>
+				</c:if>
 				<td width="15%" height="26" align="center" nowrap class="col1">
-					单价
+					 批发价
+				</td>
+				<td width="15%" height="26" align="center" nowrap class="col1">
+					零售价
+				</td>
+				<td width="15%" height="26" align="center" nowrap class="col1">
+					建议销售价
 				</td>
 				<c:if test="${userSession.tenantId==1}"><td width="35%" height="26" nowrap class="col1">
 					上传图片
@@ -162,10 +173,25 @@
 					<td align="center" nowrap class="col2">
 						${product.name}
 					</td>
+					<c:if test="${userSession.tenantId==1}">
+					<td align="center" nowrap class="col2">
+						<label></label>
+						￥${product.bookPrice}
+					</td>
+					</c:if>
+					<td align="center" nowrap class="col2">
+						<label></label>
+						￥${product.amountPrice}
+					</td>
+					<td align="center" nowrap class="col2">
+						<label></label>
+						￥${product.detailPrice}
+					</td>
 					<td align="center" nowrap class="col2">
 						<label></label>
 						￥${product.sellPrice}
 					</td>
+					
 				<c:if test="${userSession.tenantId==1}">	<td align="center" nowrap class="col2">
 						<form id="image_form" action="<%=basePath %>floor/upload?id=${product.id}" method="post" encType="multipart/form-data">
 							<input type="file" name="image"><input type="submit" value="上传图片">
