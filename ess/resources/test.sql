@@ -1,7 +1,7 @@
 use ess;
 
-insert into tbl_tenant(tenantName,createdDate,isValid,isDefault,description) 
-values('system',1324203964,1,1,'i am system tenant');
+
+
 insert into tbl_tenant(tenantName,createdDate,isValid,isDefault,description) 
 values('test',1324204014,1,2,'i am test tenant');
 
