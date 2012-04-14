@@ -268,6 +268,11 @@ create table tbl_storage_info
    countOrderCancel int
 );
 
+insert into tbl_tenant(tenantName,createdDate,isValid,isDefault,description) 
+values('system',1324203964,1,1,'i am system tenant');
+insert into tbl_employee(account,password,empName,sex,phone,address,cardNo,state,category,isValid,createdDate,description,tenantId) 
+values('admin','admin','admin',1,null,null,null,1,1,1,1324204283,'i am system admin',1);
+
 use ess;
 
 commit;
