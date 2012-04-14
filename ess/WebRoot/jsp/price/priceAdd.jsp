@@ -15,8 +15,7 @@
 		<link href="<%=basePath %>css/admin_css.css" rel="stylesheet" type="text/css">
 		<link href="<%=basePath %>css/add_css.css" rel="stylesheet" type="text/css">
 		<script type="text/javascript" src="<%=basePath %>js/jquery-1.4.min.js"></script>
-		<script type="text/javascript" src="<%=basePath %>js/product.js"></script>
-		<script type="text/javascript" src="<%=basePath %>js/admin.js"></script>
+		<script type="text/javascript" src="<%=basePath %>js/price.js"></script>
 		<script type="text/javascript">
 			basePath = '<%=basePath %>';
 			
@@ -45,7 +44,7 @@
 		<font class="navigation_style">当前位置:价格管理&raquo;添加价格</font>
 		<br>
 		<br>
-		<form id="spec_form" name="form1" method="post" action="<%=basePath %>spec/add">
+		<form id="spec_form" name="spec_form" method="post" action="<%=basePath %>price/add">
 			<table width="60%" border="0" align="center" cellpadding="0"
 				cellspacing="1" bordercolor="#FFFFFF" bgcolor="#FFFFFF">
 				<tr>
@@ -66,8 +65,14 @@
 					</td>
 					<td width="50%" align="left" nowrap bgcolor="#FFFFFF" class="col2">
 						&nbsp;
-						<input id="specName" name="name" type="text" size="35">
-						<span id="specName_msg" class="msg"></span>
+						<select id="tenantId" name="tenantId"  size="1">
+							<c:forEach items="${tenants}" var="tenantId">
+								<c:if test="${tenantId.id != 1}">
+										<option value="${tenantId.id}" >${tenantId.name} </option>
+								</c:if>
+								
+							 </c:forEach>
+						</select>
 					</td>
 				</tr>
 				<tr>
@@ -79,7 +84,11 @@
 					</td>
 					<td width="50%" align="left" bgcolor="#FFFFFF" class="col2">
 						&nbsp;
-						<input name="desc" type="text" size="35">
+						<select id="floorId" name="floorId"  size="1">
+							<c:forEach items="${floors.result}" var="floor">
+								<option value="${floor.id}" >${floor.name} </option>
+							 </c:forEach>
+						</select>
 					</td>
 				</tr>
 				<tr>
@@ -90,8 +99,8 @@
 					</td>
 					<td width="17%" align="left" nowrap class="col2">
 						&nbsp;
-						<input id="sellPrice" name="sellPrice" type="text" id="MidCls3" size="35" value="${floor.sellPrice}">
-						<span id="sellPrice_msg" class="msg"></span>
+						<input id="amountPrice" name="amountPrice" type="text" id="MidCls3" size="35" value="${floor.sellPrice}">
+						<span id="amountPrice_msg" class="msg"></span>
 					</td>
 				</tr>
 				<tr>
@@ -102,8 +111,8 @@
 					</td>
 					<td width="17%" align="left" nowrap class="col2">
 						&nbsp;
-						<input id="sellPrice" name="sellPrice" type="text" id="MidCls3" size="35" value="${floor.sellPrice}">
-						<span id="sellPrice_msg" class="msg"></span>
+						<input id="detailPrice" name="detailPrice" type="text" id="MidCls3" size="35" value="${floor.sellPrice}">
+						<span id="detailPrice_msg" class="msg"></span>
 					</td>
 				</tr>
 				<tr>
@@ -127,7 +136,7 @@
 			<br/>
 			<div align="center">
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="<%=basePath%>floor/list">返回</a>
+				<a href="<%=basePath%>/price/list">返回</a>
 			</div>
 			<br/>
 			<br/>

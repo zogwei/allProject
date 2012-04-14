@@ -68,7 +68,9 @@ public interface IFloorDao {
 	 * @return 地板对象
 	 * @throws EssException
 	 */	
-	Floor findById(int id) throws EssException;
+	Floor findById(int id,int tenantId) throws EssException;
+	
+	public Floor findById(int id) throws EssException ;
 	
 
 	/**
@@ -96,5 +98,5 @@ public interface IFloorDao {
 	 * @return 匹配的地板列表
 	 * @throws EssException
 	 */
-	List<Floor> findFloorsBy(Map<String, Object> param) throws EssException;
+	List<Floor> findFloorsBy(Map<String, Object> param,int tenantId) throws EssException;
 }

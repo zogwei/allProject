@@ -5,6 +5,11 @@ public class Price {
 	private int id;
 	private int tenantId;
 	private int floorId;
+	
+	private String tenantName;
+	
+	private String floorName;
+	
 	private float bookPrice;// 进货价
 	
 	private float amountPrice;// 批发价
@@ -13,11 +18,39 @@ public class Price {
 	
 	private float sellPrice;// 建议销售价
 	
+	private String description;
+	
+	private int createdate;
+	
+	
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getTenantName() {
+		return tenantName;
+	}
+
+	public void setTenantName(String tenantName) {
+		this.tenantName = tenantName;
+	}
+
+	public String getFloorName() {
+		return floorName;
+	}
+
+	public void setFloorName(String floorName) {
+		this.floorName = floorName;
+	}
+
 	private int createdDate;// 创建日期
 
 	private int isValid;// 是否有效，1-有效，2-无效
 
-	private String desc;// 备注
 
 	public int getId() {
 		return id;
@@ -91,14 +124,4 @@ public class Price {
 		this.isValid = isValid;
 	}
 
-	public String getDesc() {
-		return desc;
-	}
-
-	public void setDesc(String desc) {
-		this.desc = desc;
-	}
-	
-	
-	
 }

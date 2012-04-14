@@ -95,6 +95,10 @@ public class FloorService implements IFloorService {
 
 
 	@Override
+	public Floor getFloorById(int Id,int tenantId) throws EssException {
+		return floorDao.findById(Id,tenantId);
+	}
+
 	public Floor getFloorById(int Id) throws EssException {
 		return floorDao.findById(Id);
 	}
@@ -123,7 +127,7 @@ public class FloorService implements IFloorService {
 
 
 	@Override
-	public PageSupport<Floor> getFloorsBy(Floor floor, Page page)
+	public PageSupport<Floor> getFloorsBy(Floor floor, Page page,int tenantId)
 			throws EssException {
 		
 		Map<String, Object> param = new HashMap<String, Object>();
@@ -150,7 +154,7 @@ public class FloorService implements IFloorService {
 		if (count != 0) {
 			param.put(ParameterMapKeys.BEGIN_INDEX, ps.beginIndexOf());
 			param.put(ParameterMapKeys.PAGE_SIZE, ps.pageSize);
-			List<Floor> floors = floorDao.findFloorsBy(param);
+			List<Floor> floors = floorDao.findFloorsBy(param,tenantId);
 			ps.setResult(floors);
 		}
 		return ps;

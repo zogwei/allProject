@@ -25,7 +25,7 @@ import com.jw.ess.util.ex.MessageCode;
  * @author j&w
  * 
  */
-@Service("specService")
+@Service("priceService")
 public class PriceService implements IPriceService
 {
 	private static final Log logger = LogFactory.getLog(PriceService.class);

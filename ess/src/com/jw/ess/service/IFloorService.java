@@ -24,7 +24,7 @@ public interface IFloorService
 	 * 功能 通过Id查找地板
 	 * @param id tenantId
 	 * */
-	Floor getFloorById (int Id) throws EssException;
+	Floor getFloorById (int Id,int tenantId) throws EssException;
 	
 	/**@author mcli
 	 * 功能 通过租户id和地板名称查找地板
@@ -58,7 +58,7 @@ public interface IFloorService
 	 * @return 地板列表
 	 * @throws EssException
 	 */
-	PageSupport<Floor> getFloorsBy(Floor floor, Page page) throws EssException;
+	PageSupport<Floor> getFloorsBy(Floor floor, Page page,int tenantId) throws EssException;
 	
 	/**
 	 * 根据地板id获取地板所有图片名称

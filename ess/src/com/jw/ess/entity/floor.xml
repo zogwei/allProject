@@ -173,6 +173,10 @@
 		<id property="id" column="f_id" />
 		<result property="name" column="f_floorName" />
 		<result property="sellPrice" column="f_sellPrice"/>
+		<result property="bookPrice" column="f_bookPrice"/>
+		<result property="amountPrice" column="f_amountPrice"/>
+		<result property="detailPrice" column="f_detailPrice"/>
+
 	</resultMap>
 	
 	

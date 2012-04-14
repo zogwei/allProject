@@ -130,10 +130,45 @@
 					</td>
 				</tr>
 				 -->
+				 <c:if test="${userSession.tenantId==1}">
 				<tr>
 					<td width="4%" align="left" nowrap class="col2">
 						<div align="right">
-							单价：
+							进货价：
+						</div>
+					</td>
+					<td width="17%" align="left" nowrap class="col2">
+						&nbsp;
+						￥${floor.bookPrice}
+					</td>
+				</tr>
+				</c:if>
+				<tr>
+					<td width="4%" align="left" nowrap class="col2">
+						<div align="right">
+							 批发价：
+						</div>
+					</td>
+					<td width="17%" align="left" nowrap class="col2">
+						&nbsp;
+						￥${floor.amountPrice}
+					</td>
+				</tr>
+				<tr>
+					<td width="4%" align="left" nowrap class="col2">
+						<div align="right">
+							零售价：
+						</div>
+					</td>
+					<td width="17%" align="left" nowrap class="col2">
+						&nbsp;
+						￥${floor.detailPrice}
+					</td>
+				</tr>
+				<tr>
+					<td width="4%" align="left" nowrap class="col2">
+						<div align="right">
+							建议销售价：
 						</div>
 					</td>
 					<td width="17%" align="left" nowrap class="col2">

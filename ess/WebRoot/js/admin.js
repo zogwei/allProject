@@ -67,6 +67,7 @@ function showProductMenu() {
 	$("#system_menu tr:gt(0)").hide();
 	$("#order_menu tr:gt(0)").hide();
 	$("#tenant_menu tr:gt(0)").hide();
+	$("#price_menu tr:gt(0)").hide();
 }
 
 function showEmployeeMenu() {
@@ -77,10 +78,23 @@ function showEmployeeMenu() {
 	$("#system_menu tr:gt(0)").hide();
 	$("#order_menu tr:gt(0)").hide();
 	$("#tenant_menu tr:gt(0)").hide();
+	$("#price_menu tr:gt(0)").hide();
 }
 
 function showStorageMenu() {
 	$("#storage_menu tr:gt(0)").show();
+	$("#product_menu tr:gt(0)").hide();
+	$("#employee_menu tr:gt(0)").hide();
+	$("#supplier_menu tr:gt(0)").hide();
+	$("#system_menu tr:gt(0)").hide();
+	$("#order_menu tr:gt(0)").hide();
+	$("#tenant_menu tr:gt(0)").hide();
+	$("#price_menu tr:gt(0)").hide();
+}
+
+function showPriceMenu() {
+	$("#price_menu tr:gt(0)").show();
+	$("#storage_menu tr:gt(0)").hide();
 	$("#product_menu tr:gt(0)").hide();
 	$("#employee_menu tr:gt(0)").hide();
 	$("#supplier_menu tr:gt(0)").hide();
@@ -97,6 +111,7 @@ function showSupplierMenu() {
 	$("#system_menu tr:gt(0)").hide();
 	$("#order_menu tr:gt(0)").hide();
 	$("#tenant_menu tr:gt(0)").hide();
+	$("#price_menu tr:gt(0)").hide();
 }
 
 function showSystemMenu() {
@@ -107,6 +122,7 @@ function showSystemMenu() {
 	$("#storage_menu tr:gt(0)").hide();
 	$("#order_menu tr:gt(0)").hide();
 	$("#tenant_menu tr:gt(0)").hide();
+	$("#price_menu tr:gt(0)").hide();
 }
 function showOrderMenu() {
 	$("#order_menu tr:gt(0)").show();
@@ -116,6 +132,7 @@ function showOrderMenu() {
 	$("#employee_menu tr:gt(0)").hide();
 	$("#storage_menu tr:gt(0)").hide();
 	$("#tenant_menu tr:gt(0)").hide();
+	$("#price_menu tr:gt(0)").hide();
 }
 
 function showTenantMenu(){
@@ -126,4 +143,5 @@ function showTenantMenu(){
 	$("#product_menu tr:gt(0)").hide();
 	$("#employee_menu tr:gt(0)").hide();
 	$("#storage_menu tr:gt(0)").hide();
+	$("#price_menu tr:gt(0)").hide();
 }

@@ -75,7 +75,7 @@ public class FloorController {
 	@RequestMapping("/floor/one")
 	public String getFloorForDetail(int id,ModelMap map, HttpSession session) {
 		try {
-			 map.addAttribute("floor", floorService.getFloorById(id));
+			 map.addAttribute("floor", floorService.getFloorById(id,SessionManager.getTenantFrom(session).getId()));
 		} catch (EssException e) {
 			logger.error("failed to getFloorForDetail", e);
 		}
@@ -86,7 +86,7 @@ public class FloorController {
 	@RequestMapping("/floor/edit")
 	public String getFloorForEdit(int id,ModelMap map, HttpSession session) {
 		try {
-			 map.addAttribute("floor", floorService.getFloorById(id));
+			 map.addAttribute("floor", floorService.getFloorById(id,SessionManager.getTenantFrom(session).getId()));
 		} catch (EssException e) {
 			logger.error("failed to getFloorForEdit", e);
 		}
@@ -100,7 +100,7 @@ public class FloorController {
 		try {
 			 //返回查询条件用于页面显示
 			 map.addAttribute("floor", floor);
-			 map.addAttribute("pageSupport",floorService.getFloorsBy(floor, page));
+			 map.addAttribute("pageSupport",floorService.getFloorsBy(floor, page,SessionManager.getTenantFrom(session).getId()));
 		} catch (EssException e) {
 			logger.error("failed to getFloorBy", e);
 		}
@@ -131,7 +131,7 @@ public class FloorController {
 		floor.setTenant(SessionManager.getTenantFrom(session));
 		try {
 			 //返回查询条件用于输入提示显示
-			list = floorService.getFloorsBy(floor, page).getResult();
+			list = floorService.getFloorsBy(floor, page,SessionManager.getTenantFrom(session).getId()).getResult();
 		} catch (EssException e) {
 			logger.error("failed to getFloors", e);
 		}
