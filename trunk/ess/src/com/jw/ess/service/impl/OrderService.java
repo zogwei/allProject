@@ -174,7 +174,7 @@ public class OrderService implements IOrderService {
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = EssException.class)
 	public void cancelOrder(Order order,List<OrderItem> items) throws EssException {
 
-		order.setCurrentState(CommonConstant.ORDER_STATE_CANCEL);
+
 		order.setOperateDate(DateUtil.currentTimeSecs());
 
 		double totalRefund = 0;
@@ -182,8 +182,18 @@ public class OrderService implements IOrderService {
 			totalRefund = totalRefund + item.getAmount();
 		}
 		order.setRefund(totalRefund);	
-		orderDao.cancelOrder(order);
-		orderStateTraceDao.insertOrderStateTrace(order.getStateTraces().get(0));
+		
+		
+		if(items==null||items.size()==0)
+		{
+			order.setCurrentState(CommonConstant.ORDER_STATE_CANCEL);
+			orderStateTraceDao.insertOrderStateTrace(order.getStateTraces().get(0));
+		}
+		else{
+			order.setCurrentState(CommonConstant.ORDER_STATE_BOOK);
+		}
+		orderDao.cancelOrder(order);	
+		
 		storageService.modifyStorageByOrderCancel(order);
 		
 		// 销售处理

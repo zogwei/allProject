@@ -12,7 +12,10 @@ import org.apache.ibatis.exceptions.PersistenceException;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.jw.ess.dao.IPriceDao;
 import com.jw.ess.dao.IStorageDao;
+import com.jw.ess.entity.Floor;
+import com.jw.ess.entity.Price;
 import com.jw.ess.entity.Storage;
 import com.jw.ess.entity.StorageInfo;
 import com.jw.ess.util.MapperConstant;
@@ -26,6 +29,9 @@ public class StorageDao implements IStorageDao {
 	private static final Log logger=LogFactory.getLog(StorageDao.class);
 	
 	private SqlSessionTemplate sqlSessionTemplate;
+	
+	@Resource(name = "priceDao")
+	private IPriceDao priceDao;
 	
 	private static final String INSERT_STORAGE = MapperConstant.MAPPER_NAMESPACE_STORAGE
 	+ ".insertStorage";
@@ -124,12 +130,48 @@ public class StorageDao implements IStorageDao {
 			Map<String, Object> param = new HashMap<String, Object>();
 			param.put(ParameterMapKeys.TENANT_ID, tenantId);
 	    	param.put(ParameterMapKeys.FLOOR_ID, floorId);
-			return (StorageInfo) sqlSessionTemplate.selectOne(FIND_STORAGE_INFO, param);
+	    	StorageInfo storageInfo = (StorageInfo) sqlSessionTemplate.selectOne(FIND_STORAGE_INFO, param);
+	    	Floor floor = storageInfo.getStorage().getFloor();
+	    	storageInfo.getStorage().setFloor(addTenentPrice(tenantId,floor));
+	    	
+			return storageInfo;
 		} 
 		catch (PersistenceException e) {
 			logger.error("failed to findStorageInfo", e);
 			throw new EssException(e, MessageCode.DATABASE_ERROR);
 		}
+	}
+	
+	private Floor addTenentPrice(int tenantId,Floor floor){
+		Floor returnFloor = floor;
+		if(floor==null||floor.getId()==0)
+		{
+			return floor;
+		}
+		
+		int floorId = floor.getId();
+		
+		try{
+			Price price = new Price();
+			List<Price>  returnPrices = null;
+			Price itemPrice = null;
+			price.setTenantId(tenantId);
+			price.setFloorId(floorId);
+			returnPrices = priceDao.findPrice(price);
+			if(returnPrices.size()>0)
+			{
+				itemPrice = returnPrices.get(0);
+				floor.setAmountPrice(itemPrice.getAmountPrice());
+				floor.setSellPrice(itemPrice.getSellPrice());
+				floor.setDetailPrice(itemPrice.getDetailPrice());
+				returnFloor = floor;
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return returnFloor;
 	}
 
 }

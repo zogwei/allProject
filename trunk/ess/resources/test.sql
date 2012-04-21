@@ -6,9 +6,6 @@ insert into tbl_tenant(tenantName,createdDate,isValid,isDefault,description)
 values('test',1324204014,1,2,'i am test tenant');
 
 insert into tbl_employee(account,password,empName,sex,phone,address,cardNo,state,category,isValid,createdDate,description,tenantId) 
-values('admin','admin','admin',1,null,null,null,1,1,1,1324204283,'i am system admin',1);
-
-insert into tbl_employee(account,password,empName,sex,phone,address,cardNo,state,category,isValid,createdDate,description,tenantId) 
 values('wanghao','wanghao','wanghao',1,13266688976,null,null,1,1,1,1324204465,'i am a sale man',2);
 
 insert into tbl_supplier(supplierName,linkman,phone,address,isValid,createdDate,description,tenantId) 

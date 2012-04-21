@@ -31,6 +31,9 @@ public class CustomerEndpoint
 	@Resource(name = "customerModifyConverter")
 	private XmlConverter<Customer> customerModifyConverter;
 	
+	@Resource(name = "customerQueryConverter")
+	private XmlConverter<Customer> customerQueryConverter;
+	
 	@Resource(name = "customerOneConverter")
 	private XmlConverter<Customer> customerOneConverter;
 	
@@ -125,7 +128,7 @@ public class CustomerEndpoint
 		String response;
 		try
 		{
-			Customer customer=customerModifyConverter.fromXml(entity.getBody());
+			Customer customer=customerQueryConverter.fromXml(entity.getBody());
 			List<Customer> customers=customerService.getCustomers(customer);
 			response = customerListConverter.toXml(customers);
 		}
