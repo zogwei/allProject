@@ -47,7 +47,7 @@ tbl_vein 需要一条记录 id是1 veinName 是 vein
      
      2.需要新增一个"客户查询的接口",按客户名称,联系人,手机号码查询相关客户信息
        		就是客户修改的接口，只是指保留了 客户名称,联系人,手机号码 还要用户的id 这三个
-       		
+       		/customer/c/querylist
        		code finished,no test
      
      3.订单查询接口,要添加一个“客户名称”查询字段, 
@@ -61,7 +61,7 @@ tbl_vein 需要一条记录 id是1 veinName 是 vein
          
         code finished,no test               
    
- 后台服务端需要改:
+ 	后台服务端需要改:
       1.在产品入库跟入库信息修改时，增加一次密码重样输入的功能
         	完成
       
@@ -81,13 +81,13 @@ tbl_vein 需要一条记录 id是1 veinName 是 vein
                       只能按块退货,不足一块的退货不让其退货
 
                   退回的借口修改借口如下 
-                   <item>
+                 <item>
 					<floorId><!--地板Id--></floorId>
-					<area><!---面积---></area>
+					<area><!---退货面积---></area>
 					<amount><!—-退货金额--></amount>
 					<sellPrice><!—-销售价格--></sellPrice>
 				</item>
-                   
+                   	<!-- 该订单还剩的所有地板-->
                    <remainitem>
 					<floorId><!--地板Id--></floorId>
 					<area><!--面积---></area>
@@ -96,6 +96,11 @@ tbl_vein 需要一条记录 id是1 veinName 是 vein
 				</remainitem>
                    
                      
+         
+1.订单退货的问题,还是不能退货，一但退货订单就无法再操作了
+2.客户查询跟修改还是没有telNum这个字段
+3.后台长时间没有操作的话就会报错,如果长时间没有操作提示用户重新登录或直接跳到登录界面
+4.后台对某一个店面的产品建议销售价进行改动后，客户端查再看库存明细时，明细里面显示的建议销售价还是没有变化(storage/c/one这个接口)
          
 
  

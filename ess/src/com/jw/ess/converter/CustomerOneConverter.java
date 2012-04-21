@@ -62,6 +62,10 @@ public class CustomerOneConverter extends DefaultXmlConverter<Customer> {
 		content.append(StringUtils.defaultString(c.getPhone()));
 		content.append(CustomerConstant.PHONE_END);
 		
+		content.append(CustomerConstant.TELNUM_START);
+		content.append(StringUtils.defaultString(c.getTelNum()));
+		content.append(CustomerConstant.TELNUM_END);
+		
 		content.append(CustomerConstant.ADDRESS_START);
 		content.append(StringUtils.defaultString(c.getAddress()));
 		content.append(CustomerConstant.ADDRESS_END);
