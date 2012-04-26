@@ -16,9 +16,10 @@
 			type="text/css">
 		<link href="<%=basePath %>css/add_css.css" rel="stylesheet" type="text/css">
 		<script type="text/javascript" src="<%=basePath %>js/jquery-1.4.min.js"></script>	
-		<script type="text/javascript" src="<%=basePath %>js/inStorage.js"></script>
+		<script type="text/javascript" src="<%=basePath %>js/inStorageUpdate.js"></script>
 		<script type="text/javascript">
 			basePath = '<%=basePath %>';
+			var fOneBlockArea = parseFloat(${inStorage.length})*parseFloat(${inStorage.width});
 		</script>
 		<style type="text/css">
 			body {
@@ -69,19 +70,22 @@
 						</div>
 						<span id="floor_msg" style="color: red"></span>	
 						<input name="id" type="hidden" value="${inStorage.id }" >
+						 <input name="length" type="hidden" id="length" value="${inStorage.length }" >
+	                          <input name="width" type="hidden" id="width" value="${inStorage.width }" >
 					</td>
 				</tr>	
+				
 				<tr>
 					<td width="95px" height="25" align="right" nowrap class="col2">
-						入库面积：
+						入库片数：
 					</td>
 					<td align="left" nowrap class="col2">
 						&nbsp;
-						<input name="area" id="area" type="text" size="35" value="${inStorage.area }">
-						平方米(㎡)
-						<span id="area_msg" style="color: red"></span>
+						<input name="quantity" id="quantity" type="text" size="35" value="${inStorage.quantity}">
+						（块）
+						<span id="quantity_msg" style="color: red"></span>
 					</td>
-				</tr>
+					</tr>
 				<tr>
 				    <td width="95px" align="left" nowrap class="col2">
 						<div align="right">
@@ -95,6 +99,21 @@
 						<span id="price_msg" style="color: red"></span>
 					</td>	
 				</tr>
+				
+				
+				<tr>
+					<td width="95px" height="25" align="right" nowrap class="col2">
+						入库面积：
+					</td>
+					<td align="left" nowrap class="col2">
+						&nbsp;
+						<input name="areaDispaly" type="text" size="35" id="areaDispaly" disabled="true" value="${inStorage.areaStr }" >
+						<input name="area" type="hidden"  id="area">
+						平方米(㎡)
+						<span id="area_msg" style="color: red"></span>
+					</td>
+				</tr>
+				
 				<tr>
 					<td width="95px" align="left" nowrap class="col2">
 						<div align="right">
@@ -103,9 +122,9 @@
 					</td>
 					<td colspan="2" align="left" nowrap class="col2">
 						&nbsp;
-						<input name="total" type="text" size="35" id="total" disabled="true" value="${inStorage.count }">
+						<input name="total" type="text" size="35" id="total" disabled="true" value="${inStorage.countStr }">
 						元(￥)
-                        <input name="count" type="hidden" id="count" value="${inStorage.count }">
+                        <input name="count" type="hidden" id="count" value="${inStorage.countStr }">
 					</td>
 				</tr>
 				<tr>
@@ -114,7 +133,7 @@
 					</td>
 					<td align="left" nowrap class="col2">
 						&nbsp;                                                
-						<input name="operator" type="text" size="35" value="${inStorage.operator }" maxlength="16">
+						<input name="operator" type="text" size="35" value="${inStorage.operator }" maxlength="16" readonly="readonly">
 					</td>
 				</tr>
 				<tr>

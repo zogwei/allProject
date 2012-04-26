@@ -55,15 +55,17 @@
 				</td>
 			</tr>
 			<tr>
-				<td width="95px" height="25" align="right" nowrap class="col1">
-					入库面积：
-				</td>
-				<td align="left" nowrap class="col1">
-					&nbsp;
-					${inStorage.area }(㎡)
-				</td>
-			</tr>
-			<tr>
+					<td width="95px" height="25" align="right" nowrap class="col2">
+						入库片数：
+					</td>
+					<td align="left" nowrap class="col2">
+						&nbsp;${inStorage.quantity}
+						（块）
+						<span id="quantity_msg" style="color: red"></span>
+					</td>
+					</tr>
+					
+					<tr>
 				<td width="95px" height="25" align="right" nowrap class="col1">
 					进价：
 				</td>
@@ -72,13 +74,23 @@
 					${inStorage.price }(￥/㎡)
 				</td>
 			</tr>
+			<tr>
+				<td width="95px" height="25" align="right" nowrap class="col1">
+					入库面积：
+				</td>
+				<td align="left" nowrap class="col1">
+					&nbsp;
+					${inStorage.areaStr }(㎡)
+				</td>
+			</tr>
+			
 			<tr>	
 				<td width="95px" align="right" nowrap class="col1">
 					总价：
 				</td>
 				<td align="left" nowrap class="col1">
 					&nbsp;
-					${inStorage.count }￥
+					${inStorage.countStr }￥
 				</td>
 			</tr>
 			<tr>

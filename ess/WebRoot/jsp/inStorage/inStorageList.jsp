@@ -230,13 +230,13 @@
 						${inStorage.floor.name }
 					</td>
 					<td height="24" align="center" nowrap class="col2">
-						${inStorage.area}(㎡)
+						${inStorage.areaStr}(㎡)
 					</td>
 					<td height="24" align="center" nowrap class="col2">
 						${inStorage.price}(￥/㎡)
 					</td>
 					<td height="24" align="center" nowrap class="col2">
-						${inStorage.count}(￥)
+						${inStorage.countStr}(￥)
 					</td>
 					<td align="center" nowrap class="col2">
 						${inStorage.operator }

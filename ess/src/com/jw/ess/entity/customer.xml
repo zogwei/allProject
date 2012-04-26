@@ -57,7 +57,7 @@
 		<select id="findCustomers" parameterType="Customer" resultMap="customerMap">
 		select
 		<include refid="customerColumns" />
-		from tbl_customer where 
+		from tbl_customer f where 
 		11=11
 		<if test="name != null">
 		    and

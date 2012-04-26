@@ -100,6 +100,7 @@
 							</tr>
 							<tr>
 								<td align="center" colspan="6">
+									<input type="hidden" id="urlValue" value="${param.urlValue}"/>
 									<input type="submit" name="imageField" id="imageField" class="button_style" style="width: 60px;height: 20px;background-color:white;"
 										value="确定" />
 									<input type="reset" name="imageField1" id="imageField1" class="button_style" style="width: 60px;height: 20px;background-color:white;"

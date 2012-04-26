@@ -16,8 +16,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.jw.ess.dao.IFloorDao;
+import com.jw.ess.dao.IPriceDao;
 import com.jw.ess.entity.Floor;
 import com.jw.ess.entity.PicPath;
+import com.jw.ess.entity.Price;
 import com.jw.ess.entity.Tenant;
 import com.jw.ess.service.IFloorInfoService;
 import com.jw.ess.service.IFloorService;
@@ -44,6 +46,9 @@ public class FloorService implements IFloorService {
 	@Resource(name="floorInfoService")
 	private IFloorInfoService floorInfoService;
 	
+	@Resource(name = "priceDao")
+	private IPriceDao priceDao;
+	
 	private void checkFloorName(Floor floor) throws EssException {
 		if (floor != null && StringUtils.isNotBlank(floor.getName())) {
 			logger.error("floor name " + floor.getName() + " is already exists");
@@ -60,6 +65,9 @@ public class FloorService implements IFloorService {
 		int floorId = floorDao.insertFloor(floor);
 		// 插入地板信息时包含要上传的文件
 		uploadFloorImages(floor.getTenant().getName(), floorId, image);
+		Price price = new Price();
+		price.setFloorId(floor.getId());
+		priceDao.deletePrice(price);
 	}
 	
 	@Override
@@ -118,6 +126,8 @@ public class FloorService implements IFloorService {
 		floorDao.updateFloor(floor);
 		// 插入地板信息时包含要上传的文件
 		uploadFloorImages(floor.getTenant().getName(), floor.getId(), image);
+		
+		
 	}
 
 	@Override

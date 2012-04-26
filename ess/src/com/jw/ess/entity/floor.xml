@@ -127,11 +127,12 @@
 		f.bookPrice as f_bookPrice,
 		f.amountPrice as f_amountPrice,
 		f.detailPrice as f_detailPrice,
-		f.sellPrice as f_sellPrice
-		from tbl_floor f
+		f.sellPrice as f_sellPrice,
+		s.specName specName
+		from tbl_floor f ,tbl_spec s
 		where
 		
-		11=11
+		11=11 and s.id = f.specId
 		<if test="floorName != null">
 		    and
 		    f.floorName like "%"#{floorName}"%"
@@ -176,7 +177,7 @@
 		<result property="bookPrice" column="f_bookPrice"/>
 		<result property="amountPrice" column="f_amountPrice"/>
 		<result property="detailPrice" column="f_detailPrice"/>
-
+		<result property="spec.name" column="specName"/>
 	</resultMap>
 	
 	

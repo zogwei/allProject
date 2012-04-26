@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.jw.ess.entity.Floor;
+import com.jw.ess.entity.OrderItem;
 import com.jw.ess.entity.PicPath;
 import com.jw.ess.service.IFloorService;
 import com.jw.ess.util.SessionManager;
@@ -132,6 +133,19 @@ public class FloorController {
 		try {
 			 //返回查询条件用于输入提示显示
 			list = floorService.getFloorsBy(floor, page,SessionManager.getTenantFrom(session).getId()).getResult();
+			
+			double onearea = 0.0;
+			String specName = "";
+			String[] specs = null;
+			for(Floor item : list)
+			{
+				specName = item.getSpec().getName();
+				specs = specName.split("\\*");
+				onearea = Integer.valueOf(specs[0]).doubleValue()*Integer.valueOf(specs[1]).doubleValue();
+				item.setWidth(Integer.valueOf(specs[1]).floatValue());
+				item.setLength(Integer.valueOf(specs[0]).floatValue());
+				item.setOnearea(onearea/10000.00);
+			}
 		} catch (EssException e) {
 			logger.error("failed to getFloors", e);
 		}

@@ -3,54 +3,22 @@ var basePath;
 var floor_flag = true;
 var block_flag = true;
 var price_flag = true;
-var specArray = new Array();
-var withArray = new Array();
-var lenArray = new Array();
+
 
 function setAreaAndTotal()
 {
-	var obj=document.getElementById('floor_name');
-	var index=obj.selectedIndex;
-	var fOneBlockArea = parseFloat(specArray[index]);
-	var fWith = parseFloat(withArray[index]);
-	var fLenth = parseFloat(lenArray[index]);
+	
 	var fOnePrice = parseFloat(document.getElementById('price').value);
 	var fBlocks = parseFloat( document.getElementById('quantity').value);
 	var totalArea = fOneBlockArea*fBlocks;
 	var totalPrice = totalArea* fOnePrice;
-	
 	$("#area").val(Math.round(totalArea*100)/100);
-	$("#length").val(Math.round(fLenth)/100);
-	$("#width").val(Math.round(fWith)/100);
 	$("#areaDispaly").val(Math.round(totalArea*100)/100);
 	$("#count").val(Math.round(totalPrice*100)/100);
     $("#total").val(Math.round(totalPrice*100)/100);
 }
 
 $( function() {
-
-	var url = basePath + "floor/json/list";
-		$.post(
-			url,
-			function(data) {
-				$.each(data, function(index, floorCategory){
-					var $opt = $("<option value='" + floorCategory.id + "'>" + floorCategory.name + "</option>");
-					specArray[index] = floorCategory.onearea;
-					withArray[index] = floorCategory.width;
-					lenArray[index] = floorCategory.length;
-					if(categoryId == floorCategory.id)
-						$opt = $("<option value='" + floorCategory.id + "' selected='selected'>" + floorCategory.name + "</option>");
-					$opt.appendTo($("#floor_name"));
-				}); 
-			},
-			"json"
-	);
-		
-	$("#floor_name").change(function(){
-		$("input[id=floor.id]").val($(this).children('option:selected').val());
-		setAreaAndTotal();
-	 });
-	
 	
     //进价校验
     $("#price").blur(function(){

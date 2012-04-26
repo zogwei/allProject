@@ -111,10 +111,18 @@ public class StorageDao implements IStorageDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<StorageInfo> findStorages(Map<String, Object> map) throws EssException {
+	public List<StorageInfo> findStorages(Map<String, Object> map,int tenantId) throws EssException {
+		List<StorageInfo> returnList = null;
 		try 
 		{
-			return (List<StorageInfo>) sqlSessionTemplate.selectList(FIND_STORAGES, map);
+			returnList =  (List<StorageInfo>)sqlSessionTemplate.selectList(FIND_STORAGES, map);
+			 for(StorageInfo storageInfo : returnList)
+			 {
+			      Floor floor = storageInfo.getStorage().getFloor();
+			      storageInfo.getStorage().setFloor(addTenentPrice(tenantId,floor));
+			 }
+			 
+			 return returnList;
 		} 
 		catch (PersistenceException e) {
 			logger.error("failed to findStorages", e);
