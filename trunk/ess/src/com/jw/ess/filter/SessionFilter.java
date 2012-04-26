@@ -35,7 +35,7 @@ public class SessionFilter implements Filter {
 		Object user = SessionManager.getEmployeeFrom(session);
 
 		if (user == null) {
-			response.sendRedirect(request.getContextPath() + "/login");
+			response.sendRedirect(request.getContextPath() + "/login?urlValue=toLogin");
 			return;
 		}
 		arg2.doFilter(arg0, arg1);

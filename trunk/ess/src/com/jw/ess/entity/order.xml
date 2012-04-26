@@ -142,6 +142,9 @@
 		<if test="operatorId > 0">
 			and o.operatorId = #{operatorId}
 		</if>
+		<if test="orderId > 0">
+			and o.id = #{orderId}
+		</if>
 		<if test="tenantId > 0">
 			and o.tenantId = #{tenantId}
 		</if>
@@ -176,7 +179,7 @@
 	</update>
 	
 	<update id="cancelOrder" parameterType="Order">
-		update tbl_order set refund = #{refund} , currentState = #{currentState} , operateDate = #{operateDate}
+		update tbl_order set refund = #{refund} , currentState = #{currentState} , operateDate = #{operateDate}, amount = amount - #{refund}
 		where id = #{id}
 	</update>
 	

@@ -51,15 +51,18 @@
 	<!-- 
 		<property name="user" value="root" />
 		<property name="password" value="zhong123" />
-		 -->
-		<!-- 
+	
 	    <property name="user" value="root" />
 		<property name="password" value="a123" />
+		
+		<property name="user" value="root" />
+		<property name="password" value="root"/>
 		 -->
 		 
 		 <!-- -->
 	    <property name="user" value="root" />
-		<property name="password" value="root"/>
+		<property name="password" value="a123" />
+		
 		 
 	</bean>
 

@@ -162,7 +162,7 @@ table tr td {
 								地板：
 							</div>
 						</td>
-						<td  align="left" class="col2" COLSPAN=5>
+						<td  align="left" class="col2" COLSPAN=7>
 							
 							${item.floor.name}    ${item.floor.spec.name}
 							<input type="hidden" name="floorIds" value="${item.floor.id }" />
@@ -217,10 +217,18 @@ table tr td {
 								退货块数：
 							</div>
 						</td>
-						<td  align="left" class="col2" COLSPAN=3>
+						<td  align="left" class="col2" COLSPAN=1>
 							&nbsp;	<input type="text" name="${item.floor.id }_cancelblock" id="${item.floor.id }_cancelblock" value="0" onblur="javascript:blockChange(this,${item.onearea },${item.area},${item.sellPrice},${item.floor.id })" />
 							<input type="hidden" name="${item.floor.id }_cancelPrice" id="${item.floor.id }_cancelPrice" value="0" />
 							<input type="hidden" name="${item.floor.id }_cancelArea" id="${item.floor.id }_cancelArea" value="0" />						
+						</td>
+						<td width="95px" height="25"  align="left" class="col2">
+							<div align="right">
+								每块面积：
+							</div>
+						</td>
+						<td  align="left" class="col2">
+							${item.onearea }
 						</td>
 					</tr>
 				</table>

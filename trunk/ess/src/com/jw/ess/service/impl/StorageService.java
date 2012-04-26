@@ -71,7 +71,7 @@ public class StorageService implements IStorageService{
 		if(count !=0){
 			param.put(ParameterMapKeys.BEGIN_INDEX, ps.beginIndexOf());
 			param.put(ParameterMapKeys.PAGE_SIZE, ps.pageSize);
-			List<StorageInfo> storagesInfo = storageDao.findStorages(param);
+			List<StorageInfo> storagesInfo = storageDao.findStorages(param,floor.getTenant().getId());
 			ps.setResult(storagesInfo);
 		}
         return ps;

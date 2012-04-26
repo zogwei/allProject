@@ -31,3 +31,9 @@
 		</body>
 	</noframes>
 </html>
+<script type="text/javascript" >
+function toLogin()
+{
+	window.location.href="<%=basePath %>login.jsp";
+}
+</script>

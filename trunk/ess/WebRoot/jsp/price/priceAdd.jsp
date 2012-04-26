@@ -84,7 +84,7 @@
 					</td>
 					<td width="50%" align="left" bgcolor="#FFFFFF" class="col2">
 						&nbsp;
-						<select id="floorId" name="floorId"  size="1">
+						<select id="floorId" name="floorId"  size="1" onchange="changeFloor();">
 							<c:forEach items="${floors.result}" var="floor">
 								<option value="${floor.id}" >${floor.name} </option>
 							 </c:forEach>
@@ -144,3 +144,29 @@
 		</form>
 	</body>
 </html>
+<script type="text/javascript">
+var priceArray=new Array();
+var index=0;
+<c:forEach items="${floors.result}" var="floor" varStatus="stat">
+	index = ${stat.index};
+	priceArray[index] = new Array();
+	priceArray[index][0] = ${floor.amountPrice};
+	priceArray[index][1] = ${floor.detailPrice};
+	priceArray[index][2] = ${floor.sellPrice};
+</c:forEach>
+
+var prices = priceArray[0];
+document.getElementById('amountPrice').value=prices[0];
+document.getElementById('detailPrice').value=prices[1];
+document.getElementById('sellPrice').value=prices[2];
+
+function changeFloor()
+{
+	var obj=document.getElementById('floorId');
+	var index=obj.selectedIndex;
+	prices = priceArray[index];
+	document.getElementById('amountPrice').value=prices[0];
+	document.getElementById('detailPrice').value=prices[1];
+	document.getElementById('sellPrice').value=prices[2];
+}
+</script>

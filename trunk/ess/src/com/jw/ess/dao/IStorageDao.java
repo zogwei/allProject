@@ -46,7 +46,7 @@ public interface IStorageDao {
 	 * @return
 	 * @throws EssException
 	 */
-	List<StorageInfo> findStorages(Map<String, Object> map) throws EssException;
+	List<StorageInfo> findStorages(Map<String, Object> map,int tentId) throws EssException;
 	
 	/**
 	 * 库存详细信息

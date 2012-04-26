@@ -152,9 +152,9 @@ public class OrderEndpoint
 	}
 	
 	// 新增修改订单
-	@RequestMapping("/order/c/confirm")
+	@RequestMapping("/order/c/orderUpdate")
 	public @ResponseBody
-	String Order(HttpEntity<String> entity)
+	String orderUpdate(HttpEntity<String> entity)
 	{
 		String response;
 		try

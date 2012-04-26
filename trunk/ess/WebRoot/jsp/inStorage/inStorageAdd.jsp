@@ -62,24 +62,20 @@
 					<td align="left" nowrap class="col2">
 						&nbsp;
 						<select id="floor_name" name="floor_name"  size="1">
-							<option value="-1">
-								-- 请选择 --
-							</option>
 						</select>
 						<span id="supplierName_msg" class="msg"></span>
 					</td>
 				</tr>
 					
-					
 					<tr>
 					<td width="95px" height="25" align="right" nowrap class="col2">
-						入库面积：
+						入库片数：
 					</td>
 					<td align="left" nowrap class="col2">
 						&nbsp;
-						<input name="area" type="text" size="35" id="area">
-						平方名(㎡)
-						<span id="area_msg" style="color: red"></span>
+						<input name="quantity" id="quantity" type="text" size="35" value="0">
+						（块）
+						<span id="quantity_msg" style="color: red"></span>
 					</td>
 					</tr>
 					<tr>
@@ -90,11 +86,23 @@
 						</td>
 						<td align="left" nowrap class="col2">
 							&nbsp;
-							<input name="price" type="text" size="35" id="price">
+							<input name="price" type="text" size="35" id="price" value = "0">
 							元/平方米(￥/㎡)
 							<span id="price_msg" style="color: red"></span>
 						</td>
 					</tr>
+					<tr>
+					<td width="95px" height="25" align="right" nowrap class="col2">
+						入库面积：
+					</td>
+					<td align="left" nowrap class="col2">
+						&nbsp;
+						<input name="areaDispaly" type="text" size="35" id="areaDispaly" disabled="true">
+						<input name="area" type="hidden"  id="area">
+						平方名(㎡)
+					</td>
+					</tr>
+					
 					<tr>
 						<td width="95px" align="left" nowrap class="col2">
 							<div align="right">
@@ -106,6 +114,8 @@
 							<input name="total" type="text" size="35" id="total" disabled="true">
 							元(￥)
 	                        <input name="count" type="hidden" id="count">
+	                         <input name="length" type="hidden" id="length">
+	                          <input name="width" type="hidden" id="width">
 						</td>
 					</tr>
 					<tr>
@@ -114,7 +124,7 @@
 					</td>
 					<td align="left" nowrap class="col2">
 						&nbsp;
-						<input name="operator" type="text" size="35"  maxlength="16">
+						<input name="operator" type="text" size="35" value="${sessionScope.userSession.name}"  maxlength="16" readonly="readonly">
 					</td>
 				</tr>
 					<tr>

@@ -1,5 +1,9 @@
 package com.jw.ess.entity;
 
+import java.text.DecimalFormat;
+
+import org.springframework.format.annotation.NumberFormat;
+
 /**
  * 入库实体类
  * 
@@ -16,12 +20,15 @@ public class InStorage
 
 	private float width;// 宽度
 
+	@NumberFormat(pattern = "0.00") 
 	private float area;// 面积
 
 	private int quantity;// 片数
 
+	@NumberFormat(pattern = "0.00") 
 	private float price;// 进价
 
+	@NumberFormat(pattern = "0.00") 
 	private float count;// 总价
 
 	private String operator;// 经办人
@@ -33,6 +40,32 @@ public class InStorage
 	private String desc;// 备注
 	
 	private int tenantId;//租户id
+	
+	private String countStr;
+	
+	private String areaStr;
+	
+	
+
+	public String getCountStr() {
+		DecimalFormat df = new DecimalFormat( "###############0.00 ");// 16位整数位，两小数位 
+		String temp = df.format(count); 
+		return temp;
+	}
+
+	public void setCountStr(String countStr) {
+		this.countStr = countStr;
+	}
+
+	public String getAreaStr() {
+		DecimalFormat df = new DecimalFormat( "###############0.00 ");// 16位整数位，两小数位 
+		String temp = df.format(area); 
+		return temp;
+	}
+
+	public void setAreaStr(String areaStr) {
+		this.areaStr = areaStr;
+	}
 
 	public int getTenantId() {
 		return tenantId;

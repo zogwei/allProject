@@ -46,8 +46,40 @@ public class Floor
 	
 	private Tenant tenant;
 	
+	private double onearea;// 一块面积
+	
+	private float length;// 长度
+
+	private float width;// 宽度
 	
 	
+	
+	
+	
+	public float getLength() {
+		return length;
+	}
+
+	public void setLength(float length) {
+		this.length = length;
+	}
+
+	public float getWidth() {
+		return width;
+	}
+
+	public void setWidth(float width) {
+		this.width = width;
+	}
+
+	public double getOnearea() {
+		return onearea;
+	}
+
+	public void setOnearea(double onearea) {
+		this.onearea = onearea;
+	}
+
 	public float getBookPrice() {
 		return bookPrice;
 	}

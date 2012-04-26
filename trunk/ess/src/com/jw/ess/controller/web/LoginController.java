@@ -1,5 +1,6 @@
 package com.jw.ess.controller.web;
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
@@ -25,7 +26,7 @@ public class LoginController {
 	private IEmployeeService employeeService;
 	
 	@RequestMapping("/userlogin")
-	public String login(String loginName,String loginPwd,ModelMap map,HttpSession session) {
+	public String login(String loginName,String loginPwd,String urlValue,ModelMap map,HttpSession session) {
 		try {
 			
 			Employee employee = employeeService.login(loginName,loginPwd);
@@ -38,7 +39,13 @@ public class LoginController {
 			}else{
 				Tenant tenant=employeeService.getTenantBy(employee.getTenantId());
 				session.setAttribute("tenantSession",tenant);
+				
 				session.setAttribute("userSession", employee);
+				
+				if(urlValue!=null&&!"".equals(urlValue)){
+					return "redirect:"+urlValue;
+				}
+				
 				return "../manage";
 			}
 		} catch (EssException ex) {
