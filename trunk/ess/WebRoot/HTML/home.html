@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>嘉森木业有限公司</title>
+<link href="images/style.css" rel="stylesheet" type="text/css" />
+<script language="JavaScript">
+function correctPNG() // correctly handle PNG transparency in Win IE 5.5 & 6.
+{
+     var arVersion = navigator.appVersion.split("MSIE")
+     var version = parseFloat(arVersion[1])
+     if ((version >= 5.5) && (document.body.filters)) 
+     {
+       for(var j=0; j<document.images.length; j++)
+       {
+           var img = document.images[j]
+           var imgName = img.src.toUpperCase()
+           if (imgName.substring(imgName.length-3, imgName.length) == "PNG")
+           {
+             var imgID = (img.id) ? "id='" + img.id + "' " : ""
+             var imgClass = (img.className) ? "class='" + img.className + "' " : ""
+             var imgTitle = (img.title) ? "title='" + img.title + "' " : "title='" + img.alt + "' "
+             var imgStyle = "display:inline-block;" + img.style.cssText 
+             if (img.align == "left") imgStyle = "float:left;" + imgStyle
+             if (img.align == "right") imgStyle = "float:right;" + imgStyle
+             if (img.parentElement.href) imgStyle = "cursor:hand;" + imgStyle
+             var strNewHTML = "<span " + imgID + imgClass + imgTitle
+             + " style=\"" + "width:" + img.width + "px; height:" + img.height + "px;" + imgStyle + ";"
+             + "filter:progid:DXImageTransform.Microsoft.AlphaImageLoader"
+             + "(src=\'" + img.src + "\', sizingMethod='scale');\"></span>" 
+             img.outerHTML = strNewHTML
+             j = j-1
+           }
+       }
+     }    
+}
+window.attachEvent("onload", correctPNG);
+</script>
+</head>
+
+<body>
+  <div class="home_top1"></div>
+  <div class="home_top2">
+    <div class="home_top3">
+     <ul>
+	   <li class="f_right"><div class="home_top4"><img src="images/top_icon3.png" /></div><a href="#">安全退出</a></li>
+	   <li class="f_right"><div class="home_top4"><img src="images/top_icon2.png" /></div><a href="#">修改密码</a></li>
+	   <li class="f_right"><div class="home_top4"><img src="images/top_icon1.png" /></div><a href="#">管理员</a></li>
+	 </ul>
+	</div>
+</div>
+<div class="zhong_1">
+  <div class="zhong_2 f_left">
+    <div class="zhong_list">
+	   <ul>
+	     <li class="menu_bg_hover"><div class="f_left zhong_menu"><img src="images/left_icon1.png" /></div><a href="" class="menu_bg">管理员管理</a></li>
+		 <li class="menu_dixian"><div class="f_left zhong_menu"><img src="images/left_icon2.png" /></div><a href="" class="menu_bg">订单管理</a></li>
+		 <li class="menu_dixian"><div class="f_left zhong_menu"><img src="images/left_icon3.png" /></div><a href="" class="menu_bg">租户管理</a></li>
+		 <li class="menu_dixian"><div class="f_left zhong_menu"><img src="images/left_icon4.png" /></div><a href="" class="menu_bg">产品管理</a></li>
+		 <li class="menu_dixian"><div class="f_left zhong_menu"><img src="images/left_icon5.png" /></div><a href="" class="menu_bg">入库管理</a></li>
+		 <li class="menu_dixian"><div class="f_left zhong_menu"><img src="images/left_icon6.png" /></div><a href="" class="menu_bg">价格管理</a></li>
+		 <li class="menu_dixian"><div class="f_left zhong_menu"><img src="images/left_icon7.png" /></div><a href="" class="menu_bg">供应商管理</a></li>
+	   </ul>
+	</div>
+  </div>
+  <div class="zhong_3 f_right">
+    <div class="right_1"><span class="right_wen2">当前位置：</span><span class="right_wen1">管理员管理</span></div>
+	<div class="right_2">
+	  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+		 <tr>
+		   <td width="33%" height="30">&nbsp;</td>
+		   <td width="24%">&nbsp;</td>
+		   <td width="11%">&nbsp;</td>
+		   <td width="32%">&nbsp;</td>
+	    </tr>
+		 <tr>
+		   <td height="30" align="right" class="right_wen2">管理员查询：</td>
+		   <td>&nbsp;</td>
+		   <td>&nbsp;</td>
+		   <td>&nbsp;</td>
+		 </tr>
+		 <tr>
+		   <td height="30" align="right">姓名：</td>
+	       <td><input type="text" name="textfield" /></td>
+	       <td><a href="#"><img src="images/boutton_cha.gif" width="67" height="29" border="0" /></a></td>
+	       <td><a href="#"><img src="images/boutton_tian.gif" width="67" height="29" border="0" /></a></td>
+	    </tr>
+	  </table>	
+	</div>
+	<div class="right_3">
+	  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+		 <td width="7%" height="33" align="center" valign="bottom" class="right_wen2">序号</td>
+		 <td width="10%" align="center" valign="bottom" class="right_wen2">姓名</td>
+		 <td width="13%" align="center" valign="bottom" class="right_wen2">账号</td>
+		 <td width="44%" align="center" valign="bottom" class="right_wen2">住址</td>
+		 <td width="8%" align="center" valign="bottom" class="right_wen2">性别</td>
+		 <td width="18%" align="center" valign="bottom" class="right_wen2">管理操作</td>
+		</tr>
+	  </table>
+	</div>
+	<div class="right_4">
+	  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="7%" height="40" align="center">1</td>
+          <td width="10%" align="center">杨海波</td>
+          <td width="13%" align="center">admin</td>
+          <td width="44%" align="center">深圳市南山区科技园科发路十二号路1区</td>
+          <td width="8%" align="center">男</td>
+          <td width="18%" align="center"><table width="86%" border="0" align="center" cellpadding="0" cellspacing="0">
+            <tr>
+              <td align="center"><a href="#"><img src="images/boutton_xiu.jpg" width="47" height="23" border="0" /></a></td>
+              <td align="center"><a href="#"><img src="images/boutton_del.jpg" width="47" height="23" border="0" /></a></td>
+            </tr>
+          </table></td>
+        </tr>
+      </table>
+	</div>
+	<div class="right_5">
+	  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="7%" height="40" align="center">2</td>
+          <td width="10%" align="center">杨海波</td>
+          <td width="13%" align="center">admin</td>
+          <td width="44%" align="center">深圳市南山区科技园科发路十二号路1区</td>
+          <td width="8%" align="center">男</td>
+          <td width="18%" align="center"><table width="86%" border="0" align="center" cellpadding="0" cellspacing="0">
+            <tr>
+              <td align="center"><a href="#"><img src="images/boutton_xiu.jpg" width="47" height="23" border="0" /></a></td>
+              <td align="center"><a href="#"><img src="images/boutton_del.jpg" width="47" height="23" border="0" /></a></td>
+            </tr>
+          </table></td>
+        </tr>
+      </table>
+	</div>
+	<div class="right_4">
+	  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="7%" height="40" align="center">3</td>
+          <td width="10%" align="center">杨海波</td>
+          <td width="13%" align="center">admin</td>
+          <td width="44%" align="center">深圳市南山区科技园科发路十二号路1区</td>
+          <td width="8%" align="center">男</td>
+          <td width="18%" align="center"><table width="86%" border="0" align="center" cellpadding="0" cellspacing="0">
+            <tr>
+              <td align="center"><a href="#"><img src="images/boutton_xiu.jpg" width="47" height="23" border="0" /></a></td>
+              <td align="center"><a href="#"><img src="images/boutton_del.jpg" width="47" height="23" border="0" /></a></td>
+            </tr>
+          </table></td>
+        </tr>
+      </table>
+	</div>
+	<div class="right_5">
+	  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="7%" height="40" align="center">4</td>
+          <td width="10%" align="center">杨海波</td>
+          <td width="13%" align="center">admin</td>
+          <td width="44%" align="center">深圳市南山区科技园科发路十二号路1区</td>
+          <td width="8%" align="center">男</td>
+          <td width="18%" align="center"><table width="86%" border="0" align="center" cellpadding="0" cellspacing="0">
+            <tr>
+              <td align="center"><a href="#"><img src="images/boutton_xiu.jpg" width="47" height="23" border="0" /></a></td>
+              <td align="center"><a href="#"><img src="images/boutton_del.jpg" width="47" height="23" border="0" /></a></td>
+            </tr>
+          </table></td>
+        </tr>
+      </table>
+	</div>
+	<div class="right_6"><a href="#" class="fenye">上一页</a>&nbsp;&nbsp;第3页&nbsp;&nbsp;<a href="#" class="fenye">下一页</a>&nbsp;&nbsp;共10页</div>
+  </div>
+</div>
+<div class="bom_1">嘉森木业有限公司 版权所有</div>
+</body>
+</html>
