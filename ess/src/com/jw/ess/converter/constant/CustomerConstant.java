@@ -56,6 +56,10 @@ public class CustomerConstant {
 
 	public static final String ADDRESS_END = "</address>";
 	
+	public static final String CUSTOMERID_START = "<customerId>";
+	
+	public static final String CUSTOMERID_end = "</customerId>";
+	
 	public static final String IS_VALID = "isValid";
 	
 	public static final String IS_VALID_START = "<isValid>";

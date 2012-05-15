@@ -54,7 +54,7 @@
 	</update>
 	
 	<update id="deletePrice" parameterType="Price">
-		delete from tbl_price where 
+		delete from tbl_price where 1=1
 		 <if test="id >0">
 			and id = #{id}
 		</if>
