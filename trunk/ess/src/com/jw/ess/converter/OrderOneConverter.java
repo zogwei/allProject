@@ -99,6 +99,11 @@ public class OrderOneConverter extends DefaultXmlConverter<Order> {
 		content.append(customer.getAddress());
 		content.append(CustomerConstant.ADDRESS_END);
 		
+		
+		content.append(CustomerConstant.CUSTOMER_ID_START);
+		content.append(customer.getId());
+		content.append(CustomerConstant.CUSTOMER_ID_END);
+		
 		content.append(CustomerConstant.CUSTOMER_END);
 		
 		content.append(EmployeeConstant.OPERATOR_START);
@@ -128,6 +133,10 @@ public class OrderOneConverter extends DefaultXmlConverter<Order> {
 			content.append(FloorConstant.FLOOR_NAME_START);
 			content.append(item.getFloor().getName());
 			content.append(FloorConstant.FLOOR_NAME_END);
+			
+			content.append(FloorConstant.FLOOR_NUM_START);
+			content.append(item.getFloor().getNumber());
+			content.append(FloorConstant.FLOOR_NUM_END);
 			
 			content.append(FloorCategoryConstant.CATEGORY_NAME_START);
 			content.append(item.getFloor().getCategory().getName());

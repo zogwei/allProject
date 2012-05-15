@@ -106,6 +106,10 @@ public class FloorConstant {
 	
 	public static final String FLOOR_NAME_END = "</floorName>";
 	
+	public static final String FLOOR_NUM_START = "<floorNumber>";
+	
+	public static final String FLOOR_NUM_END = "</floorNumber>";
+	
 	public static final String FLOOR_PICPATH = "picPath";
 	
 	public static final String FLOOR_PICPATH_START = "<picPath>";
