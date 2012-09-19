@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src/mina-integration-jmx/src/main/resources"/>
+	<classpathentry kind="src" path="src/test"/>
 	<classpathentry kind="src" path="src/mina-core/src/main/resources"/>
 	<classpathentry kind="src" path="src/mina-legal/src/main/resources"/>
 	<classpathentry kind="src" path="src/mina-filter-compression/src/main/java"/>
