@@ -3,8 +3,15 @@
 	<classpathentry kind="src" path="src/main/java"/>
 	<classpathentry kind="src" path="src/main/resources"/>
 	<classpathentry kind="src" path="src/test/java"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
-	<classpathentry kind="con" path="org.jboss.ide.eclipse.as.classpath.core.javaee-5.0"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry kind="lib" path="lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="lib/org.osgi.core-4.2.0.jar"/>
+	<classpathentry kind="lib" path="lib/jboss-logging.jar"/>
+	<classpathentry kind="lib" path="lib/protobuf-java-2.4.1.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.osgi.services-3.3.0.jar"/>
+	<classpathentry kind="lib" path="lib/org.osgi.compendium-1.2.0.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="lib/easymock-3.1.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.jboss.ide.eclipse.as.core.server.runtime.runtimeTarget/JBoss 6.0 Runtime"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
