@@ -1,0 +1,196 @@
+
+
+BTrace(https://btrace.dev.java.net/) 是一个非常不错的java诊断工具, 最近试着用了一下, 文档比较少, 主要是看例子吧. 
+
+BTrace 中的B表示bytecode, 表明它是在字节码层面上对代码进行trace 
+
+用来在运行中的java类中注入trace代码, 并对运行中的目标程序进行热交换(hotswap) 
+
+术语 
+Probe Point 
+在何处执行trace语句, 这里的"何处"可以是具体的跟踪地点和执行事件, 在BTrace中通过各种注解来指定 
+
+Trace Actions or Actions 
+在何时执行trace语句 
+
+Action Methods 
+定义在trace脚本中的trace语句, 具体来说就是脚本中的无返回值静态方法(1.2之后可以是非静态方法) 
+
+BTrace限制 
+为了保证trace语句只读, BTrace对trace脚本有一些限制(比如不能改变被trace代码中的状态) 
+BTrace class不能新建类, 新建数组, 抛异常, 捕获异常,
+不能调用实例方法以及静态方法(com.sun.btrace.BTraceUtils除外)
+不能将目标程序和对象赋值给BTrace的实例和静态field
+不能定义外部, 内部, 匿名, 本地类
+不能有同步块和方法
+不能有循环
+不能实现接口, 不能扩展类
+不能使用assert语句, 不能使用class字面值
+
+
+BTrace例子 
+Java代码  
+// import all BTrace annotations  
+import com.sun.btrace.annotations.*;  
+// import statics from BTraceUtils class  
+import static com.sun.btrace.BTraceUtils.*;  
+   
+// @BTrace annotation tells that this is a BTrace program  
+@BTrace  
+class HelloWorld {  
+    
+    // @OnMethod annotation tells where to probe.  
+    // In this example, we are interested in entry  
+    // into the Thread.start() method.  
+    @OnMethod(  
+        clazz="java.lang.Thread",  
+        method="start"  
+    )  
+    void func() {  
+        sharedMethod(msg);  
+    }  
+   
+   void sharedMethod(String msg) {  
+        // println is defined in BTraceUtils  
+        println(msg);  
+   }  
+}  
+
+
+BTrace步骤 
+1.取得目标java进程id(pid) 
+2.编写BTrace脚本 
+3.执行命令行: btrace <pid> <btrace-script> 
+
+完整的BTrace命令: 
+引用
+btrace [-I <include-path>] [-p <port>] [-cp <classpath>] <pid> <btrace-script> [<args>]
+
+-I 没有这个表明跳过预编译
+include-path: 指定用来编译脚本的头文件路径(关于预编译可参考例子ThreadBean.java)
+port : btrace agent端口, 默认是2020
+classpath : 编译所需类路径, 一般是指btrace-client.jar等类所在路径
+pid : java进程id
+btrace-script: btrace脚本, 如果是java文件, 则是未编译, class文件, 则是已编译过的
+args: 传递给btrace脚本的参数, 在脚本中可以通过$(), $length()来获取这些参数(定义在BTraceUtils中)
+
+
+预编译BTrace脚本命令 
+引用
+btracec [-I <include-path>] [-cp <classpath>] [-d <directory>] <one-or-more-BTrace-.java-files>
+
+参数和上面大同小异, btracec 是一个类似javac的程序, 使用该程序编译, 将根据BTrace的限制条件进行严格检查 
+
+在目标程序中启动BTrace Agent 
+这个主要针对需要在目标程序启动的时候就需要trace其行为的场景, 此时BTrace agent将与目标程序一起启动(前提是必须对BTrace脚本进行预编译) 
+命令行: 
+引用
+java -javaagent:btrace-agent.jar=script=<pre-compiled-btrace-script1>[,<pre-compiled-btrace-script1>]* <MainClass> <AppArguments>
+
+
+还有个btracer 脚本. //不过没看明白 
+引用
+btracer <pre-compiled-btrace.class> <application-main-class> <application-args>
+
+
+一些支持的参数: 
+bootClassPath - 启动classpath
+systemClassPath - 系统classpath
+debug - 是否打开调试信息(true/false)
+unsafe - 是否开启btrace限制约束(true/false) // 我设置为true貌似无效
+dumpClasses - 是否dump被trace的目标二进制代码 (true/false)
+dumpDir - 指定dump文件路径
+stdout - 是否重定向btrace输出到标准输出(true/false)
+probeDescPath - 指定trace点的描述 XML文件路径
+script - 指定btrace agent启动时的运行的脚本
+scriptdir - 指定btrace agent启动时要运行的脚本所在文件夹
+scriptOutputFile - btrace agent输出文件代理地址
+
+
+方法上的注解 
+@com.sun.btrace.annotations.OnMethod  用来指定trace的目标类和方法以及具体位置, 被注解的方法在匹配的方法执行到指定的位置会被调用. "clazz"属性用来指定目标类名, 可以指定全限定类名, 比如"java.awt.Component", 也可以是正则表达式(表达式必须写在"//"中, 比如"/java\\.awt\\..+/").  "method"属性用来指定被trace的方法. 表达式可以参考自带的例子(NewComponent.java 和 Classload.java, 关于方法的注解可以参考MultiClass.java). 有时候被trace的类和方法可能也使用了注解. 用法参考自带例子WebServiceTracker.java. 针对注解也是可以使用正则表达式, 比如像这个"@/com\\.acme\\..+/ ", 也可以通过指定超类来匹配多个类, 比如"+java.lang.Runnable"可以匹配所有实现了java.lang.Runnable接口的类. 具体参考自带例子SubtypeTracer.java.
+@com.sun.btrace.annotations.OnTimer 用来指定时长(ms)执行一次trace. 时长通过"value"属性指定. 具体参考自带例子 Histogram.java
+@com.sun.btrace.annotations.OnError 当trace代码抛异常时该注解的方法会被执行. 如果同一个trace脚本中其他方法抛异常, 该注解方法也会被执行.
+@com.sun.btrace.annotations.OnExit 当trace方法调用内置exit(int)方法(用来结束整个trace程序)时, 该注解的方法会被执行. 参考自带例子ProbeExit.java.
+@com.sun.btrace.annotations.OnEvent 用来截获"外部"btrace client触发的事件, 比如按Ctrl-C 中断btrace执行时将执行使用了该注解的方法, 该注解的value值为具体事件名称. 具体参考例子HistoOnEvent.java
+@com.sun.btrace.annotations.OnLowMemory 当内存超过某个设定值将触发该注解的方法, 具体参考MemAlerter.java
+@com.sun.btrace.annotations.OnProbe //我也没搞明白:(
+
+
+参数上的注解 
+@com.sun.btrace.annotations.Self 用来指定被trace方法的this, 可参考例子AWTEventTracer.java 和 AllCalls1.java
+@com.sun.btrace.annotations.Return 用来指定被trace方法的返回值, 可参考例子Classload.java
+@com.sun.btrace.annotations.ProbeClassName (since 1.1) 用来指定被trace的类名, 可参考例子AllMethods.java
+@com.sun.btrace.annotations.ProbeMethodName (since 1.1) 用来指定被trace的方法名, 可参考例子WebServiceTracker.java
+          o (since 1.2)可以通过注解的fqn boolean属性来表明是否要获取全限定方法名 
+@com.sun.btrace.annotations.TargetInstance (since 1.1) 用来指定被trace方法内部被调用到的实例, 可参考例子AllCalls2.java
+@com.sun.btrace.annotations.TargetMethodOrField (since 1.1) 用来指定被trace方法内部被调用的方法名, 可参考例子AllCalls1.java 合 AllCalls2.java
+          o (since 1.2) 可通过注解的fqn boolean属性来表明是否要获取全限定方法名 
+
+
+未被注解的方法参数 
+未使用注解的方法参数一般都是用来做方法签名匹配用的, 他们一般和被trace方法中参数出现的顺序一致. 不过他们也可以与注解方法交错使用, 如果一个参数类型声明为*AnyType[]*, 则表明它按顺序"通吃"方法所有参数. 未注解方法需要与*Location*结合使用: 
+Kind.ENTRY, Kind.RETURN- 被trace方法参数
+Kind.THROW - 抛异常
+Kind.ARRAY_SET, Kind.ARRAY_GET - 数组索引
+Kind.CATCH - 捕获异常
+Kind.FIELD_SET - 属性值
+Kind.LINE - 行号
+Kind.NEW - 类名
+Kind.ERROR - 抛异常
+
+
+属性上的注解 
+@com.sun.btrace.annotations.Export 该注解的静态属性主要用来与jvmstat计数器做关联. 使用该注解之后, btrace程序就可以向jvmstat客户端(可以用来统计jvm堆中的内存使用量)暴露trace程序的执行次数, 具体可参考例子ThreadCounter.java
+@com.sun.btrace.annotations.Property 使用了该注解的trace脚本将作为MBean的一个属性, 一旦使用该注解, trace脚本就会创建一个MBean并向MBean服务器注册, 这样JMX客户端比如VisualVM, jconsole就可以看到这些BTrace MBean. 如果这些被注解的属性与被trace程序的属性关联, 那么就可以通过VisualVM 和jconsole来查看这些属性了. 具体可参考例子ThreadCounterBean.java 和 HistogramBean.java.
+@com.sun.btrace.annotations.TLS 用来将一个脚本变量与一个ThreadLocal变量关联. 因为ThreadLocal变量是跟线程相关的, 一般用来检查在同一个线程调用中是否执行到了被trace的方法. 具体可参考例子OnThrow.java 和 WebServiceTracker.java
+
+
+类上的注解 
+@com.sun.btrace.annotations.DTrace 用来指定btrace脚本与内置在其脚本中的D语言脚本关联, 具体参考例子DTraceInline.java.
+@com.sun.btrace.annotations.DTraceRef 用来指定btrace脚本与另一个D语言脚本文件关联. 具体参考例子DTraceRefDemo.java.
+@com.sun.btrace.annotations.BTrace 用来指定该java类为一个btrace脚本文件.
+
+
+DTrace 集成(略过) 
+
+相关例子一句话说明 
+AWTEventTracer.java - 演示了对EventQueue.dispatchEvent()事件进行trace的做法, 可以通过instanceof来对事件进行过滤, 比如这里只针对focus事件trace.
+AllLines.java - 演示了如何在被trace的程序到达probe指定的类和指定的行号时执行指定的操作(例子中指定的行号是-1表示任意行).
+AllSync.java - 演示了如何在进入/退出同步块进行trace.
+ArgArray.java - 演示了打印java.io包下所有类的readXXX方法的输入参数.
+Classload.java - 演示打印成功加载指定类以及堆栈信息.
+CommandArg.java - 演示如何获取btrace命令行参数.
+Deadlock.java - 演示了@OnTimer注解和内置deadlock()方法的用法
+DTraceInline.java - 演示@DTrace注解的用法
+DTraceDemoRef.java - 演示@DTraceRef 注解的用法.
+FileTracker.java - 演示了如何对File{Input/Output}Stream构造函数中初始化打开文件的读写文件操作进行trace.
+FinalizeTracker.java - 演示了如何打印一个类所有的属性, 这个在调试和故障分析中非常有用. 这里的例子是打印FileInputStream类的close() /finalize() 方法被调用时的信息.
+Histogram.java - 演示了统计javax.swing.JComponent在一个应用中被创建了多少次.
+HistogramBean.java - 同上例, 只不过演示了如何与JMX集成, 这里的map属性通过使用@Property注解被暴露成一个MBean.
+HistoOnEvent.java - 同上例, 只不过演示了如何在通过按ctrl+c中断当前脚本时打印出创建次数, 而不是定时打印.
+JdbcQueries.java - 演示了聚合(aggregation)功能. 关于聚合功能可参考DTrace.
+JInfo.java - 演示了内置方法printVmArguments(), printProperties() 和printEnv() 的用法
+JMap.java - 演示了内置方法dumpHeap()的用法. 即将目标应用的堆信息以二进制的形式dump出来
+JStack.java - 演示了内置方法jstackAll()的用法, 即打印所有线程的堆栈信息.
+LogTracer.java - 演示了如何深入实例方法(Logger.log)并调用内置方法(field() )打印私有属性内容.
+MemAlerter.java - 演示了使用@OnLowMememory 注解监控内存使用情况. 即堆内存中的年老代达到指定值时打印出内存信息.
+Memory.java - 演示每隔4s打印一次内存统计信息.
+MultiClass.java - 演示了通过使用正则表达式对多个类的多个方法进行trace.
+NewComponent.java - 使用计数器每隔一段时间检查当前应用中创建java.awt.Component的个数.
+OnThrow.java - 当抛出异常时, 打印出异常堆栈信息.
+ProbeExit.java - 演示@OnExit注解和内置exit(int)方法的用法
+Profiling.java - 演示了对profile的支持.  // 我执行没成功, BTrace内部有异常
+Sizeof.java - 演示了内置的sizeof方法的使用.
+SocketTracker.java - 演示了对socket的creation/bind方法的trace.
+SocketTracker1.java - 同上, 只不过使用了@OnProbe.
+SysProp.java - 演示了使用内置方法获取系统属性, 这里是对 java.lang.System的getProperty方法进行trace.
+SubtypeTracer.java - 演示了如何对指定超类的所有子类的指定方法进行trace.
+ThreadCounter.java - 演示了在脚本中如何使用jvmstat 计数器. (jstat -J-Djstat.showUnsupported=true -name btrace.com.sun.btrace.samples.ThreadCounter.count 需要这样来从外部通过jstat来访问)
+ThreadCounterBean.java - 同上, 只不过使用了JMX.
+ThreadBean.java - 演示了对预编译器的使用(并结合了JMX).
+ThreadStart.java - 演示了脚本中DTrace的用法.
+Timers.java - 演示了在一个脚本中同时使用多个@OnTimer
+URLTracker.java - 演示了在每次URL.openConnection成功返回时打印出url. 这里也使用了D语言脚本.
+WebServiceTracker.java - 演示了如何根据注解进行trace.
+   
