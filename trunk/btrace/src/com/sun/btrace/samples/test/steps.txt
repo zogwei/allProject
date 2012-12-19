@@ -1,0 +1,13 @@
+
+0、设置btrace环境变量
+export BTRACE_HOME=/home/yblin/workspace/btrace
+export PATH=$BTRACE_HOME/bin:$PATH 
+
+1、编译BTraceTest.java
+    javac BTraceTest.java
+
+2、运行BTraceTest.class
+
+3、运行btrace
+
+btrace  <pid> TracingScript.java
