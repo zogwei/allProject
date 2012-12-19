@@ -18,8 +18,5 @@ public class TcpControllTest {
 		catch(Exception e){
 			e.printStackTrace();
 		}
-		
-
 	}
-
 }
