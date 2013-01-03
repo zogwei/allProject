@@ -23,7 +23,8 @@ public class TimeServerHandler extends IoHandlerAdapter
         }
         Date date = new Date();
         session.write(date.toString());
-        System.out.println("Message written");
+        
+        System.out.println("Message written:  " + message );
     }
     public void sessionIdle(IoSession session, IdleStatus status) throws Exception 
     {
