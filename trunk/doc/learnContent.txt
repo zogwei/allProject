@@ -1,0 +1,22 @@
+
+
+
+1 Nginx http://agentzh.org/misc/nginx/agentzh-nginx-tutorials-zhcn.html#00-Foreword02
+2 perl 
+3 java并发编程实战
+4 NIO
+5 spring
+6 linux
+7 oracle
+8 mule
+9 hadoop hive hbase hdfs 
+10 cassandra
+11 mengodb
+
+
+
+代码阅读
+1 mina
+2 xmemcache
+3 netty
+4 spring
