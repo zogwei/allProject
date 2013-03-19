@@ -6,9 +6,9 @@ import org.slf4j.LoggerFactory;
 import com.ifinance.company.parse.vo.CompanyInfoVO;
 
 
-public class CrawlInfo {
+public class MainCraw {
 
-	private static final Logger LOG = LoggerFactory.getLogger(CrawlInfo.class);
+	private static final Logger LOG = LoggerFactory.getLogger(MainCraw.class);
 	/**
 	 * 抓取当个公司所有数据的入口
 	 * @param args
