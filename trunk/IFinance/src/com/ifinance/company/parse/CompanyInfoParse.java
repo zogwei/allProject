@@ -10,7 +10,7 @@ import org.jsoup.select.Elements;
 
 import com.ifinance.company.parse.vo.CompanyInfoVO;
 
-public class CompanyInfo {
+public class CompanyInfoParse {
 	
 	/**
 	 * @param args

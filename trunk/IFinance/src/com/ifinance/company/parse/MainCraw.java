@@ -20,7 +20,7 @@ public class MainCraw {
 	public static void parseData(String stockId){
 		
 		//company Info
-		CompanyInfoVO companyInfoVO = CompanyInfo.parseFormURL(stockId);
+		CompanyInfoVO companyInfoVO = CompanyInfoParse.parseFormURL(stockId);
 		LOG.debug(companyInfoVO.toString());
 	}
 
