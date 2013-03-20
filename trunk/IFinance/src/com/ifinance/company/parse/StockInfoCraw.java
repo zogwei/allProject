@@ -11,9 +11,9 @@ import com.ifinance.company.parse.vo.DividendVo;
 import com.ifinance.company.parse.vo.ShareholdersVo;
 
 
-public class MainCraw {
+public class StockInfoCraw {
 
-	private static final Logger LOG = LoggerFactory.getLogger(MainCraw.class);
+	private static final Logger LOG = LoggerFactory.getLogger(StockInfoCraw.class);
 	/**
 	 * 抓取当个公司所有数据的入口
 	 * @param args
