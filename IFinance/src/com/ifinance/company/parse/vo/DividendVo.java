@@ -5,8 +5,6 @@ public class DividendVo {
 	//stock id
 	private String stockId;
 
-	
-
 	public String getStockId() {
 		return stockId;
 	}

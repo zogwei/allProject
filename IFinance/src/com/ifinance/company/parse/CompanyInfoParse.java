@@ -12,32 +12,6 @@ import com.ifinance.company.parse.vo.CompanyInfoVO;
 
 public class CompanyInfoParse {
 	
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		parseFormFile();
-
-	}
-	
-	private static void parseFormFile(){
-		File input = new File("e:///juchao///CompanyInfo.htm");
-		try {
-			Document doc = Jsoup.parse(input, "GBK", "http://www.cninfo.com.cn/information/sz/mb/");
-			Elements itemsNames = doc.select(".zx_data");
-			Elements itemsValues = doc.select(".zx_data2");
-			int i = -1;
-			for(Element item : itemsNames){
-				i++;
-				System.out.println(item.html()+itemsValues.get(i).html());
-				
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
 	public static CompanyInfoVO parseFormURL(String stockId){
 		CompanyInfoVO vo = null;
 		String url = getURL(stockId);
