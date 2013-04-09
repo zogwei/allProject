@@ -11,7 +11,7 @@ public class TelnetServerPipelineFactory implements ChannelPipelineFactory {
 
 	public ChannelPipeline getPipeline() throws Exception {
 		// Create a default pipeline implementation.
-		ChannelPipeline pipeline = pipeline();
+		ChannelPipeline pipeline =null;
 
 		// Add the text line codec combination first,
 		pipeline.addLast("framer", new DelimiterBasedFrameDecoder(8192,
