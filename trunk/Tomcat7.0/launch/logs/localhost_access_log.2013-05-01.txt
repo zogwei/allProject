@@ -1,0 +1,9 @@
+127.0.0.1 - - [01/May/2013:12:27:32 +0800] "GET /examples/ HTTP/1.1" 200 1209
+127.0.0.1 - - [01/May/2013:12:27:32 +0800] "GET /examples/ HTTP/1.1" 200 1209
+127.0.0.1 - - [01/May/2013:12:27:39 +0800] "GET /favicon.ico HTTP/1.1" 200 21630
+127.0.0.1 - - [01/May/2013:12:27:42 +0800] "GET /examples/servlets HTTP/1.1" 302 -
+127.0.0.1 - - [01/May/2013:12:27:42 +0800] "GET /examples/servlets/ HTTP/1.1" 200 5343
+127.0.0.1 - - [01/May/2013:12:27:42 +0800] "GET /examples/servlets/images/code.gif HTTP/1.1" 200 292
+127.0.0.1 - - [01/May/2013:12:27:42 +0800] "GET /examples/servlets/images/execute.gif HTTP/1.1" 200 1242
+127.0.0.1 - - [01/May/2013:12:27:42 +0800] "GET /examples/servlets/images/return.gif HTTP/1.1" 200 1231
+127.0.0.1 - - [01/May/2013:12:27:44 +0800] "GET /examples/servlets/servlet/HelloWorldExample HTTP/1.1" 200 359
