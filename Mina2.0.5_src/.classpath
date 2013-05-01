@@ -17,7 +17,6 @@
 	<classpathentry kind="src" path="src/mina-example/src/main/java"/>
 	<classpathentry kind="src" path="src/mina-filter-compression/src/main/resources"/>
 	<classpathentry kind="src" path="src/mina-integration-jmx/src/main/java"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
 	<classpathentry kind="lib" path="lib/commons-lang-2.6.jar"/>
 	<classpathentry kind="lib" path="lib/commons-logging-1.0.3.jar"/>
 	<classpathentry kind="lib" path="lib/javassist-3.11.0.GA.jar"/>
@@ -30,5 +29,6 @@
 	<classpathentry kind="lib" path="lib/tomcat-apr-5.5.23.jar"/>
 	<classpathentry kind="lib" path="lib/xbean-spring-3.11.1.jar"/>
 	<classpathentry kind="lib" path="lib/tinyos-core-rxtx-1.1.15.1.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
