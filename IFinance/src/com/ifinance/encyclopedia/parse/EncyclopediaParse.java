@@ -47,6 +47,10 @@ public class EncyclopediaParse {
 			for(Element item : types){
 				typeIndex++;
 				subIndex = 0;
+				// 可以控制 只显示一个大类
+//				if(typeIndex!=8){
+//					continue;
+//				}
 				//每个大类
 				typeName = item.select("h3").html().substring(7);
 				typeDic = typeParentPath+"/"+typeIndex+"_"+typeName;
@@ -87,7 +91,8 @@ public class EncyclopediaParse {
 				index++;
 				contentName = index+"_"+item.html();
 				contentURL = item.attr("href");
-				cotentURL = subtypeURL.substring(0,34)+contentURL.substring(2);
+				// 如果是 期货  换 34
+				cotentURL = subtypeURL.substring(0,36)+contentURL.substring(2);
 				save(getContent(cotentURL),contentName,path);
 			}
 		} catch (IOException e) {
