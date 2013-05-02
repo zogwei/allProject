@@ -1,0 +1,694 @@
+&nbsp;&nbsp;&nbsp;&nbsp;1.止蚀盘：止蚀盘的主要作用是限制投资者的损失。如果投资者持有的证券价格下跌，而且跌势持续，投资者便可在股价下跌至某一预先订下的价格水平时，售出证券，以限制损失。然而，投资者应留意，止蚀盘只是一种投资策略，证券商可否替投资者实际执行止蚀盘，还须视乎有关股份在市场上有否需求，其时的成交价及买卖情况等。 　　 　　2.限价盘：限制了投资者交易的最高或最低价格。当买入证券时，投资者须向证券商明确指示其愿意购入证券的最高买入价。如果当时市场上的卖盘索价等于或低于最高买入价，证券商便可替投资者完成全部买卖盘，或不足之数在下一个最好卖盘出现时补购，这当然亦须以不超过最高买入价为原则。当投资者要售出证券时，他则要向证券商指示最低卖出价，证券商只能在股价等于或高于最低卖出价时替他售出证券。 　　 　　3.增强限价盘：与限价盘相似，只是前者可在同一时间与最多5条轮候队伍进行配对，且输入卖盘价可以较最佳买盘价低4个价位，输入买盘价则可以较最佳卖盘价高4个价位；配对后任何未能成交的余额将转为原先输入的指定限价的一般限价盘。 　　 　　4.特别限价盘：只要成交价不逊于输入限价便可最多跟5条轮候队伍(即当时最佳价及随后的4个价位)配对。在配对后，交易系统会取消原买卖盘中未能成交的余额。在开市前时段的输入买卖盘时段内，交易所参与者亦只可输入竞价盘及竞价限价盘。 　　 　　5.竞价盘：是没有指定价格的市价盘，较竞价限价盘优先对盘。竞价盘于开市前时段内对盘后会自动取消。 　　 　　6.竞价限价盘：是有指定价格的限价盘。在开市前时段内对盘后，未成交的竞价限价盘如并未偏离按盘价多于9倍或少于1/9，该买卖盘便会按所输入的限价变换为限价盘，并会被保留在持续交易时段以供配对。 　　 　　一般来说，香港的证券商提供电话、互联网和其他电子渠道让投资者发放买卖指令，投资者也可亲自前往银行或证券商发出交易指示。投资者发出交易指示时，需明确指示拟购入或卖出的证券名称(或股份代号)、数量及买卖价。证券商在核实客户资料后，会在交易系统发出买卖指令。在开市前时段，买卖盘累积一段时间后，会在预先设定的对盘时段中对盘。买卖盘会以买卖盘的类别、价格及时间等优先次序，按最终参考平衡价格顺序对盘。在持续交易时段，买卖盘将会以价格优先为原则，按输入系统的时间先后次序逐一对盘。 　　 　　7.H股公司：指那些在中华人民共和国(中国)注册成立并获得中国证券监督管理委员会(中国证监会)批准来港上市的公司。这些在香港证券市场上市、以港币或其他货币认购及买卖的中国内地企业股份称为“H股”，自从《上市规则》列载有关H股的上市规定后，“H股”一词已为市场接受并广泛使用。“H股”中的“H”代表香港(Hong Kong)。 　　 　　8.红筹公司：指至少有30%股份由中国内地实体直接持有的公司，或该公司由中国内地实体通过其所控制并属单一最大股东的公司间接持有，或由中国内地实体直接及/或间接持有的股份合共不足30%，但达到20%或以上，而与中国内地有联系的人士在该公司的董事会内有重大影响力的公司。中国内地实体包括国营企业及由国内的省、市机关所控制的实体。 　　 　　9.蓝筹公司：一般指那些经由恒指服务有限公司挑选成为恒生指数成份股的公司。通常为经营比较稳健的业绩较好的大型公司。 　　 　　10、内地与香港股市术语对照    
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<title>无标题文档</title>   
+<table cellspacing="0" cellpadding="0"> 
+ <tbody>
+  <tr height="26"> 
+   <td width="48" height="26"><strong>拼音</strong></td> 
+   <td width="166"><strong>香港市场术语</strong></td> 
+   <td width="212"><strong>内地市场术语</strong></td> 
+   <td width="249"><strong>英语</strong></td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26">A</td> 
+   <td width="166">按盘价</td> 
+   <td width="212">名义价格</td> 
+   <td width="249">nominal price</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">暗盘买卖</td> 
+   <td width="212">灰市交易</td> 
+   <td width="249">grey market price</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">按金</td> 
+   <td width="212">押金；保证金</td> 
+   <td width="249">deposit</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26">B</td> 
+   <td width="166">被挟仓；被逼仓</td> 
+   <td width="212">被迫仓</td> 
+   <td width="249">squeezed</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">补仓；追收&#xfffd;展</td> 
+   <td width="212">追加保证金通知</td> 
+   <td width="249">margin call</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26">C</td> 
+   <td width="166">除牌</td> 
+   <td width="212">摘牌</td> 
+   <td width="249">delisting</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">除净日</td> 
+   <td width="212">除权日</td> 
+   <td width="249">ex-date</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">筹集资金</td> 
+   <td width="212">募集资金</td> 
+   <td width="249">capital formation</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">长仓；好仓</td> 
+   <td width="212">多头仓位</td> 
+   <td width="249">long position</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">出市员</td> 
+   <td width="212">出市代表</td> 
+   <td width="249">floor trader; authorised clerk</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">长揸</td> 
+   <td width="212">长期持有</td> 
+   <td width="249">hold for long term</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26">D</td> 
+   <td width="166">董事袍金</td> 
+   <td width="212">董事费；董事报酬</td> 
+   <td width="249">directors' fee</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">对冲</td> 
+   <td width="212">对冲交易；套利交易；套期保值</td> 
+   <td width="249">hedging</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">对盘</td> 
+   <td width="212">报价撮合；对盘</td> 
+   <td width="249">order matching</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">点子</td> 
+   <td width="212">基点</td> 
+   <td width="249">basis point</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">大额持仓申报制度</td> 
+   <td width="212">大户报告制度</td> 
+   <td width="249">large position reporting system</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="52" rowspan="2"></td> 
+   <td width="166" rowspan="2">大闸蟹；被缚</td> 
+   <td width="212">套牢；多头套牢；空头套牢；</td> 
+   <td width="249" rowspan="2">tied up</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="212" height="26">给套住</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">大手交易</td> 
+   <td width="212">大额交易</td> 
+   <td width="249">block trade</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">短仓；淡仓</td> 
+   <td width="212">空头；短仓</td> 
+   <td width="249">short position</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">股息</td> 
+   <td width="212">红利；股利；股息</td> 
+   <td width="249">dividend</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26">F</td> 
+   <td width="166">覆盘</td> 
+   <td width="212">确认指令；执行委托回报</td> 
+   <td width="249">order confirmation</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">风险披露声明</td> 
+   <td width="212">风险披露书</td> 
+   <td width="249">risk disclosure statement</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26">G</td> 
+   <td width="166">股份代号</td> 
+   <td width="212">股票代码</td> 
+   <td width="249">stock code</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">股份购回</td> 
+   <td width="212">股份回购</td> 
+   <td width="249">share repurchase</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">股份过户登记处</td> 
+   <td width="212">股份登记处；证券登记机构</td> 
+   <td width="249">share registrar</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">股价敏感资料</td> 
+   <td width="212">股价敏感性信息</td> 
+   <td width="249">price-sensitive information</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">窝轮；权证</td> 
+   <td width="212">权证</td> 
+   <td width="249">warrant</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">高于面值</td> 
+   <td width="212">溢价</td> 
+   <td width="249">above par</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">沽空对冲</td> 
+   <td width="212">卖出保值</td> 
+   <td width="249">selling hedge</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">股份拆细</td> 
+   <td width="212">股份拆细；分拆；分割</td> 
+   <td width="249">split</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26">H</td> 
+   <td width="166">核数师</td> 
+   <td width="212">审计师</td> 
+   <td width="249">auditor</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">红股派送</td> 
+   <td width="212">送股</td> 
+   <td width="249">scrip issue; issue of bonus share</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">互惠基金</td> 
+   <td width="212">共同基金</td> 
+   <td width="249">mutual fund</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">好淡争持</td> 
+   <td width="212">多空争夺</td> 
+   <td width="249">trading at narrow ranges</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">核数</td> 
+   <td width="212">审计</td> 
+   <td width="249">auditing</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">好友；看好股市者</td> 
+   <td width="212">多方</td> 
+   <td width="249">optimist</td> 
+  </tr> 
+  <tr height="48"> 
+   <td width="48" height="48"></td> 
+   <td width="166">获豁免交易商；获免注册交易商</td> 
+   <td width="212">豁免注册自营商</td> 
+   <td width="249">exempt dealer</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">行业</td> 
+   <td width="212">板块</td> 
+   <td width="249">sector</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">红背心</td> 
+   <td width="212">红马甲</td> 
+   <td width="249">trader's vest</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="52" rowspan="2"></td> 
+   <td width="166" rowspan="2">毫子股</td> 
+   <td width="212">香港专有用语，指股价低于</td> 
+   <td width="249" rowspan="2">low priced stock</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="212" height="26">港币1元，但高于港币1角的股票</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="52" rowspan="2"></td> 
+   <td width="166" rowspan="2">红底股</td> 
+   <td width="212">香港专有用语，指股价超过</td> 
+   <td width="249" rowspan="2">stock trading at $100 or above</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="212" height="26">港币100元的股票</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26">J</td> 
+   <td width="166">交收</td> 
+   <td width="212">交割；交收</td> 
+   <td width="249">settlement</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">交易所买卖基金</td> 
+   <td width="212">交易所交易基金</td> 
+   <td width="249">Exchange Traded Fund (ETF)</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">结算</td> 
+   <td width="212">清算</td> 
+   <td width="249">clearing</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">经纪行</td> 
+   <td width="212">券商；证券商</td> 
+   <td width="249">brokerage firm</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">基本因素</td> 
+   <td width="212">基本面</td> 
+   <td width="249">basic factors</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">基金单位持有人</td> 
+   <td width="212">基金份额持有人</td> 
+   <td width="249">fund unit holder</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">挟好仓</td> 
+   <td width="212">多杀多；轧多；轧多头</td> 
+   <td width="249">long squeeze</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">挟淡仓</td> 
+   <td width="212">空杀空；轧空</td> 
+   <td width="249">short squeeze</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">交易柜位</td> 
+   <td width="212">交易席位；交易单元</td> 
+   <td width="249">trading booth</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">即日鲜</td> 
+   <td width="212">当天交易；即日平仓买卖</td> 
+   <td width="249">day trade transaction</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">价外</td> 
+   <td width="212">较现价不利</td> 
+   <td width="249">out-of-the-money</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">价内</td> 
+   <td width="212">较现价有利</td> 
+   <td width="249">in-the-money</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26">K</td> 
+   <td width="166">空仓</td> 
+   <td width="212">空仓；空头</td> 
+   <td width="249">short position</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">开市价；开盘价</td> 
+   <td width="212">开盘价格</td> 
+   <td width="249">opening price</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">开市前议价时段</td> 
+   <td width="212">集合竞价时段</td> 
+   <td width="249">pre-market opening session</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">客户户口；客户帐户</td> 
+   <td width="212">委托人帐户</td> 
+   <td width="249">client account</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">可换股债券</td> 
+   <td width="212">可转换债券</td> 
+   <td width="249">convertible bond</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">斩仓</td> 
+   <td width="212">被迫抛售</td> 
+   <td width="249">forced liquidation</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">开仓</td> 
+   <td width="212">建仓</td> 
+   <td width="249">open a position</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26">L</td> 
+   <td width="166">裂口高开</td> 
+   <td width="212">跳空高开</td> 
+   <td width="249">open high at gap</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">累积</td> 
+   <td width="212">积累</td> 
+   <td width="249">accumulate</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">落后股</td> 
+   <td width="212">补涨股</td> 
+   <td width="249">laggard</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">老鼠仓活动；食价</td> 
+   <td width="212">抢帽子；倒卖；投机倒把</td> 
+   <td width="249">scalping</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">落盘</td> 
+   <td width="212">下单</td> 
+   <td width="249">placing order</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26">M</td> 
+   <td width="166">展户口</td> 
+   <td width="212">保证金账户</td> 
+   <td width="249">margin account</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">买盘</td> 
+   <td width="212">买单委托；买方指令；买入委托</td> 
+   <td width="249">buy order</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">卖盘</td> 
+   <td width="212">卖单委托；卖方委托；卖出委托</td> 
+   <td width="249">sell order</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26">N</td> 
+   <td width="166">牛皮 (市况状态)</td> 
+   <td width="212">箱体</td> 
+   <td width="249">stagnant market</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26">P</td> 
+   <td width="166">披露权益</td> 
+   <td width="212">权益披露</td> 
+   <td width="249">disclosure of interests</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">平均每日成交额</td> 
+   <td width="212">平均日成交额</td> 
+   <td width="249">average daily turnover</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">票面息率；票面利率</td> 
+   <td width="212">票面利率</td> 
+   <td width="249">coupon rate</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">平衡价格</td> 
+   <td width="212">均衡价格</td> 
+   <td width="249">equilibrium price</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">平价</td> 
+   <td width="212">等价</td> 
+   <td width="249">at-the-money</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26">Q</td> 
+   <td width="166">企业管治</td> 
+   <td width="212">公司治理</td> 
+   <td width="249">corporate governance</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">强制清盘</td> 
+   <td width="212">强制清算</td> 
+   <td width="249">compulsory liquidation</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">企业狙击手</td> 
+   <td width="212">企业狙击者</td> 
+   <td width="249">corporate raider</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">清偿债项</td> 
+   <td width="212">解除债务</td> 
+   <td width="249">discharge of a debt</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26">R</td> 
+   <td width="166">入场费</td> 
+   <td width="212">投资起点；认购起点</td> 
+   <td width="249">minimum subscription fee</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26">S</td> 
+   <td width="166">市场失当行为</td> 
+   <td width="212">市场不当行为</td> 
+   <td width="249">market misconduct</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">收市价</td> 
+   <td width="212">收盘价</td> 
+   <td width="249">closing price</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">碎股</td> 
+   <td width="212">零股</td> 
+   <td width="249">odd lot</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">升幅</td> 
+   <td width="212">涨幅</td> 
+   <td width="249">percentage gain</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">市场焦点</td> 
+   <td width="212">市场热点</td> 
+   <td width="249">market focus</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">实物股票；实股</td> 
+   <td width="212">实券</td> 
+   <td width="249">physical script</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">市况疲弱</td> 
+   <td width="212">盘软</td> 
+   <td width="249">weak market</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">手</td> 
+   <td width="212">买卖单位</td> 
+   <td width="249">board lot</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="52" rowspan="2"></td> 
+   <td width="166" rowspan="2">神仙股</td> 
+   <td width="212">香港专有用语，指涨跌幅</td> 
+   <td width="249" rowspan="2"></td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="212" height="26">很大的股票</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26">T</td> 
+   <td width="166">套戥</td> 
+   <td width="212">套利买卖</td> 
+   <td width="249">arbitrage</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26">X</td> 
+   <td width="166">限价盘</td> 
+   <td width="212">限价委托</td> 
+   <td width="249">limit order</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">行使</td> 
+   <td width="212">行权</td> 
+   <td width="249">exercise</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">行使日期</td> 
+   <td width="212">行权日期</td> 
+   <td width="249">exercise date</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">细价股</td> 
+   <td width="212">小盘股</td> 
+   <td width="249">small cap stock</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">新股认购</td> 
+   <td width="212">申购新股</td> 
+   <td width="249">subscription of new stock</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="52" rowspan="2"></td> 
+   <td width="166" rowspan="2">仙股</td> 
+   <td width="212">香港专有用语，指股价低于</td> 
+   <td width="249" rowspan="2">penny stock</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="212" height="26">港币1毫(10分)的股票。</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26">Y</td> 
+   <td width="166">拥有权</td> 
+   <td width="212">所有权</td> 
+   <td width="249">ownership</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">月结单</td> 
+   <td width="212">每月对帐单</td> 
+   <td width="249">monthly statement</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">预托证券</td> 
+   <td width="212">存托凭证</td> 
+   <td width="249">depositary receipt</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">盈利警告；盈警</td> 
+   <td width="212">利润警告</td> 
+   <td width="249">profit warning</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26">Z</td> 
+   <td width="166">止蚀盘</td> 
+   <td width="212">止损委托</td> 
+   <td width="249">stop order; stop-loss order</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">中介人</td> 
+   <td width="212">金融中介机构</td> 
+   <td width="249">intermediary</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">资讯供应商</td> 
+   <td width="212">信息供应商</td> 
+   <td width="249">information vendors</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">做好；做淡</td> 
+   <td width="212">做多；做空</td> 
+   <td width="249">long; short</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">折让</td> 
+   <td width="212">折价</td> 
+   <td width="249">discount</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">债券孳息；债券息率</td> 
+   <td width="212">债息收益</td> 
+   <td width="249">coupon yield</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">重磅股；重量级股票</td> 
+   <td width="212">重仓股；权重股</td> 
+   <td width="249">heavyweight stock</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">震仓</td> 
+   <td width="212">震盘；轧空头</td> 
+   <td width="249">squeeze</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">走势强劲</td> 
+   <td width="212">盘坚</td> 
+   <td width="249">strong market</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">支持位；支持区</td> 
+   <td width="212">支撑线</td> 
+   <td width="249">support level; supportive level</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">招股价</td> 
+   <td width="212">发行价</td> 
+   <td width="249">issue price</td> 
+  </tr> 
+  <tr height="26"> 
+   <td width="48" height="26"></td> 
+   <td width="166">招股书</td> 
+   <td width="212">招股说明书</td> 
+   <td width="249">prospectus</td> 
+  </tr> 
+ </tbody>
+</table>
