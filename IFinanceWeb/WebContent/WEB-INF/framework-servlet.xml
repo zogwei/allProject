@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:flex="http://www.springframework.org/schema/flex" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/flex 
+		http://www.springframework.org/schema/flex/spring-flex-1.5.xsd
+		http://www.springframework.org/schema/mvc 
+		http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+
+	<!-- Supporting Spring MVC Infrastructure for RESTful @Controllers 
+	<context:component-scan base-package="com.dn"
+		use-default-filters="false">
+		<context:include-filter expression="org.springframework.stereotype.Controller"
+			type="annotation" />
+	</context:component-scan>
+-->
+	<mvc:annotation-driven />
+
+	<mvc:default-servlet-handler />
+
+	<mvc:interceptors>
+		<bean class="com.ifinanceweb.mvc.ContextInterceptor"></bean>
+	</mvc:interceptors>
+
+	<!-- Flex-specific Configuration -->
+	<flex:message-broker id="_messageBroker"
+		mapping-order="1">
+		<flex:mapping pattern="/messagebroker/*" />
+		<flex:message-service default-channels="my-streaming-amf" />
+	</flex:message-broker>
+
+
+	<flex:message-destination id="dn-subscribe-destination"
+		service-adapter="messageAdapter" message-broker="_messageBroker" />
+	<bean id="messageAdapter"
+		class="flex.messaging.services.messaging.adapters.ActionScriptAdapter" />
+	<!-- <flex:message-destination id="dn-subscribe-destination2" service-adapter="messageAdapter2" 
+		message-broker="_messageBroker" /> <bean id="messageAdapter2" class="flex.messaging.services.messaging.adapters.ActionScriptAdapter"/> -->
+
+	<!-- Handles content negotiation for RESTful requests. This is used in addition 
+		to the AmfHttpMessageConverter to take advantage of it's ability to use the 
+		URL's file extension instead of relying on the Accept header. Necessary since 
+		the Accept header can't be manipulated by the Flash player. -->
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+		<property name="mediaTypes">
+			<map>
+				<entry key="amf" value="application/x-amf" />
+			</map>
+		</property>
+		<property name="defaultViews">
+			<list>
+				<bean class="org.springframework.flex.http.AmfView" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="jspViewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/" />
+		<property name="suffix" value=".jsp"></property>
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+	</bean>
+</beans>

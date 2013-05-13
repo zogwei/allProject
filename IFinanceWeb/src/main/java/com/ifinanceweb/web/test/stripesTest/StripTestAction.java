@@ -1,20 +1,15 @@
-package com.ifinanceweb.web.test.stripes;
+package com.ifinanceweb.web.test.stripesTest;
 
+import net.sourceforge.stripes.action.ActionBean;
+import net.sourceforge.stripes.action.ActionBeanContext;
+import net.sourceforge.stripes.action.DefaultHandler;
+import net.sourceforge.stripes.action.ForwardResolution;
+import net.sourceforge.stripes.action.Resolution;
+import net.sourceforge.stripes.integration.spring.SpringBean;
 
 import com.ifinanceweb.web.test.strips.service.StripService;
 
-import net.sourceforge.stripes.action.DefaultHandler;      
-import net.sourceforge.stripes.action.Resolution;      
-import net.sourceforge.stripes.action.ForwardResolution;      
-import net.sourceforge.stripes.action.ActionBean;      
-import net.sourceforge.stripes.action.ActionBeanContext;      
-import net.sourceforge.stripes.integration.spring.SpringBean;
-     
-/**    
- * A very simple calculator action.    
- * @author Tim Fennell    
- */     
-public class StripAction implements ActionBean {      
+public class StripTestAction implements ActionBean {      
     private ActionBeanContext context;      
     private double numberOne;      
     private double numberTwo;      

@@ -8,6 +8,7 @@
 	<constant name="struts.messages.error.file.too.large" value="您上传的文件太大，请重新选择!"></constant>
 	<constant name="struts.multipart.saveDir" value="java.io.tmpdir"></constant>
 	<constant name="struts.i18n.encoding" value="GBK"></constant>
+	<constant name="struts.action.extension" value="do,struts" />   
 	
 	<!-- 用于CRUD Action的parent package -->
 	<package name="test-default" namespace="/demo"
@@ -20,7 +21,7 @@
 		</global-results>
 		<action name="*_*_*" method="{3}" 
 			class="com.ifinanceweb.web.test.{1}.action.{2}Action">
-			<result name="jsp">/jspPage/test/struct/${targetUrl}.jsp</result>
+			<result name="jsp">/jspPage/test/{1}/${targetUrl}.jsp</result>
 			<result name="success">/mainFrame.jsp</result>
 		</action>
 	</package>
