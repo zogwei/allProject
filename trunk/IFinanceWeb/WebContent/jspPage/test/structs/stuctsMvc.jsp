@@ -25,7 +25,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    link:<a href = ""> structs MVC Test</a>
    
    <br/>
-   <form action="<%=basePath%>test/structsTest_Test_addition.do">      
+   <form action="<%=basePath%>demo/structs_Demo_addition.do">      
         <table>      
             <tr>      
                 <td>Number 1:</td>      

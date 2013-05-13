@@ -26,7 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    link:<a href = ""> Strip MVC Test</a>
    
    <br/>
-   <stripes:form action="/structs_Stucts_" focus="">      
+   <stripes:form action="/test/stripesTest/StripTest.action" focus="">      
         <table>      
             <tr>      
                 <td>Number 1:</td>      
