@@ -1,4 +1,4 @@
-package com.ifinanceweb.web.test.demo.action;
+package com.ifinanceweb.web.test.structs.action;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
