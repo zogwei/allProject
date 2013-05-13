@@ -1,4 +1,4 @@
-package com.ifinanceweb.web.test.demo.service;
+package com.ifinanceweb.web.test.structs.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
