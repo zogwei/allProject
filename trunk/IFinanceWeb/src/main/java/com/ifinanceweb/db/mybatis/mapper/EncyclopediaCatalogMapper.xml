@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ifinanceweb.db.mybatis.mapper.EncyclopediaCatalogMapper" >
+  <resultMap id="BaseResultMap" type="com.ifinanceweb.db.mybatis.entity.EncyclopediaCatalog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="typecode" property="typecode" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="level" property="level" jdbcType="INTEGER" />
+    <result column="parent" property="parent" jdbcType="VARCHAR" />
+    <result column="createdBy" property="createdby" jdbcType="BIGINT" />
+    <result column="createdOn" property="createdon" jdbcType="TIMESTAMP" />
+    <result column="updateBy" property="updateby" jdbcType="BIGINT" />
+    <result column="updatedOn" property="updatedon" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, typecode, type, level, parent, createdBy, createdOn, updateBy, updatedOn
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_encyclopedia_catalog
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_encyclopedia_catalog
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ifinanceweb.db.mybatis.entity.EncyclopediaCatalog" >
+    insert into t_encyclopedia_catalog (id, name, typecode, 
+      type, level, parent, 
+      createdBy, createdOn, updateBy, 
+      updatedOn)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{typecode,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER}, #{parent,jdbcType=VARCHAR}, 
+      #{createdby,jdbcType=BIGINT}, #{createdon,jdbcType=TIMESTAMP}, #{updateby,jdbcType=BIGINT}, 
+      #{updatedon,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ifinanceweb.db.mybatis.entity.EncyclopediaCatalog" >
+    insert into t_encyclopedia_catalog
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="typecode != null" >
+        typecode,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="parent != null" >
+        parent,
+      </if>
+      <if test="createdby != null" >
+        createdBy,
+      </if>
+      <if test="createdon != null" >
+        createdOn,
+      </if>
+      <if test="updateby != null" >
+        updateBy,
+      </if>
+      <if test="updatedon != null" >
+        updatedOn,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="typecode != null" >
+        #{typecode,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="parent != null" >
+        #{parent,jdbcType=VARCHAR},
+      </if>
+      <if test="createdby != null" >
+        #{createdby,jdbcType=BIGINT},
+      </if>
+      <if test="createdon != null" >
+        #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateby != null" >
+        #{updateby,jdbcType=BIGINT},
+      </if>
+      <if test="updatedon != null" >
+        #{updatedon,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ifinanceweb.db.mybatis.entity.EncyclopediaCatalog" >
+    update t_encyclopedia_catalog
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="typecode != null" >
+        typecode = #{typecode,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="parent != null" >
+        parent = #{parent,jdbcType=VARCHAR},
+      </if>
+      <if test="createdby != null" >
+        createdBy = #{createdby,jdbcType=BIGINT},
+      </if>
+      <if test="createdon != null" >
+        createdOn = #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateby != null" >
+        updateBy = #{updateby,jdbcType=BIGINT},
+      </if>
+      <if test="updatedon != null" >
+        updatedOn = #{updatedon,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ifinanceweb.db.mybatis.entity.EncyclopediaCatalog" >
+    update t_encyclopedia_catalog
+    set name = #{name,jdbcType=VARCHAR},
+      typecode = #{typecode,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      level = #{level,jdbcType=INTEGER},
+      parent = #{parent,jdbcType=VARCHAR},
+      createdBy = #{createdby,jdbcType=BIGINT},
+      createdOn = #{createdon,jdbcType=TIMESTAMP},
+      updateBy = #{updateby,jdbcType=BIGINT},
+      updatedOn = #{updatedon,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
