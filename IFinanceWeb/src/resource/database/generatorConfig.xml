@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+	<context id="framework" targetRuntime="MyBatis3">
+
+		<property name="jdbcType" value="true" />
+
+		<!-- 生成的代码内是否含有注释内容 -->
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+			<property name="suppressDate" value="true" />
+		</commentGenerator>
+
+		<!-- 指定数据源 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://127.0.0.1:3306/ifwdb" userId="root"
+			password="zhong123" />
+		<!--DEVELOPMENTFW 只有一个属于forceBigDecimals，默认false。 如果字段精确超过0，生成BigDecimal 
+			如果字段精确是0，总长度10-18 生成Long; 如果字段精确是0，总长5-9生成Integer; 如果字段精确是0，总长小于5生成Short; 
+			如果forceBigDecimals为true,统一生成BigDecimal -->
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<javaModelGenerator targetPackage="com.ifinanceweb.db.mybatis.entity"
+			targetProject="IFinanceWeb\src\main\java">
+			<property name="enableSubPackages" value="false" />
+			<property name="trimStrings" value="true" />
+			<!--property name="rootClass" value="com.common.util.db.entity.AbstractEntity" /-->
+		</javaModelGenerator>
+
+		<sqlMapGenerator targetPackage="com.ifinanceweb.db.mybatis.mapper"
+			targetProject="IFinanceWeb\src\main\java">
+			<property name="enableSubPackages" value="false" />
+		</sqlMapGenerator>
+
+		<javaClientGenerator targetPackage="com.ifinanceweb.db.mybatis.mapper"
+			targetProject="IFinanceWeb\src\main\java" type="XMLMAPPER">
+			<property name="enableSubPackages" value="false" />
+			<property name="rootInterface" value="" />
+		</javaClientGenerator>
+
+		<table tableName="T_Encyclopedia_catalog" domainObjectName="EncyclopediaCatalog"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false" />
+
+		<table tableName="T_Encyclopedia_content" domainObjectName="EncyclopediaContent"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false" />
+	</context>
+</generatorConfiguration>
