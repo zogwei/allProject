@@ -72,12 +72,12 @@ public class EchoClient {
 
     public static void main(String[] args) throws Exception {
         // Print usage if no argument is specified.
-        if (args.length < 2 || args.length > 3) {
-            System.err.println(
-                    "Usage: " + EchoClient.class.getSimpleName() +
-                    " <host> <port> [<first message size>]");
-            return;
-        }
+//        if (args.length < 2 || args.length > 3) {
+//            System.err.println(
+//                    "Usage: " + EchoClient.class.getSimpleName() +
+//                    " <host> <port> [<first message size>]");
+//            return;
+//        }
 
         // Parse options.
         final String host = "127.0.0.1";
