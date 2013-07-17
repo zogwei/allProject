@@ -60,17 +60,17 @@ public class FactorialClient {
 
     public static void main(String[] args) throws Exception {
         // Print usage if no argument is specified.
-        if (args.length != 3) {
-            System.err.println(
-                    "Usage: " + FactorialClient.class.getSimpleName() +
-                    " <host> <port> <count>");
-            return;
-        }
+//        if (args.length != 3) {
+//            System.err.println(
+//                    "Usage: " + FactorialClient.class.getSimpleName() +
+//                    " <host> <port> <count>");
+//            return;
+//        }
 
         // Parse options.
-        String host = args[0];
-        int port = Integer.parseInt(args[1]);
-        int count = Integer.parseInt(args[2]);
+        String host = "127.0.0.1";
+        int port = 8080;
+        int count = 5;
         if (count <= 0) {
             throw new IllegalArgumentException("count must be a positive integer.");
         }

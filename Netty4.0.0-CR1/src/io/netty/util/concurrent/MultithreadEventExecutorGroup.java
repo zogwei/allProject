@@ -83,6 +83,7 @@ public abstract class MultithreadEventExecutorGroup implements EventExecutorGrou
      * Return a safe-copy of all of the children of this group.
      */
     protected Set<EventExecutor> children() {
+    	// ZW why it is safe copy
         Set<EventExecutor> children = Collections.newSetFromMap(new LinkedHashMap<EventExecutor, Boolean>());
         Collections.addAll(children, this.children);
         return children;
