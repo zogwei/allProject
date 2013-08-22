@@ -693,6 +693,7 @@ public abstract class SingleThreadEventExecutor extends AbstractEventExecutor {
             }
         }
 
+        //myDoubt wakeap()作用？
         if (!addTaskWakesUp) {
             wakeup(inEventLoop);
         }

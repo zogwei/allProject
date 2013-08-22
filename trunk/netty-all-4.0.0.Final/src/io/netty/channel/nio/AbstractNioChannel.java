@@ -159,7 +159,8 @@ public abstract class AbstractNioChannel extends AbstractChannel {
         @Override
         public void connect(
                 final SocketAddress remoteAddress, final SocketAddress localAddress, final ChannelPromise promise) {
-            if (!ensureOpen(promise)) {
+            // myDoubt 是否是出于代码健壮性考虑，在方法入口做合法性检查
+        	if (!ensureOpen(promise)) {
                 return;
             }
 
@@ -169,8 +170,10 @@ public abstract class AbstractNioChannel extends AbstractChannel {
                 }
 
                 boolean wasActive = isActive();
+                // myDoubt 如果已经是active，说明已经连接了，再次连接是否合理，而且下面代码还根据旧的和新的avctive状态，确实是否再次发送channelActive事件
                 if (doConnect(remoteAddress, localAddress)) {
                     promise.setSuccess();
+                    // myOpinion 连接成功 发起active实际
                     if (!wasActive && isActive()) {
                         pipeline().fireChannelActive();
                     }

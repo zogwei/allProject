@@ -37,7 +37,7 @@ public abstract class ChannelHandlerAdapter implements ChannelHandler {
      */
     @Override
     public void handlerAdded(ChannelHandlerContext ctx) throws Exception {
-        // NOOP
+        // NOOP myOpinion NOOP = no operation 
     }
 
     /**

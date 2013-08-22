@@ -27,6 +27,12 @@ import java.util.concurrent.TimeUnit;
  * to shut them down in a global fashion.
  *
  */
+/**
+ * myOpinion 这个先的线程模型，主要包括三个部分，EventLoopGroup 、EventLoop、 EventExecutor
+ * 		     1、EventExecutor，是执行器，循环执行事件模型
+ *           2、EventLoopGroup 是对EventLoop的集合
+ *           3、EventLoop 是最终的执行器，针对不同的方式有不同模型
+ */
 public interface EventExecutorGroup extends ScheduledExecutorService, Iterable<EventExecutor> {
 
     /**

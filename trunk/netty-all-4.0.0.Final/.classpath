@@ -2,7 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
-	<classpathentry kind="lib" path="lib/barchart-udt-bundle-2.2.5.jar"/>
+	<classpathentry kind="lib" path="lib/barchart-udt-bundle-2.2.5.jar" sourcepath="C:/Users/wzhong/.m2/repository/com/barchart/udt/barchart-udt-bundle/2.2.5/barchart-udt-bundle-2.2.5-sources.jar"/>
 	<classpathentry kind="lib" path="lib/cglib-nodep-2.2.2.jar"/>
 	<classpathentry kind="lib" path="lib/commons-logging-1.1.1.jar"/>
 	<classpathentry kind="lib" path="lib/easymock-3.1.jar"/>

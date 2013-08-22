@@ -35,6 +35,9 @@ final class ChannelOutboundBuffer {
     int currentMessageIndex;
     private long currentMessageListSize;
 
+    /**
+     * myDoubt messageList 本身就是一个容器，可以存储outBound的msg，为什么还定义数组？
+     */
     private MessageList[] messages;
     private long[] messageListSizes;
 
@@ -101,7 +104,8 @@ final class ChannelOutboundBuffer {
         if (messages[tail] == null) {
             return;
         }
-
+        //myDoubt 没看懂作用？ tail 起什么作用？
+        //         位运算相当于(this.tail = (tail + 1) &( messages.length - 1))
         if ((this.tail = tail + 1 & messages.length - 1) == head) {
             doubleCapacity();
         }
@@ -117,6 +121,7 @@ final class ChannelOutboundBuffer {
 
         if (newWriteBufferSize > highWaterMark) {
             if (WRITABLE_UPDATER.compareAndSet(this, 1, 0)) {
+            	// myOpinion 目前还没有 Channel 不能写状态 的事件实现，只是提供了这样一个事件
                 channel.pipeline().fireChannelWritabilityChanged();
             }
         }

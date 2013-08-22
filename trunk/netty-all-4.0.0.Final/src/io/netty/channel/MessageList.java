@@ -28,7 +28,15 @@ final class MessageList {
 
     private static final int DEFAULT_INITIAL_CAPACITY = 8;
     private static final int MIN_INITIAL_CAPACITY = 4;
-
+    
+    /**
+     *myOpinion Recycler 一个基于ThreadLocal变量的stack对象池，
+     *              1、可取出对象（对象池中无对象时，调用newObject（）的抽象方法在子类生成，本例中是使用的匿名类中定义newObject方法），
+     *              2、并可以将对象放回去重复利用，以便下次重复使用
+     *              3、newObject的参数Handle只是一个标示类，真正的内部存储对象的池是stack（继承stack），使用标示类可以屏蔽内部实现方式
+     *                 同时之所以有这个参数，是生成的对象需要有一个对象能处理生成对象的存储和循环使用
+     *myDoubt 为什么使用线程本地变量？
+     */
     private static final Recycler<MessageList> RECYCLER = new Recycler<MessageList>() {
         @Override
         protected MessageList newObject(Handle handle) {
@@ -129,6 +137,7 @@ final class MessageList {
         if (initialCapacity <= MIN_INITIAL_CAPACITY) {
             initialCapacity = MIN_INITIAL_CAPACITY;
         } else {
+        	// myDoubt 移动的效果initialCapacity >>>  1 把initialCapacity的符号位一起右移动，
             initialCapacity |= initialCapacity >>>  1;
             initialCapacity |= initialCapacity >>>  2;
             initialCapacity |= initialCapacity >>>  4;
