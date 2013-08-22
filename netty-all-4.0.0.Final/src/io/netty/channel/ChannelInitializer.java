@@ -51,6 +51,7 @@ public abstract class ChannelInitializer<C extends Channel> extends ChannelInbou
 
     private static final InternalLogger logger = InternalLoggerFactory.getInstance(ChannelInitializer.class);
 
+    
     /**
      * This method will be called once the {@link Channel} was registered. After the method returns this instance
      * will be removed from the {@link ChannelPipeline} of the {@link Channel}.
@@ -67,6 +68,11 @@ public abstract class ChannelInitializer<C extends Channel> extends ChannelInbou
         boolean removed = false;
         boolean success = false;
         try {
+        	/**
+             * myOpinion 注册的时候，会调用ChannelInitializer 类的initChannel（）方法 ，
+             * 一般生成匿名类作为处理器，初始化真正的处理器
+             * 调用完后删除初始化的这个处理器
+             */
             initChannel((C) ctx.channel());
             ctx.pipeline().remove(this);
             removed = true;

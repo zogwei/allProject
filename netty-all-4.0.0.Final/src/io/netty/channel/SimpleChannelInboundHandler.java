@@ -20,7 +20,9 @@ import io.netty.util.internal.TypeParameterMatcher;
 
 /**
  * {@link ChannelInboundHandlerAdapter} which allows to explicit only handle a specific type of messages.
- *
+ *   类型强制装换，使得子类知道输入的是什么对象类型的数据
+ *   使用channelRead0(ChannelHandlerContext ctx, I msg) 方法再做具体的业务处理
+ *   
  * For example here is an implementation which only handle {@link String} messages.
  *
  * <pre>

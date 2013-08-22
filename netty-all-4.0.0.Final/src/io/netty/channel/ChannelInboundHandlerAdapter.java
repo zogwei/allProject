@@ -15,6 +15,10 @@
  */
 package io.netty.channel;
 
+import io.netty.buffer.ByteBuf;
+
+import java.util.List;
+
 /**
  * Abstract base class for {@link ChannelInboundHandler} implementations which provide
  * implementations of all of their methods.
@@ -28,7 +32,27 @@ package io.netty.channel;
  * method returns automatically. If you are looking for a {@link ChannelInboundHandler} implementation that
  * releases the received messages automatically, please see {@link SimpleChannelInboundHandler}.
  * </p>
+ * <br>
+ *  
+ * myOpinion 重要的几个处理基类，多少处理类基础这些基类<br>
+ *           {@link ByteToMessageDecoder} ，<br>
+ *                   decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out)
+ *                   将接收的byte数组装换为具体的基础处理对象，如byte装换成long，或者一个完整的协议内容字符串<br>
+ * <br>                  
+ *           {@link ChannelInitializer }<br>
+ *           		实现initChannel(C ch) 方法，添加真正的handler处理链<br>
+ *  <br>         
+ *           {@link MessageToMessageDecoder<I> }<br>
+					对象装换，I代表接收的是什么类型的数据，<br>
+					decode(ChannelHandlerContext ctx, I msg, List<Object> out)<br>
+ * <br>                 
+ *           {@link SimpleChannelInboundHandler<I> }<br>
+ *           		channelRead0(ChannelHandlerContext ctx, I msg) <br>
+ *                   类型强制装换，使得子类知道输入的是什么对象类型的数据<br>
+ *                   使用channelRead0(ChannelHandlerContext ctx, I msg) 方法再做具体的业务处理 <br>
+ * 
  */
+
 public class ChannelInboundHandlerAdapter extends ChannelHandlerAdapter implements ChannelInboundHandler {
 
     /**

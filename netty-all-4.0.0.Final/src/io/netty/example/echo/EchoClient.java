@@ -51,6 +51,7 @@ public class EchoClient {
              .channel(NioSocketChannel.class)
              .option(ChannelOption.TCP_NODELAY, true)
              .handler(new ChannelInitializer<SocketChannel>() {
+            	 //myOpinion 在注册时调用inbound的处理器时，调用改匿名处理器
                  @Override
                  public void initChannel(SocketChannel ch) throws Exception {
                      ch.pipeline().addLast(

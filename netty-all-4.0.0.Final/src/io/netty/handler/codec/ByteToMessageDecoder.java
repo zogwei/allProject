@@ -119,6 +119,10 @@ public abstract class ByteToMessageDecoder extends ChannelInboundHandlerAdapter 
      */
     protected void handlerRemoved0(ChannelHandlerContext ctx) throws Exception { }
 
+    /**
+     * myOpinion NIOEventloop只负责不断的读取收到的字节，然后出发channelRead，该handler接收数据，使用cumulation基类以前读取的没有使用的byte，
+     *           与NIOEventloop相关的线程处理该线程的所有工作，包括接收数据，后面的业务处理，故针对单个channel的数据接收，数据发送，是单线程的,业务处理是否单线程待定。
+     */
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         RecyclableArrayList out = RecyclableArrayList.newInstance();
@@ -170,6 +174,16 @@ public abstract class ByteToMessageDecoder extends ChannelInboundHandlerAdapter 
             }
 
             for (int i = 0; i < out.size(); i ++) {
+            	/**
+            	 * myOpinion 接收inbound的数据，decode成多条msg，然后每条msg逐步的调用，后面的ctx中的方法
+            	 * 			说明：
+            	 *               1、每个handler处理一种或者多种事件，如read，inactive
+            	 *               2、多个handler组成的事件处理链扩散处理事件，需要看各个handler如何去扩散事件
+            	 *               	比如这里，接收一段数据，会产生多个逐条的由后面的handler处理的分支，
+            	 *                      如果这里不调用ctx.fireXXX()等方法，事件处理链就断掉，后面的handler就不会处理
+            	 *               3、整个事件处理链的数据传递，fire方法的入口就是数据的入口，经过处理后的结果作为下个handler的入口参数来传递数据，
+            	 *                   例如这里的处理结果，out，就作为下面的handler的入口参数传递进去
+            	 */
                 ctx.fireChannelRead(out.get(i));
             }
 

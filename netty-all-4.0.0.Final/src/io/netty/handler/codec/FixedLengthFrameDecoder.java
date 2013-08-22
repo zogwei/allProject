@@ -53,6 +53,9 @@ public class FixedLengthFrameDecoder extends ByteToMessageDecoder {
         this.frameLength = frameLength;
     }
 
+    /**
+     * myOpinion 参数中的 in，out，只是其父类方法中骨架方法的参数，不是整个事件处理链，使用in，out，来传递数据
+     */
     @Override
     protected final void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
         Object decoded = decode(ctx, in);

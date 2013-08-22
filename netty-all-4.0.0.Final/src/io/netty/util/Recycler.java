@@ -69,6 +69,7 @@ public abstract class Recycler<T> {
         final Thread thread;
         private T[] elements;
         private int size;
+        // myDoubt 为什么实用IdentityHashMap，并且指示boolean型 
         private final Map<T, Boolean> map = new IdentityHashMap<T, Boolean>(INITIAL_CAPACITY);
 
         @SuppressWarnings({ "unchecked", "SuspiciousArrayCast" })

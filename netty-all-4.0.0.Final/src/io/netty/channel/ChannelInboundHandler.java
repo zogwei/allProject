@@ -53,6 +53,7 @@ public interface ChannelInboundHandler extends ChannelHandler {
      * attempt to read an inbound data from the current {@link Channel} will be made until
      * {@link ChannelHandlerContext#read()} is called.
      */
+    // myDoubt 什么是执行？一段输入读完成时吗？
     void channelReadComplete(ChannelHandlerContext ctx) throws Exception;
 
     /**

@@ -13,10 +13,13 @@
  * License for the specific language governing permissions and limitations
  * under the License.
  */
-package io.netty.handler.codec;
+package com.netty.test;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
+import io.netty.handler.codec.ByteToMessageDecoder;
+import io.netty.handler.codec.CorruptedFrameException;
+import io.netty.handler.codec.TooLongFrameException;
 import io.netty.handler.codec.serialization.ObjectDecoder;
 
 import java.nio.ByteOrder;
@@ -28,7 +31,7 @@ import java.util.List;
  * decode a binary message which has an integer header field that represents the
  * length of the message body or the whole message.
  * <p>
- * {@link LengthFieldBasedFrameDecoder} has many configuration parameters so
+ * {@link LengthFieldBasedExFrameDecoder} has many configuration parameters so
  * that it can decode any message with a length field, which is often seen in
  * proprietary client-server protocols. Here are some example that will give
  * you the basic idea on which option does what.
@@ -179,14 +182,14 @@ import java.util.List;
  * | 0xCA | 0x0010 | 0xFE | "HELLO, WORLD" |      | 0xFE | "HELLO, WORLD" |
  * +------+--------+------+----------------+      +------+----------------+
  * </pre>
- * myOpinion 在与设备连接的协议解析中，非常实用 ,但存在几个问题未解决
- * 			1、未解决判断header的问题
- *          2、未解决接收的数据包含无效数据的问题
- *          3、未解决一个端口接收多种类型协议数据问题
+ * myOpinion 在与设备连接的协议解析中，非常实用 
+ * 			1、解决判断header的问题
+ *          2、丢弃无效数据的问题
+ *          3、解决一个端口接收多种类型协议数据问题
  * 
  * @see LengthFieldPrepender
  */
-public class LengthFieldBasedFrameDecoder extends ByteToMessageDecoder {
+public class LengthFieldBasedExFrameDecoder extends ByteToMessageDecoder {
 
     private final ByteOrder byteOrder;
     private final int maxFrameLength;
@@ -199,6 +202,8 @@ public class LengthFieldBasedFrameDecoder extends ByteToMessageDecoder {
     private boolean discardingTooLongFrame;
     private long tooLongFrameLength;
     private long bytesToDiscard;
+    
+    private char[] headers;
 
     /**
      * Creates a new instance.
@@ -212,7 +217,7 @@ public class LengthFieldBasedFrameDecoder extends ByteToMessageDecoder {
      * @param lengthFieldLength
      *        the length of the length field
      */
-    public LengthFieldBasedFrameDecoder(
+    public LengthFieldBasedExFrameDecoder(
             int maxFrameLength,
             int lengthFieldOffset, int lengthFieldLength) {
         this(maxFrameLength, lengthFieldOffset, lengthFieldLength, 0, 0);
@@ -234,7 +239,7 @@ public class LengthFieldBasedFrameDecoder extends ByteToMessageDecoder {
      * @param initialBytesToStrip
      *        the number of first bytes to strip out from the decoded frame
      */
-    public LengthFieldBasedFrameDecoder(
+    public LengthFieldBasedExFrameDecoder(
             int maxFrameLength,
             int lengthFieldOffset, int lengthFieldLength,
             int lengthAdjustment, int initialBytesToStrip) {
@@ -267,7 +272,7 @@ public class LengthFieldBasedFrameDecoder extends ByteToMessageDecoder {
      *        is thrown after the entire frame that exceeds <tt>maxFrameLength</tt>
      *        has been read.
      */
-    public LengthFieldBasedFrameDecoder(
+    public LengthFieldBasedExFrameDecoder(
             int maxFrameLength, int lengthFieldOffset, int lengthFieldLength,
             int lengthAdjustment, int initialBytesToStrip, boolean failFast) {
         this(
@@ -300,7 +305,7 @@ public class LengthFieldBasedFrameDecoder extends ByteToMessageDecoder {
      *        is thrown after the entire frame that exceeds <tt>maxFrameLength</tt>
      *        has been read.
      */
-    public LengthFieldBasedFrameDecoder(
+    public LengthFieldBasedExFrameDecoder(
             ByteOrder byteOrder, int maxFrameLength, int lengthFieldOffset, int lengthFieldLength,
             int lengthAdjustment, int initialBytesToStrip, boolean failFast) {
         if (byteOrder == null) {
@@ -504,4 +509,6 @@ public class LengthFieldBasedFrameDecoder extends ByteToMessageDecoder {
                             " - discarding");
         }
     }
+    
+    
 }

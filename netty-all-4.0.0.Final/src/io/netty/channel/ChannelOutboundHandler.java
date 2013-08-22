@@ -69,10 +69,16 @@ public interface ChannelOutboundHandler extends ChannelHandler {
      * @param promise           the {@link ChannelPromise} to notify once the operation completes
      * @throws Exception        thrown if an error accour
      */
+    /**
+     * myDoubt inBound 也有deregister ，区别？
+     */
     void deregister(ChannelHandlerContext ctx, ChannelPromise promise) throws Exception;
 
     /**
      * Intercepts {@link ChannelHandlerContext#read()}.
+     */
+    /**
+     * myDoubt 与inbound 的channelRead（）区别？
      */
     void read(ChannelHandlerContext ctx) throws Exception;
 
