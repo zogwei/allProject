@@ -26,6 +26,12 @@ import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
  */
 public class DefaultAttributeMap implements AttributeMap {
 
+	/**
+	 * myOpinion map存储attributekey ,attributeValue,
+	 *               每个key中都有一个静态map所有key,
+	 *               attributeValue中包括key
+	 * myDoubt 对于这种设计的目的未能理解？
+	 */
     @SuppressWarnings("rawtypes")
     private static final AtomicReferenceFieldUpdater<DefaultAttributeMap, Map> updater =
             AtomicReferenceFieldUpdater.newUpdater(DefaultAttributeMap.class, Map.class, "map");
@@ -34,6 +40,7 @@ public class DefaultAttributeMap implements AttributeMap {
     @SuppressWarnings("UnusedDeclaration")
     private volatile Map<AttributeKey<?>, Attribute<?>> map;
 
+   
     @Override
     public <T> Attribute<T> attr(AttributeKey<T> key) {
         Map<AttributeKey<?>, Attribute<?>> map = this.map;
@@ -45,6 +52,9 @@ public class DefaultAttributeMap implements AttributeMap {
             }
         }
 
+        /**
+         * myDoubt 是否考虑使用普通读写锁，提高性能
+         */
         synchronized (map) {
             @SuppressWarnings("unchecked")
             Attribute<T> attr = (Attribute<T>) map.get(key);
@@ -56,6 +66,12 @@ public class DefaultAttributeMap implements AttributeMap {
         }
     }
 
+    /**
+     * myOpinion 集成AtomicReference，说明基本AtomicReference的特性，
+     *          即Attibute也可以拥有AtomicReference的功能
+     *          从面向对象的思想看，DefaultAttribute 是AtomicReference的一个抽象
+     */
+    
     private static final class DefaultAttribute<T> extends AtomicReference<T> implements Attribute<T> {
 
         private static final long serialVersionUID = -2661411462200283011L;
@@ -101,6 +117,6 @@ public class DefaultAttributeMap implements AttributeMap {
             synchronized (map) {
                 map.remove(key);
             }
-        }
+     }
     }
 }

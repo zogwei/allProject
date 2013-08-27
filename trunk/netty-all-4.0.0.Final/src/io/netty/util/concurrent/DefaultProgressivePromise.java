@@ -16,6 +16,13 @@
 
 package io.netty.util.concurrent;
 
+/**
+ * myTask 需要深入研究
+ * @author wzhong
+ *
+ * @param <V>
+ */
+
 public class DefaultProgressivePromise<V> extends DefaultPromise<V> implements ProgressivePromise<V> {
 
     /**
