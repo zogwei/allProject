@@ -91,6 +91,11 @@ public class DefaultPromise<V> extends AbstractFuture<V> implements Promise<V> {
         return isDone0(result);
     }
 
+    /**
+     * myOpinion 把isDone0抽取出来是为了 复用，
+     * myDoubt 之所以不复用isDone(),是否是考虑把复用逻辑抽取独立出来，以便一旦 isDone()逻辑发生变化而修改，不会影响其他复用逻辑。
+     */
+    
     private static boolean isDone0(Object result) {
         return result != null && result != UNCANCELLABLE;
     }

@@ -26,6 +26,10 @@ import java.util.concurrent.TimeoutException;
  */
 public abstract class AbstractFuture<V> implements Future<V> {
 
+	/**
+	 * myDoubt 继承与 java.util.concurrent.Future<V>，重新override，覆写了实现，是否必要？
+	 */
+	
     @Override
     public V get() throws InterruptedException, ExecutionException {
         await();

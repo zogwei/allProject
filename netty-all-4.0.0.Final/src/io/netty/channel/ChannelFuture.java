@@ -24,6 +24,10 @@ import java.util.concurrent.TimeUnit;
 
 
 /**
+ * myOpinion 阅读这里的注释，
+ * 			 1、  ChannelFuture 分为完成的，未完成的，未完成的分 成功，失败，取消三类
+ *           2、不要在ChannelHandler 中调用 await（）方法，否则 死锁
+ *           3、优先使用addListener处理完成后的处理任务。
  * The result of an asynchronous {@link Channel} I/O operation.
  * <p>
  * All I/O operations in Netty are asynchronous.  It means any I/O calls will
