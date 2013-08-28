@@ -130,6 +130,9 @@ public class DefaultPromise<V> extends AbstractFuture<V> implements Promise<V> {
         }
 
         synchronized (this) {
+        	/**
+        	 * myOpinion 编程技巧,同步块外比较过后,进入同步块再比较一次,以确保比较的结果正确
+        	 */
             if (!isDone()) {
                 if (listeners == null) {
                     listeners = listener;
@@ -237,6 +240,9 @@ public class DefaultPromise<V> extends AbstractFuture<V> implements Promise<V> {
             throw new InterruptedException(toString());
         }
 
+        /**
+         * myDoubt 为什么使用循环和同步？ 
+         */
         synchronized (this) {
             while (!isDone()) {
                 checkDeadLock();
@@ -587,6 +593,12 @@ public class DefaultPromise<V> extends AbstractFuture<V> implements Promise<V> {
             final EventExecutor eventExecutor, final Future<?> future, final GenericFutureListener<?> l) {
 
         if (eventExecutor.inEventLoop()) {
+        	/**
+        	 * myOpinion 1 、解决Listener嵌套的层数问题  2、使用线程本地变量，因为与线程相关，而且只是单线程修改，无需线程同步变量
+        	 * 			  promise存在一个Listener A,在Listener A的operationComplete处理方法中，又调用了addListener方法添加Listener B，
+        	 * 				去执行添加Listener B的逻辑，这时Listener A还未执行完，LISTENER_STACK_DEPTH 还是加了1的，
+        	 * 				执行添加Listener B的逻辑又会让此处的LISTENER_STACK_DEPTH加1，
+        	 */
             final Integer stackDepth = LISTENER_STACK_DEPTH.get();
             if (stackDepth < MAX_LISTENER_STACK_DEPTH) {
                 LISTENER_STACK_DEPTH.set(stackDepth + 1);
