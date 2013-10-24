@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data-sources>
+    <data-source key="mysql">
+      <set-property property="driverClass" value="org.gjt.mm.mysql.Driver" />
+      <set-property property="url" value="jdbc:mysql://localhost:3306/manage" />
+      <set-property property="user" value="root" />
+      <set-property property="password" value="root" />
+    </data-source>
+    <data-source key="oracle">
+      <set-property property="driverClass" value="org.gjt.mm.mysql.Driver" />
+      <set-property property="url" value="jdbc:mysql://localhost:3306/manage" />
+      <set-property property="user" value="root" />
+      <set-property property="password" value="root" />
+    </data-source>    
+</data-sources>
