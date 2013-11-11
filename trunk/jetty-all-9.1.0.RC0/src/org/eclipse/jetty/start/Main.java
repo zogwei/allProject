@@ -501,9 +501,9 @@ public class Main
     }
 
     /**
-     * myOpinion ´¦ÀíÆô¶¯²ÎÊıºÍÅäÖÃÎÄ¼ş£¬
-     *           ²ÎÊıÀ´Ô´Èı¸öµØ·½£º1¡¢Æô¶¯Ê±cmd²ÎÊı  2¡¢start.ini 3.start.dÄ¿Â¼ÏÂµÄÅäÖÃÎÄ¼ş
-     *                            4¡¢.ini ÎÄ¼şÅäÖÃµÄ--moduleÖ¸ÃûµÄmodulesÏÂµÄmodÎÄ¼şÅäÖÃµÄĞÅÏ¢
+     * myOpinion å¤„ç†å¯åŠ¨å‚æ•°å’Œé…ç½®æ–‡ä»¶ï¼Œ
+     *           å‚æ•°æ¥æºä¸‰ä¸ªåœ°æ–¹ï¼š1ã€å¯åŠ¨æ—¶cmdå‚æ•°  2ã€start.ini 3.start.dç›®å½•ä¸‹çš„é…ç½®æ–‡ä»¶
+     *                            4ã€.ini æ–‡ä»¶é…ç½®çš„--moduleæŒ‡åçš„modulesä¸‹çš„modæ–‡ä»¶é…ç½®çš„ä¿¡æ¯
      * 				
      * @param cmdLine
      * @return
@@ -523,7 +523,7 @@ public class Main
 
         // ------------------------------------------------------------
         // 2) Start Logging 
-        // myOpinion ÉèÖÃjetty.home jetty.base
+        // myOpinion è®¾ç½®jetty.home jetty.base
         StartLog.getInstance().initialize(baseHome,args);
 
         StartLog.debug("jetty.home=%s",baseHome.getHome());
@@ -533,7 +533,7 @@ public class Main
 
         // ------------------------------------------------------------
         // 3) Load Inis
-        // myOpinion ¶ÁÈ¡jetty homeÄ¿Â¼ÏÂµÄÅäÖÃÎÄ¼şstart.ini ºÍ start.dÄ¿Â¼ÏÂµÄËùÓĞºó×ºÎªiniµÄÅäÖÃÎÄ¼ş
+        // myOpinion è¯»å–jetty homeç›®å½•ä¸‹çš„é…ç½®æ–‡ä»¶start.ini å’Œ start.dç›®å½•ä¸‹çš„æ‰€æœ‰åç¼€ä¸ºiniçš„é…ç½®æ–‡ä»¶
         File start_ini = baseHome.getBaseFile("start.ini");
         if (FS.canReadFile(start_ini))
         {
@@ -565,30 +565,30 @@ public class Main
         StartLog.debug("Parsing collected arguments");
         args.parseCommandLine();
 
-        // 5) Module Registration ×¢²áËùÓĞÔÚmodulesÎÄ¼ş¼ĞÏÂµÄmodule£¬Éú³É¶ÔÏóÀà
+        // 5) Module Registration æ³¨å†Œæ‰€æœ‰åœ¨modulesæ–‡ä»¶å¤¹ä¸‹çš„moduleï¼Œç”Ÿæˆå¯¹è±¡ç±»
         Modules modules = new Modules();
         StartLog.debug("Registering all modules");
         modules.registerAll(baseHome);
 
-        // 6) Active Module Resolution  ½«ÅäÖÃµÄmoduleÉèÖÃÎªenable£¬²¢ÉèÖÃÀ´Ô´µÄÅäÖÃÎÄ¼şÂ·¾¶
+        // 6) Active Module Resolution  å°†é…ç½®çš„moduleè®¾ç½®ä¸ºenableï¼Œå¹¶è®¾ç½®æ¥æºçš„é…ç½®æ–‡ä»¶è·¯å¾„
         for (String enabledModule : args.getEnabledModules())
         {
             List<String> sources = args.getSources(enabledModule);
             modules.enable(enabledModule,sources);
         }
 
-        //½¨Á¢ module µÄ¸¸×Ó¹ØÏµÊ÷
+        //å»ºç«‹ module çš„çˆ¶å­å…³ç³»æ ‘
         StartLog.debug("Building Module Graph");
         modules.buildGraph();
 
         
         args.setAllModules(modules);
-        //enable  ËùÓĞµÄmodule °üÀ¨moduleµÄÒÀÀµµÄmodules
+        //enable  æ‰€æœ‰çš„module åŒ…æ‹¬moduleçš„ä¾èµ–çš„modules
         List<Module> activeModules = modules.resolveEnabled();
 
         // 7) Lib & XML Expansion / Resolution
         //Build up the Classpath and XML file references based on enabled Module list.
-        // ¸ù¾İ¸÷¸ömoduleÎÄ¼şµÄÅäÖÃ£¬Ôö¼Ó classpath file xmlµÄÅäÖÃ
+        // æ ¹æ®å„ä¸ªmoduleæ–‡ä»¶çš„é…ç½®ï¼Œå¢åŠ  classpath file xmlçš„é…ç½®
         args.expandModules(baseHome,activeModules);
 
         // 8) Resolve Extra XMLs
