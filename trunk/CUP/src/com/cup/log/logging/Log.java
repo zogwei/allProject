@@ -46,6 +46,9 @@ package com.cup.log.logging;
  */
 public interface Log {
 
+    public final static String EXCEPTION= "EXCEPTION ";
+    public final static String IGNORED= "IGNORED ";
+    
     /**
      * Return the name of this {@link Log} instance.
      *
