@@ -37,7 +37,7 @@ import java.util.Set;
 
 /**
  * The Arguments required to start Jetty.
- * myOpinion ��������������ļ����󣬰��������е���������������ļ�
+ * myOpinion 启动参数和配置文件对象，包括了所有的启动参数和配置文件
  */
 public class StartArgs
 {
@@ -73,24 +73,24 @@ public class StartArgs
     private Set<String> modules = new HashSet<>();
     //--module= sources.put(moduleName,list);
     private Map<String, List<String>> sources = new HashMap<>();
-    //--download= ���Զ��ŷָ�
+    //--download= 可以逗号分隔
     private List<FileArg> files = new ArrayList<>();
     //--lib=
     private Classpath classpath;
-    // .xml�ļ�
+    // .xml文件
     private List<String> xmlRefs = new ArrayList<>();
     private List<File> xmls = new ArrayList<>();
-    //= keyvalue ��
+    //= keyvalue 对
     private Properties properties = new Properties();
     //-D
     private Set<String> systemPropertyKeys = new HashSet<>();
-    //- jvm ����
+    //- jvm 参数
     private List<String> jvmArgs = new ArrayList<>();
     //--add-to-startd
     private List<String> moduleStartdIni = new ArrayList<>();
     //--add-to-start
     private List<String> moduleStartIni = new ArrayList<>();
-    //= keyvalue ��
+    //= keyvalue 对
     private Map<String,String> propertySource = new HashMap<>();
     //--write-module-graph=
     private String moduleGraphFilename;
@@ -99,18 +99,18 @@ public class StartArgs
     private Modules allModules;
     // Should the server be run?
     private boolean run = true;
-    //���а���  ֻ��cmd����
+    //运行帮助  只能cmd参数
     private boolean help = false;
-    //�Ƿ���stop���� ֻ��cmd����
+    //是否是stop命令 只能cmd参数
     private boolean stopCommand = false;
     //--list-modules
     private boolean listModules = false;
-    //�г�class path if ("--list-classpath".equals(arg) || "--version".equals(arg) || "-v".equals(arg) || "--info".equals(arg))
+    //列出class path if ("--list-classpath".equals(arg) || "--version".equals(arg) || "-v".equals(arg) || "--info".equals(arg))
     private boolean listClasspath = false;
-    //�г� ����
+    //列出 配置
     private boolean listConfig = false;
     private boolean version = false;
-    //--dry-run ֻ���������в���
+    //--dry-run 只能是命令行参数
     private boolean dryRun = false;
     //--exec
     private boolean exec = false;
@@ -616,7 +616,7 @@ public class StartArgs
         }
     }
 
-    //myOpinion 核心方法，解析配置
+    //myOpinion 处理参数和配置文件 的具体item
     public void parse(final String rawarg, String source)
     {
         if (rawarg == null)
