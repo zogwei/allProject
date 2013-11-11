@@ -37,7 +37,7 @@ import java.util.Set;
 
 /**
  * The Arguments required to start Jetty.
- * myOpinion Æô¶¯²ÎÊıºÍÅäÖÃÎÄ¼ş¶ÔÏó£¬°üÀ¨ÁËËùÓĞµÄÆô¶¯²ÎÊıºÍÅäÖÃÎÄ¼ş
+ * myOpinion ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ó£¬°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½
  */
 public class StartArgs
 {
@@ -73,24 +73,24 @@ public class StartArgs
     private Set<String> modules = new HashSet<>();
     //--module= sources.put(moduleName,list);
     private Map<String, List<String>> sources = new HashMap<>();
-    //--download= ¿ÉÒÔ¶ººÅ·Ö¸ô
+    //--download= ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½Å·Ö¸ï¿½
     private List<FileArg> files = new ArrayList<>();
     //--lib=
     private Classpath classpath;
-    // .xmlÎÄ¼ş
+    // .xmlï¿½Ä¼ï¿½
     private List<String> xmlRefs = new ArrayList<>();
     private List<File> xmls = new ArrayList<>();
-    //= keyvalue ¶Ô
+    //= keyvalue ï¿½ï¿½
     private Properties properties = new Properties();
     //-D
     private Set<String> systemPropertyKeys = new HashSet<>();
-    //- jvm ²ÎÊı
+    //- jvm ï¿½ï¿½ï¿½ï¿½
     private List<String> jvmArgs = new ArrayList<>();
     //--add-to-startd
     private List<String> moduleStartdIni = new ArrayList<>();
     //--add-to-start
     private List<String> moduleStartIni = new ArrayList<>();
-    //= keyvalue ¶Ô
+    //= keyvalue ï¿½ï¿½
     private Map<String,String> propertySource = new HashMap<>();
     //--write-module-graph=
     private String moduleGraphFilename;
@@ -99,18 +99,18 @@ public class StartArgs
     private Modules allModules;
     // Should the server be run?
     private boolean run = true;
-    //ÔËĞĞ°ïÖú  Ö»ÄÜcmd²ÎÊı
+    //ï¿½ï¿½ï¿½Ğ°ï¿½ï¿½ï¿½  Ö»ï¿½ï¿½cmdï¿½ï¿½ï¿½ï¿½
     private boolean help = false;
-    //ÊÇ·ñÊÇstopÃüÁî Ö»ÄÜcmd²ÎÊı
+    //ï¿½Ç·ï¿½ï¿½ï¿½stopï¿½ï¿½ï¿½ï¿½ Ö»ï¿½ï¿½cmdï¿½ï¿½ï¿½ï¿½
     private boolean stopCommand = false;
     //--list-modules
     private boolean listModules = false;
-    //ÁĞ³öclass path if ("--list-classpath".equals(arg) || "--version".equals(arg) || "-v".equals(arg) || "--info".equals(arg))
+    //ï¿½Ğ³ï¿½class path if ("--list-classpath".equals(arg) || "--version".equals(arg) || "-v".equals(arg) || "--info".equals(arg))
     private boolean listClasspath = false;
-    //ÁĞ³ö ÅäÖÃ
+    //ï¿½Ğ³ï¿½ ï¿½ï¿½ï¿½ï¿½
     private boolean listConfig = false;
     private boolean version = false;
-    //--dry-run Ö»ÄÜÊÇÃüÁîĞĞ²ÎÊı
+    //--dry-run Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ²ï¿½ï¿½ï¿½
     private boolean dryRun = false;
     //--exec
     private boolean exec = false;
@@ -616,7 +616,7 @@ public class StartArgs
         }
     }
 
-    //myOpinion ´¦Àí²ÎÊıºÍÅäÖÃÎÄ¼ş µÄ¾ßÌåitem
+    //myOpinion æ ¸å¿ƒæ–¹æ³•ï¼Œè§£æé…ç½®
     public void parse(final String rawarg, String source)
     {
         if (rawarg == null)
