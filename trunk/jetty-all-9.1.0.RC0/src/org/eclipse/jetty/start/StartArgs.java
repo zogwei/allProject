@@ -69,30 +69,158 @@ public class StartArgs
     private static final String SERVER_MAIN = "org.eclipse.jetty.xml.XmlConfiguration";
 
     private List<String> commandLine = new ArrayList<>();
-    //--module= modules name
+    //--module= modules name------------------------------------
+    /**
+     *  if (arg.startsWith("--module="))
+        {
+            for (String moduleName : getValues(arg))
+            {
+                modules.add(moduleName);
+                List<String> list = sources.get(moduleName);
+                if (list == null)
+                {
+                    list = new ArrayList<String>();
+                    sources.put(moduleName,list);
+                }
+                list.add(source);
+            }
+            return;
+        }
+     */
     private Set<String> modules = new HashSet<>();
     //--module= sources.put(moduleName,list);
     private Map<String, List<String>> sources = new HashMap<>();
-    //--download= 可以逗号分隔
+    
+    //--download= 可以逗号分隔    if (arg.startsWith("--download=")) ------------------------------------
     private List<FileArg> files = new ArrayList<>();
-    //--lib=
+    
+    //--lib=  ------------------------------------
+    /**
+     * if(arg.startsWith("--lib="))
+        {
+            String cp = getValue(arg);
+            classpath.addClasspath(cp);
+            return;
+        }
+     */
     private Classpath classpath;
-    // .xml文件
+    
+    // .xml文件------------------------------------
+    /**
+     *  // Is this an xml file?
+        if (FS.isXml(arg))
+        {
+            // only add non-duplicates
+            if (!xmlRefs.contains(arg))
+            {
+                xmlRefs.add(arg);
+            }
+            return;
+        }
+     */
     private List<String> xmlRefs = new ArrayList<>();
     private List<File> xmls = new ArrayList<>();
-    //= keyvalue 对
+    
+    //= keyvalue 对------------------------------------
+    /**
+     * int idx = arg.indexOf('=');
+        if (idx >= 0)
+        {
+            String key = arg.substring(0,idx);
+            String value = arg.substring(idx + 1);
+            
+            if (source!=CMD_LINE_SOURCE)
+            {
+                if (propertySource.containsKey(key))
+                    throw new UsageException(ERR_BAD_ARG,"Property %s in %s already set in %s",key,source,propertySource.get(key));
+                propertySource.put(key,source);
+            }
+            properties.setProperty(key,value);
+            return;
+        }
+     */
     private Properties properties = new Properties();
-    //-D
-    private Set<String> systemPropertyKeys = new HashSet<>();
-    //- jvm 参数
-    private List<String> jvmArgs = new ArrayList<>();
-    //--add-to-startd
-    private List<String> moduleStartdIni = new ArrayList<>();
-    //--add-to-start
-    private List<String> moduleStartIni = new ArrayList<>();
-    //= keyvalue 对
+  //= keyvalue 对
     private Map<String,String> propertySource = new HashMap<>();
-    //--write-module-graph=
+    
+    
+    //-D ------------------------------------
+    /**
+     * if (arg.startsWith("-D"))
+        {
+            String[] assign = arg.substring(2).split("=",2);
+            systemPropertyKeys.add(assign[0]);
+            switch (assign.length)
+            {
+                case 2:
+                    System.setProperty(assign[0],assign[1]);
+                    break;
+                case 1:
+                    System.setProperty(assign[0],"");
+                    break;
+                default:
+                    break;
+            }
+            return;
+        }
+     */
+    private Set<String> systemPropertyKeys = new HashSet<>();
+    
+     
+    //- jvm 参数------------------------------------
+    /**
+     * if (arg.startsWith("-"))
+        {
+            // Only add non-duplicates
+            if (!jvmArgs.contains(arg))
+            {
+                jvmArgs.add(arg);
+            }
+            return;
+        }
+     */
+    private List<String> jvmArgs = new ArrayList<>();
+    
+    //--add-to-startd  ------------------------------------
+    /**
+     *  if (arg.startsWith("--add-to-startd"))
+        {
+            if (!CMD_LINE_SOURCE.equals(source))
+            {
+                throw new UsageException(ERR_BAD_ARG,"%s not allowed in %s",arg,source);
+            }
+            moduleStartdIni.addAll(getValues(arg));
+            run = false;
+            return;
+        }
+     */
+    private List<String> moduleStartdIni = new ArrayList<>();
+    
+    
+    //--add-to-start  ------------------------------------
+    /**
+     * if (arg.startsWith("--add-to-start"))
+        {
+            if (!CMD_LINE_SOURCE.equals(source))
+            {
+                throw new UsageException(ERR_BAD_ARG,"%s not allowed in %s",arg,source);
+            }
+            moduleStartIni.addAll(getValues(arg));
+            run = false;
+            return;
+        }
+     */
+    private List<String> moduleStartIni = new ArrayList<>();
+    
+    //--write-module-graph=  ------------------------------------
+    /**
+     *   if (arg.startsWith("--write-module-graph="))
+        {
+            this.moduleGraphFilename = getValue(arg);
+            run = false;
+            return;
+        }
+     */
     private String moduleGraphFilename;
 
     //
@@ -100,19 +228,80 @@ public class StartArgs
     // Should the server be run?
     private boolean run = true;
     //运行帮助  只能cmd参数
+    /**
+     * if ("--help".equals(arg) || "-?".equals(arg))
+        {
+            if (!CMD_LINE_SOURCE.equals(source))
+            {
+                throw new UsageException(ERR_BAD_ARG,"%s not allowed in %s",arg,source);
+            }
+
+            help = true;
+            run = false;
+            return;
+        }
+     */
     private boolean help = false;
     //是否是stop命令 只能cmd参数
+    /**
+     *  if ("--stop".equals(arg))
+        {
+            if (!CMD_LINE_SOURCE.equals(source))
+            {
+                throw new UsageException(ERR_BAD_ARG,"%s not allowed in %s",arg,source);
+            }
+            stopCommand = true;
+            run = false;
+            return;
+        }
+     */
     private boolean stopCommand = false;
     //--list-modules
+    /**
+     * // Module Management
+        if ("--list-modules".equals(arg))
+        {
+            listModules = true;
+            run = false;
+            return;
+        }
+     */
     private boolean listModules = false;
     //列出class path if ("--list-classpath".equals(arg) || "--version".equals(arg) || "-v".equals(arg) || "--info".equals(arg))
+    /**
+     *  if ("--list-classpath".equals(arg) || "--version".equals(arg) || "-v".equals(arg) || "--info".equals(arg))
+        {
+            listClasspath = true;
+            run = false;
+            return;
+        }
+     */
     private boolean listClasspath = false;
     //列出 配置
     private boolean listConfig = false;
     private boolean version = false;
     //--dry-run 只能是命令行参数
+    /**
+     *  if ("--dry-run".equals(arg) || "--exec-print".equals(arg))
+        {
+            if (!CMD_LINE_SOURCE.equals(source))
+            {
+                throw new UsageException(ERR_BAD_ARG,"%s not allowed in %s",arg,source);
+            }
+            dryRun = true;
+            run = false;
+            return;
+        }
+     */
     private boolean dryRun = false;
     //--exec
+    /**
+     *  if ("--exec".equals(arg))
+        {
+            exec = true;
+            return;
+        }
+     */
     private boolean exec = false;
 
     public StartArgs(String[] commandLineArgs)
