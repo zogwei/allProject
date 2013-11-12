@@ -577,18 +577,20 @@ public class Main
             modules.enable(enabledModule,sources);
         }
 
-        //建立 module 的父子关系树
+        //建立 module 的父子关系树  Using the provided dependencies, build the module graph
         StartLog.debug("Building Module Graph");
         modules.buildGraph();
 
         
         args.setAllModules(modules);
-        //enable  所有的module 包括module的依赖的modules
+        //enable  所有的module并排序, 包括module的依赖的父modules，optional的父module根据其自身是否为enable设置为enable
+        //     * Resolve the execution order of the enabled modules, and all dependant modules, based on depth first transitive reduction.
+        //the list of active modules (plus dependant modules), in execution order.
         List<Module> activeModules = modules.resolveEnabled();
 
         // 7) Lib & XML Expansion / Resolution
         //Build up the Classpath and XML file references based on enabled Module list.
-        // 根据各个module文件的配置，增加 classpath file xml的配置
+        // 根据各个module文件的配置，增加 classpath lib、file 和 xml的配置
         args.expandModules(baseHome,activeModules);
 
         // 8) Resolve Extra XMLs
