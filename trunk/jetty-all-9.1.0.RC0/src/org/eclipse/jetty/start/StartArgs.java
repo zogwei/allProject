@@ -223,7 +223,7 @@ public class StartArgs
      */
     private String moduleGraphFilename;
 
-    //
+    // 所有modules，设置了父子关系，设置了是否enable，设置了深度
     private Modules allModules;
     // Should the server be run?
     private boolean run = true;
