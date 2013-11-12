@@ -8,23 +8,34 @@ import java.util.Map;
 import java.util.Properties;
 
 import org.xml.sax.SAXException;
+
 import com.cup.createbean.XmlConfiguration;
 import com.cup.createbean.util.Resource;
+import com.cup.util.DomUtil;
 
 public class CreatebeanTest {
+	private static final com.cup.log.logging.Log log=
+	        com.cup.log.logging.LogFactory.getLog( CreatebeanTest.class );
 
 	public static void main(String[] args) {
 		 XmlConfiguration last = null;
-         Object[] obj = new Object[args.length];
+		 
+		 String[] myarg = {"E:/myDoc/project2/CUP/src/com/cup/sample/createbean/testBean.properties",
+				            "E:/myDoc/project2/CUP/src/com/cup/sample/createbean/sample1.xml" };
+		 args = myarg;
+		 
+         Object[] obj = new Object[myarg.length];
          
-         Properties properties = null;
+         Properties properties = new Properties();
 		
 		try {
 			
 			for (String arg : args)
             {
                 if (arg.toLowerCase(Locale.ENGLISH).endsWith(".properties"))
+//                	//E:\myDoc\project2\CUP\testBean.properties 
                     properties.load(Resource.newResource(arg).getInputStream());
+                	
             }
 			
 			for (int i = 0; i < args.length; i++)

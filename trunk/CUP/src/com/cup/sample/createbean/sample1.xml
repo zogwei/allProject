@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "http://www.eclipse.org/jetty/configure_9_0.dtd">
+<Configure id="myBean" class="com.cup.sample.createbean.MyBean">
+	<Call name="setTestBean">
+          <Arg>
+            <New class="com.cup.sample.createbean.TestBean">
+            </New>
+          </Arg>
+     </Call> 
+
+    <Get name="TestBean">
+      <Set name="myId" type="int"><Property name="testbean.id" default="10"/></Set>
+      <Set name="name" type="String"><Property name="testbean.name" default="myname"/></Set>
+    </Get>
+</Configure>

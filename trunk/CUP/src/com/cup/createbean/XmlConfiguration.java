@@ -482,7 +482,7 @@ public class XmlConfiguration
             }
             catch (IllegalArgumentException | IllegalAccessException | NoSuchMethodException e)
             {
-            	LOG.warn(Log.IGNORED, e);
+//            	LOG.warn(Log.IGNORED, e);
             }
 
             // Try for native match
@@ -496,7 +496,7 @@ public class XmlConfiguration
             }
             catch (NoSuchFieldException | IllegalArgumentException | IllegalAccessException | NoSuchMethodException e)
             {
-            	LOG.warn(Log.IGNORED, e);
+//            	LOG.warn(Log.IGNORED, e);
             }
 
             // Try a field
@@ -511,7 +511,7 @@ public class XmlConfiguration
             }
             catch (NoSuchFieldException e)
             {
-            	LOG.warn(Log.IGNORED, e);
+//            	LOG.warn(Log.IGNORED, e);
             }
 
             // Search for a match by trying all the set methods
@@ -531,7 +531,7 @@ public class XmlConfiguration
                     }
                     catch (IllegalArgumentException | IllegalAccessException e)
                     {
-                    	LOG.warn(Log.IGNORED, e);
+//                    	LOG.warn(Log.IGNORED, e);
                     }
 
                     try
@@ -545,7 +545,7 @@ public class XmlConfiguration
                     }
                     catch (IllegalAccessException e)
                     {
-                    	LOG.warn(Log.IGNORED, e);
+//                    	LOG.warn(Log.IGNORED, e);
                     }
                 }
             }
@@ -575,7 +575,7 @@ public class XmlConfiguration
                 }
                 catch (NoSuchMethodException | IllegalAccessException | InstantiationException e)
                 {
-                	LOG.warn(Log.IGNORED, e);
+//                	LOG.warn(Log.IGNORED, e);
                 }
             }
 
@@ -1190,7 +1190,7 @@ public class XmlConfiguration
                     }
                     catch (NoClassDefFoundError | ClassNotFoundException e)
                     {
-                    	LOG.warn(Log.IGNORED, e);
+//                   );
                     }
                     catch (Exception e)
                     {
