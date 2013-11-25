@@ -77,6 +77,11 @@ public abstract class AbstractNetworkConnector extends AbstractConnector impleme
     @Override
     protected void doStart() throws Exception
     {
+    	/**
+    	 * myOpinion 启动网络监听的入口关键方法
+    	 * 				open()方法的子类实现会打开ServerSocketChannel,存在_acceptChannel对象中，开始监听，
+    	 *              super.doStart();将 创建Acceptor线程，它调用ServerSocketChannel的的accetp（）方法，接收连接，然后将连接交由seclect线程处理。
+    	 */
         open();
         super.doStart();
     }

@@ -33,6 +33,8 @@ import org.eclipse.jetty.util.thread.Scheduler;
  * every operation. Rather timeout are allowed to expire and a check is then made
  * to see when the last operation took place.  If the idle timeout has not expired,
  * the timeout is rescheduled for the earliest possible time a timeout could occur.
+ * myOpinion 判断连接等是否空闲等待超时的抽象类，
+ *           具体方式为起一个线程，记录开始时间，然后不断运行，判断是否超过了最长时间，如果超出，调用处理方法（模板方法，子类覆写）处理，
  */
 public abstract class IdleTimeout
 {

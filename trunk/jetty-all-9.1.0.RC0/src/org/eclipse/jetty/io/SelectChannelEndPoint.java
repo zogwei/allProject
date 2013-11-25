@@ -96,7 +96,11 @@ public class SelectChannelEndPoint extends ChannelEndPoint implements SelectorMa
         updateLocalInterests(SelectionKey.OP_WRITE, true);
     }
 
+   
     @Override
+    /**
+     * 处理网络数据读写的核心方式
+     */
     public void onSelected()
     {
         assert _selector.isSelectorThread();

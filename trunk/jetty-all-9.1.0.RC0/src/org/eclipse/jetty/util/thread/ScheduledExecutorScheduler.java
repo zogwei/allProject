@@ -32,6 +32,7 @@ import org.eclipse.jetty.util.component.AbstractLifeCycle;
  * it has the advantage of allowing to set a property to remove cancelled tasks from its
  * queue even if the task did not fire, which provides a huge benefit in the performance
  * of garbage collection in young generation.
+ * myOpinion 对jdk的ScheduledThreadPoolExecutor和ScheduledFuture进行了封装，使得可以设置ScheduledFuture的cancel时，将任务从工作队列中立即删除
  */
 public class ScheduledExecutorScheduler extends AbstractLifeCycle implements Scheduler
 {

@@ -1151,6 +1151,7 @@ public class XmlConfiguration
     }
 
     /**
+     * 
      * Run the XML configurations as a main application. The command line is used to obtain properties files (must be named '*.properties') and XmlConfiguration
      * files.
      * <p>
@@ -1169,6 +1170,11 @@ public class XmlConfiguration
      */
     public static void main(final String... args) throws Exception
     {
+    	/**
+    	 * myOpinion 通过xml定义了 系统的组件，最后启动组件
+    	 * 			1、各个配置文件相同的id对象会使用同一个对象，例如所有的server都有id属性，Server ，系统将只有一个server
+    	 *          
+    	 */
         final AtomicReference<Throwable> exception = new AtomicReference<>();
 
         AccessController.doPrivileged(new PrivilegedAction<Object>()

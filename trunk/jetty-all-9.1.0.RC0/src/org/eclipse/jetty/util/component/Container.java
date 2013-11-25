@@ -82,6 +82,7 @@ public interface Container
     }
     
     /**
+     * myOpinion 标示接口，添加了实现改接口的bean，则需要把它添加到 该containers下的所有受管理的并且是Containers的bean中
      * Inherited Listener.
      * If an added bean implements this interface, then it will 
      * be added to all contained beans that are themselves Containers
