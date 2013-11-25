@@ -66,6 +66,7 @@ public class ContextHandlerCollection extends HandlerCollection
     /* ------------------------------------------------------------ */
     /**
      * Remap the context paths.
+     * myDoubt Trie<ContextHandler[]> _contexts; 的组织方式
      */
     @ManagedOperation("update the mapping of context path to context")
     public void mapContexts()

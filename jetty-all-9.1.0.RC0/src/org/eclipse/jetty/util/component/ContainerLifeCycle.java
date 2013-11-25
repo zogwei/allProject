@@ -246,6 +246,7 @@ public class ContainerLifeCycle extends AbstractLifeCycle implements Container, 
         _beans.add(new_bean);
 
         // Tell existing listeners about the new bean
+        //myOpinion 告知所有监听器，新添加的bean
         for (Container.Listener l:_listeners)
             l.beanAdded(this,o);
 
@@ -310,6 +311,10 @@ public class ContainerLifeCycle extends AbstractLifeCycle implements Container, 
     
 
     @Override
+    /**
+     * myOpinion 给container添加监听器，并通知该监听器container中已经添加的bean
+     * 
+     */
     public void addEventListener(Container.Listener listener)
     {
         if (_listeners.contains(listener))
@@ -320,6 +325,7 @@ public class ContainerLifeCycle extends AbstractLifeCycle implements Container, 
         // tell it about existing beans
         for (Bean b:_beans)
         {
+        	//通知listener，container中已经添加的bean
             listener.beanAdded(this,b._bean);
 
             // handle inheritance
@@ -698,6 +704,11 @@ public class ContainerLifeCycle extends AbstractLifeCycle implements Container, 
     }
 
 
+    /**
+     * myDoubt  POJO, MANAGED, UNMANAGED, AUTO 含义？
+     * @author wzhong
+     *
+     */
     enum Managed { POJO, MANAGED, UNMANAGED, AUTO };
 
     private static class Bean

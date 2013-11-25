@@ -587,9 +587,18 @@ public abstract class SelectorManager extends AbstractLifeCycle implements Dumpa
             return Thread.currentThread() == _thread;
         }
 
+        /**
+         * myOpinion 接收请求连接的重要方法，一般http情况中connectionOpened 会添加fillInterested()添加
+         * @param channel
+         * @param selectionKey
+         * @return
+         * @throws IOException
+         */
         private EndPoint createEndPoint(SocketChannel channel, SelectionKey selectionKey) throws IOException
         {
+        	//SelectChannelEndPoint
             EndPoint endPoint = newEndPoint(channel, this, selectionKey);
+            //主要是判断是否空闲等待超时
             endPointOpened(endPoint);
             Connection connection = newConnection(channel, endPoint, selectionKey.attachment());
             endPoint.setConnection(connection);
