@@ -99,13 +99,17 @@ public class SelectChannelEndPoint extends ChannelEndPoint implements SelectorMa
    
     @Override
     /**
-     * 处理网络数据读写的核心方式
+     * myOpinion 处理网络数据读写的核心方式
+     * 
      */
     public void onSelected()
     {
         assert _selector.isSelectorThread();
         int oldInterestOps = _key.interestOps();
         int readyOps = _key.readyOps();
+        /**
+         * myDoubt 这里读写状态如何转换的
+         */
         int newInterestOps = oldInterestOps & ~readyOps;
         setKeyInterests(oldInterestOps, newInterestOps);
         updateLocalInterests(readyOps, false);
@@ -118,6 +122,7 @@ public class SelectChannelEndPoint extends ChannelEndPoint implements SelectorMa
 
     private void updateLocalInterests(int operation, boolean add)
     {
+    	//myDoubt why 循环？
         while (true)
         {
             int oldInterestOps = _interestOps.get();

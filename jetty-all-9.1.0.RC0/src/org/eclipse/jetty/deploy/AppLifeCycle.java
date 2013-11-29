@@ -77,9 +77,21 @@ public class AppLifeCycle extends Graph
     
     
     private Map<String, List<Binding>> lifecyclebindings = new HashMap<String, List<Binding>>();
+    
+    
 
     public AppLifeCycle()
     {
+    	/**
+    	 * myOpinion AppLifeCycle 作用：
+    	 *    1、继承于Graph
+			  2、构建方法会生成web程序生命周期有向图
+				    有向图包括 
+				                节点集合，代表状态          
+				                有向边集合，代表状态间转换
+			  3、包括lifecyclebindings 属性，存储状态绑定的处理对象
+    
+    	 */
         // Define Default Graph
 
         // undeployed -> deployed

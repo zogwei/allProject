@@ -357,6 +357,8 @@ public abstract class SelectorManager extends AbstractLifeCycle implements Dumpa
         }
 
         /**
+         * myOpinion 向selector线程包含的队列中添加一个 任务，并针对所处状态做出相应处理，状态是一个竞争资源
+         * 	                       注意：多线程环境下，态是一个竞争资源，如何正确的处理，
          * <p>Submits a change to be executed in the selector thread.</p>
          * <p>Changes may be submitted from any thread, and the selector thread woken up
          * (if necessary) to execute the change.</p>
@@ -373,6 +375,9 @@ public abstract class SelectorManager extends AbstractLifeCycle implements Dumpa
             _changes.offer(change);
             LOG.debug("Queued change {}", change);
 
+            /**
+             * myDoubt 多线程情况下，临界区对象状态装换处理方式
+             */
             out: while (true)
             {
                 switch (_state.get())
@@ -600,6 +605,7 @@ public abstract class SelectorManager extends AbstractLifeCycle implements Dumpa
             EndPoint endPoint = newEndPoint(channel, this, selectionKey);
             //主要是判断是否空闲等待超时
             endPointOpened(endPoint);
+            //HttpConnection
             Connection connection = newConnection(channel, endPoint, selectionKey.attachment());
             endPoint.setConnection(connection);
             connectionOpened(connection);

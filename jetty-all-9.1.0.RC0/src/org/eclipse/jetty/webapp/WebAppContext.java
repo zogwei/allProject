@@ -913,6 +913,10 @@ public class WebAppContext extends ServletContextHandler implements WebAppClassL
         if (_configurations.size()>0)
             return;
         
+        
+        /**
+         * myOpinion 查找所有的配置文件类，并实例化放到_configurations变量中
+         */
         if (_configurationClasses.size()==0)
             _configurationClasses.addAll(Configuration.ClassList.serverDefault(getServer()));
         for (String configClass : _configurationClasses)
