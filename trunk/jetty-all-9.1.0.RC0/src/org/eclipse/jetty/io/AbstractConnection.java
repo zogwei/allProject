@@ -97,6 +97,9 @@ public abstract class AbstractConnection implements Connection
     {
         LOG.debug("fillInterested {}",this);           
         
+        /**
+         * myDoubt 为什么循环？
+         */
         while(true)
         {
             State state=_state.get();
@@ -360,6 +363,11 @@ public abstract class AbstractConnection implements Connection
     }
 
 
+    /**
+     * myDoubt state 作用？
+     * @author wzhong
+     *
+     */
     public static class State
     {
         private final String _name;

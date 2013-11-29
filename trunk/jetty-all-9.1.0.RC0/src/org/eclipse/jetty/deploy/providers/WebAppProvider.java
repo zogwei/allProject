@@ -62,6 +62,12 @@ import org.eclipse.jetty.xml.XmlConfiguration;
 @ManagedObject("Provider for start-up deployement of webapps based on presence in directory")
 public class WebAppProvider extends ScanningAppProvider
 {
+	/**
+	 * myOpinion WebAppProvider 作为web应用程序的 provider，主要完成如下功能：
+	 *           1、使用从ScanningAppProvider继承的扫描功能，定期扫描指定的目录，更新部署
+	 *               WebAppProvider自己提供扫描时的文件过滤
+	 *           2、生成对应web app的 ContextHandler
+	 */
     private boolean _extractWars = false;
     private boolean _parentLoaderPriority = false;
     private ConfigurationManager _configurationManager;

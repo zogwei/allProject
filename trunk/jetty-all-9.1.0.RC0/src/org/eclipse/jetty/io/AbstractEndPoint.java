@@ -36,6 +36,9 @@ public abstract class AbstractEndPoint extends IdleTimeout implements EndPoint
     private final InetSocketAddress _remote;
     private volatile Connection _connection;
 
+    /**
+     * myOpinion >>>处理读数据的关键对象
+     */
     private final FillInterest _fillInterest = new FillInterest()
     {
         @Override
@@ -44,6 +47,10 @@ public abstract class AbstractEndPoint extends IdleTimeout implements EndPoint
             return AbstractEndPoint.this.needsFill();
         }
     };
+    
+    /**
+     * myOpinion >>>处理写数据的关键对象
+     */
     private final WriteFlusher _writeFlusher = new WriteFlusher(this)
     {
         @Override

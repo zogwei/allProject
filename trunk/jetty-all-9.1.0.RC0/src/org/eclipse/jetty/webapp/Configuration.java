@@ -136,6 +136,10 @@ public interface Configuration
                 return new ClassList((ClassList)attr);
             if (attr instanceof String[])
                 return new ClassList((String[])attr);
+            /**
+             * myOpinion 默认配置情况下 sever中没ClassList，
+             *          new ClassList();会使用WebAppContext.DEFAULT_CONFIGURATION_CLASSES配置的String[],作为输入，注意，jetty的配置文件会增加内如：jetty-plus.xml
+             */
             return new ClassList();
         }
         

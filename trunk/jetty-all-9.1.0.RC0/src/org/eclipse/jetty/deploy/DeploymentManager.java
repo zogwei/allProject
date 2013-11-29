@@ -63,6 +63,17 @@ import org.eclipse.jetty.util.log.Logger;
 @ManagedObject("Deployment Manager")
 public class DeploymentManager extends ContainerLifeCycle
 {
+	/**
+	 * myOpinion DeploymentManager 功能：
+	 * 		1、启动appProvider，获得app信息
+	 *      2、app生命周期管理，包括更加Provider提供的信息创建app，并启动，移除app等
+	 *       
+	 *      
+	 *   
+	 *     
+	 */
+	
+	
     private static final Logger LOG = Log.getLogger(DeploymentManager.class);
 
     /**
